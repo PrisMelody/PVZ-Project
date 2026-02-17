@@ -10,7 +10,7 @@ public class BasicZombie : IZombie
     public int Speed {get; set;} = 1;
     public float xCoord {get; set;}
     public float yCoord {get; set;}
-
+// Che: Why not just use vecter2?
     public int Health{get; set;} = 270;
     public bool IsDead {get; set;}
 
@@ -28,6 +28,17 @@ public class BasicZombie : IZombie
         xCoord -= Speed;
     }
 
+/*
+Che: We eventually will need a delta time, or our game speed would be hooked to frame speed.
+For example
+public void Move(GameTime gameTime)
+{
+    xCoord -= Speed * (float)gameTime.ElapsedGameTime.TotalSeconds;
+}
+
+// In the update method:
+this.Move(gameTime);
+*/
     public void Attack()
     {
         //Currently blank, will likely remain so until Sprint 3.
