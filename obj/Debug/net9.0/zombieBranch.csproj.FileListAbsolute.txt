@@ -33,3 +33,13 @@ C:\Users\NoahMudrick\Desktop\CSE3902\zombieBranch\zombieBranch\obj\Debug\net9.0\
 C:\Users\NoahMudrick\Desktop\CSE3902\zombieBranch\zombieBranch\obj\Debug\net9.0\ref\zombieBranch.dll
 C:\Users\NoahMudrick\Desktop\CSE3902\zombieBranch\zombieBranch\bin\Debug\net9.0\Content\images\Placeholder Zombie.xnb
 C:\Users\NoahMudrick\Desktop\CSE3902\zombieBranch\zombieBranch\bin\Debug\net9.0\Content\images\Buckethead Zombie.xnb
+C:\Users\NoahMudrick\Documents\GitHub\PVZ-Project\obj\Debug\net9.0\mgcb.tool.restore
+C:\Users\NoahMudrick\Documents\GitHub\PVZ-Project\obj\Debug\net9.0\zombieBranch.csproj.AssemblyReference.cache
+C:\Users\NoahMudrick\Documents\GitHub\PVZ-Project\obj\Debug\net9.0\zombieBranch.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\NoahMudrick\Documents\GitHub\PVZ-Project\obj\Debug\net9.0\zombieBranch.AssemblyInfoInputs.cache
+C:\Users\NoahMudrick\Documents\GitHub\PVZ-Project\obj\Debug\net9.0\zombieBranch.AssemblyInfo.cs
+C:\Users\NoahMudrick\Documents\GitHub\PVZ-Project\obj\Debug\net9.0\zombieBranch.csproj.CoreCompileInputs.cache
+C:\Users\NoahMudrick\Documents\GitHub\PVZ-Project\obj\Debug\net9.0\zombieBranch.sourcelink.json
+C:\Users\NoahMudrick\Documents\GitHub\PVZ-Project\obj\Debug\net9.0\zombieBranch.dll
+C:\Users\NoahMudrick\Documents\GitHub\PVZ-Project\obj\Debug\net9.0\refint\zombieBranch.dll
+C:\Users\NoahMudrick\Documents\GitHub\PVZ-Project\obj\Debug\net9.0\zombieBranch.pdb
