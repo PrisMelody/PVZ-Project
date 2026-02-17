@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("zombieBranch")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5bb5e4426b355a5382ff14610f34bbb1656613e8")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4c453eb5ffdc16287487eb393254153072c269f1")]
 [assembly: System.Reflection.AssemblyProductAttribute("zombieBranch")]
 [assembly: System.Reflection.AssemblyTitleAttribute("zombieBranch")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
