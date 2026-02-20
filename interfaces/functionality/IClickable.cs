@@ -44,5 +44,5 @@ public sealed class InputState
     }
 }
 */
-    void OnClick (InputState input);
+    void OnClick (MouseController mouse);
 }
