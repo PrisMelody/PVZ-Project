@@ -1,2 +1,2 @@
-﻿using var game = new zombieBranch.Game1();
+﻿using var game = new PVZ_Project.Game1();
 game.Run();
