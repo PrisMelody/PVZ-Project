@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
 
-interface IZombie :  IDamageable, IDrawable//, IUpdateable //Was commented out due to weirdness.
+interface IZombie :  IDamageable, IPvZDrawable, IPvZUpdatable
 {
     int Speed{get; set;}
     bool IsAttacking{get; set;}
@@ -13,6 +13,4 @@ interface IZombie :  IDamageable, IDrawable//, IUpdateable //Was commented out d
 
     void Move();
     void Attack();
-
-    void Update (GameTime gameTime); //Currently here due to weirdness with Updatable.
 }

@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 namespace PVZ_Project.GameObjects 
 {
     // 继承 IDrawable 和 IUpdatable，它们需要被画出来，也需要随时间播放动画
-    public class VisualEffect : IUpdatable, IDrawable
+    public class VisualEffect : IPvZUpdatable, IPvZDrawable
     {
         private Texture2D _texture; 
         private Vector2 _position;
