@@ -1,46 +1,47 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-
-namespace PVZ_Project;
+using System.Collections.Generic;
+using MonoGameLibrary.Sprites;
 
 public class Game1 : Game
 {
-    private GraphicsDeviceManager _graphics;
-    private SpriteBatch _spriteBatch;
+    private GraphicsDeviceManager graphics;
+    private SpriteBatch spriteBatch;
 
-    IZombie testZombie;
+    private TextureAtlas testAtlas;
+    private Sprite testSprite;
 
     public Game1()
     {
-        _graphics = new GraphicsDeviceManager(this);
+        graphics = new GraphicsDeviceManager(this);
         Content.RootDirectory = "Content";
-        IsMouseVisible = true;
-    }
-
-    protected override void Initialize()
-    {
-        // TODO: Add your initialization logic here
-
-        base.Initialize();
     }
 
     protected override void LoadContent()
     {
-        _spriteBatch = new SpriteBatch(GraphicsDevice);
+        spriteBatch = new SpriteBatch(GraphicsDevice);
 
-        testZombie = new BasicZombie(500.0f, 100.0f);
+        // --- Create a dummy texture ---
+        Texture2D dummyTexture = new Texture2D(GraphicsDevice, 64, 64);
+        Color[] pixels = new Color[64 * 64];
+        for (int i = 0; i < pixels.Length; i++)
+            pixels[i] = Color.Green; // fill with green
+        dummyTexture.SetData(pixels);
 
-        TempZombieSpriteHandler.FlagZombie = Content.Load<Texture2D>("images/Placeholder Zombie");
+        // --- Create atlas and regions ---
+        testAtlas = new TextureAtlas(dummyTexture);
+        testAtlas.AddRegion(new TextureRegion("GreenSquare", new Rectangle(0, 0, 32, 32)));
 
+        // --- Create a test sprite from atlas ---
+        testSprite = new TestSprite(testAtlas);
+        testSprite.Position = new Vector2(100, 100);
     }
 
     protected override void Update(GameTime gameTime)
     {
-        if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
+        if (Keyboard.GetState().IsKeyDown(Keys.Escape))
             Exit();
-
-        testZombie.Update(gameTime);
 
         base.Update(gameTime);
     }
@@ -49,10 +50,16 @@ public class Game1 : Game
     {
         GraphicsDevice.Clear(Color.CornflowerBlue);
 
-        _spriteBatch.Begin();
-        testZombie.Draw(_spriteBatch);
-        _spriteBatch.End();
+        spriteBatch.Begin();
+        testSprite.Draw(spriteBatch);
+        spriteBatch.End();
 
         base.Draw(gameTime);
     }
+}
+
+// --- Example derived sprite ---
+public class TestSprite : Sprite
+{
+    public TestSprite(TextureAtlas atlas) : base(atlas, "GreenSquare") { }
 }
