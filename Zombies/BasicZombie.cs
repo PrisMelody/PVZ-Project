@@ -43,32 +43,30 @@ public class BasicZombie : IZombie
     }
 
 
-    public void Draw (SpriteBatch spriteBatch)
+    virtual public void Draw (SpriteBatch spriteBatch)
     {    //This is a placeholder using a static class instead of a dedicated sprite handling setup.
         spriteBatch.Draw(
-            TempZombieSpriteHandler.FlagZombie, 
+            TempZombieSpriteHandler.BasicZombie, 
             new Vector2(xCoord, yCoord), 
             null, 
             Color.White, 
             0.0f, 
             Vector2.Zero,
-            0.1f,
+            1f,
             SpriteEffects.None,
             0.0f //For now this is just a constant, later it should use drawOrder, or whatever we go with.
-        
-
         );
     }
 
     public void Update(GameTime gameTime)
     {
     if (!IsAttacking){
-            this.Move();
+            Move();
             //for sprint 3, we'll add some kind of check here to see if there are plants, in which case it will switch to attack mode.
         }
         else
         {
-            this.Attack();
+            Attack();
         }
     }
 }
