@@ -45,16 +45,16 @@ public class Game1 : Game, IGameInputHandler, IPlayerActions
         _pixel = new Texture2D(GraphicsDevice, 1, 1);
         _pixel.SetData(new[] { Color.White });
 
-        _singlePlotBounds = new Rectangle(200, 200, 80, 80);
+        _singlePlotBounds = new Rectangle(200, 300, 80, 80);
 
         _seedPacketBounds = new[]
         {
-            new Rectangle(80, 500, 70, 80),   // type 0
-            new Rectangle(160, 500, 70, 80),  // type 1
-            new Rectangle(240, 500, 70, 80),  // type 2
+            new Rectangle(80, 100, 70, 80),
+            new Rectangle(160, 100, 70, 80),
+            new Rectangle(240, 100, 70, 80),
         };
 
-        _shovelBounds = new Rectangle(700, 500, 70, 80);
+        _shovelBounds = new Rectangle(700, 100, 70, 80);
 
         try
         {

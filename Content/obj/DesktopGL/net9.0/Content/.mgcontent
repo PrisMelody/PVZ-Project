@@ -4,8 +4,8 @@
   <Platform>DesktopGL</Platform>
   <Config />
   <SourceFiles>
-    <File>C:/Users/ctcop/OneDrive/Documents/Monogame/PVZ-Project/Content/images/Buckethead Zombie.webp</File>
-    <File>C:/Users/ctcop/OneDrive/Documents/Monogame/PVZ-Project/Content/images/Placeholder Zombie.png</File>
+    <File>c:/Users/ctcop/OneDrive/Documents/Monogame/PVZ-Project/Content/images/Buckethead Zombie.webp</File>
+    <File>c:/Users/ctcop/OneDrive/Documents/Monogame/PVZ-Project/Content/images/Placeholder Zombie.png</File>
   </SourceFiles>
   <DestFiles>
     <File xsi:nil="true" />

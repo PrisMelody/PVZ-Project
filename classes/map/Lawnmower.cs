@@ -1,4 +1,4 @@
-using System.Drawing;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 public class Lawnmower : ILawnmower
@@ -10,21 +10,24 @@ public class Lawnmower : ILawnmower
     public float Speed { get; private set; }
     public int Health { get; private set; }
     public bool IsDead { get; private set; }
+    public int DrawOrder { get; set; }
+
     private int maxHealth;
     private Vector2 startPosition;
     private int screenWidth;
 
-    public Lawnmower(Point position, int row, Rectangle bounds, int screenWidth)
+    public Lawnmower(Vector2 position, int row, int screenWidth)
     {
         Position = position;
         startPosition = position;
         Row = row;
         IsActivated = false;
         IsMoving = false;
-        Speed = 300f; // pixels per second
+        Speed = 300f;
         maxHealth = 1;
         Health = maxHealth;
         IsDead = false;
+        DrawOrder = 20;
         this.screenWidth = screenWidth;
     }
 
@@ -33,35 +36,24 @@ public class Lawnmower : ILawnmower
         if (!IsDead)
         {
             // TODO: Draw lawnmower sprite at Position
-            // This will be implemented when sprites are available
         }
     }
 
-    public void Update(Gametime gameTime)
+    public void Update(GameTime gameTime)
     {
         if (IsDead) return;
 
         float deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
 
-        // Move lawnmower if activated
         if (IsActivated && IsMoving)
         {
-            int newX = Position.X + (int)(Speed * deltaTime);
-            Position = new Point(newX, Position.Y);
-            Bounds = new Rectangle(Position.X - Bounds.Width / 2,
-                                  Position.Y - Bounds.Height / 2,
-                                  Bounds.Width, Bounds.Height);
+            Position = new Vector2(Position.X + Speed * deltaTime, Position.Y);
 
-            // Check if lawnmower has moved off screen
             if (Position.X > screenWidth)
             {
                 IsMoving = false;
-                // Lawnmower is done, could be removed or reset
             }
         }
-
-        // Check for collisions with zombies
-        //CheckCollision();
     }
 
     public void Activate()
@@ -73,13 +65,6 @@ public class Lawnmower : ILawnmower
         }
     }
 
-    /*public void CheckCollision()
-    {
-        // TODO: Check collision with zombies in the same row
-        // This will be implemented when zombie classes are available
-        // For now, this is a placeholder
-    }
-    */
     public void TakeDamage(int amount)
     {
         if (!IsDead)

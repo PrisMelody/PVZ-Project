@@ -14,13 +14,12 @@ public class Shovel : IShovel
         this.position = position;
         Bounds = bounds;
         IsSelected = false;
-        DrawOrder = 100; // High draw order for UI elements
+        DrawOrder = 100;
     }
 
     public void Draw(SpriteBatch sprite)
     {
         // TODO: Draw shovel sprite
-        // This will be implemented when sprites are available
     }
 
     public void Activate()
@@ -38,10 +37,9 @@ public class Shovel : IShovel
         return Bounds.Contains(mousePos);
     }
 
-    public void OnClick(InputState input)
+    public void OnClick(MouseController mouse)
     {
-        if (HitTest(input.MousePosition))
-            IsSelected = !IsSelected;
+        IsSelected = !IsSelected;
     }
 
     public void UseOnPlot(IGridPlot plot)

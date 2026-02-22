@@ -1,6 +1,6 @@
 using System.Drawing;
 
-public interface IGridPlot : IClickable, IDrawable
+public interface IGridPlot : IClickable, IPvZDrawable
 {
     // The position of the plot on the grid
     Point GridPosition { get; }
