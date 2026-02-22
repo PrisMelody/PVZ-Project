@@ -61,12 +61,12 @@ public class SeedPacket : ISeedPacket
         IsDragging = false;
     }
 
-    public bool CanPlantOn(IPlot plot)
+    public bool CanPlantOn(IGridPlot plot)
     {
         return plot != null && !plot.IsOccupied && plot.CanPlacePlant;
     }
 
-    public void PlantOn(IPlot plot)
+    public void PlantOn(IGridPlot plot)
     {
         if (CanPlantOn(plot) && IsAvailable && !IsOnCooldown)
         {

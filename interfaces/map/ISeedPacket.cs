@@ -18,8 +18,8 @@ public interface ISeedPacket : IClickable, IDrawable, IDraggable
     float CooldownRemaining { get; }
     
     // Check if this seed packet can be planted on a plot
-    bool CanPlantOn(IPlot plot);
+    bool CanPlantOn(IGridPlot plot);
     
     // Plant the seed on a plot
-    void PlantOn(IPlot plot);
+    void PlantOn(IGridPlot plot);
 }

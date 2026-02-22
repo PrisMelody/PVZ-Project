@@ -12,5 +12,5 @@ public interface IShovel : IClickable, IDrawable
     void Deactivate();
     
     // Use the shovel on a plot (removes plant from plot)
-    void UseOnPlot(IPlot plot);
+    void UseOnPlot(IGridPlot plot);
 }

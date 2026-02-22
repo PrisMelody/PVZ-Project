@@ -33,6 +33,17 @@ public class Shovel : IShovel
         IsSelected = false;
     }
 
+    public bool HitTest(Point mousePos)
+    {
+        return Bounds.Contains(mousePos);
+    }
+
+    public void OnClick(InputState input)
+    {
+        if (HitTest(input.MousePosition))
+            IsSelected = !IsSelected;
+    }
+
     public void UseOnPlot(IGridPlot plot)
     {
         if (plot != null && plot.IsOccupied)

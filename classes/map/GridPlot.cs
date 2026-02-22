@@ -11,7 +11,7 @@ public class GridPlot : IGridPlot
     public Rectangle Bounds { get; private set; }
     public int DrawOrder { get; set; }
 
-    public Plot(Point gridPosition, Point position, Rectangle bounds)
+    public GridPlot(Point gridPosition, Point position, Rectangle bounds)
     {
         GridPosition = gridPosition;
         Position = position;
@@ -59,5 +59,15 @@ public class GridPlot : IGridPlot
     public bool Contains(Point position)
     {
         return Bounds.Contains(position);
+    }
+
+    public bool HitTest(Point mousePos)
+    {
+        return Bounds.Contains(mousePos);
+    }
+
+    public void OnClick(InputState input)
+    {
+        // Click handling is typically done by the game/controller using GridManager.GetPlotAt.
     }
 }
