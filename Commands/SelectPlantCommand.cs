@@ -1,16 +1,16 @@
 public class SelectPlantCommand : ICommand
 {
-    private Game1 game;
-    private int plantType;
+    private readonly IPlayerActions _player;
+    private readonly int _plantType;
 
-    public SelectPlantCommand(Game1 game, int type)
+    public SelectPlantCommand(IPlayerActions player, int plantType)
     {
-        this.game = game;
-        plantType = type;
+        _player = player ?? throw new System.ArgumentNullException(nameof(player));
+        _plantType = plantType;
     }
 
     public void Execute()
     {
-        game.SelectedPlant = plantType;
+        _player.SetSelectedPlant(_plantType);
     }
 }
