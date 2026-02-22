@@ -1,0 +1,20 @@
+
+# Build artifacts
+[Bb]in/
+[Oo]bj/
+[Dd]ebug/
+[Rr]elease/
+
+# Visual Studio files
+.vs/
+*.user
+*.suo
+*.sln.docstates
+
+# Content Pipeline / Compiled Content
+# Uncomment if you build content locally and don't commit it
+# [Cc]ontent/bin/
+
+# Other
+*.pdb
+.DS_Store
