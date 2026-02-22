@@ -1,4 +1,5 @@
 using System.Drawing;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 public class SeedPacket : ISeedPacket
@@ -8,15 +9,15 @@ public class SeedPacket : ISeedPacket
     public bool IsAvailable { get; private set; }
     public bool IsOnCooldown { get; private set; }
     public float CooldownRemaining { get; private set; }
-    public Rectangle Bounds { get; private set; }
+    public System.Drawing.Rectangle Bounds { get; private set; }
     public bool IsDragging { get; private set; }
     public int DrawOrder { get; set; }
 
-    private Point position;
+    private System.Drawing.Point position;
     private float cooldownTime;
     private int currentSun;
 
-    public SeedPacket(string plantType, int cost, float cooldownTime, Point position, Rectangle bounds)
+    public SeedPacket(string plantType, int cost, float cooldownTime, System.Drawing.Point position, System.Drawing.Rectangle bounds)
     {
         PlantType = plantType;
         Cost = cost;
@@ -26,18 +27,26 @@ public class SeedPacket : ISeedPacket
         CooldownRemaining = 0f;
         IsOnCooldown = false;
         IsDragging = false;
-        DrawOrder = 100; // High draw order for UI elements
-        UpdateAvailability(0); // Initialize with 0 sun
+        DrawOrder = 100;
+        UpdateAvailability(0);
     }
 
     public void Draw(SpriteBatch sprite)
     {
         // TODO: Draw seed packet sprite
-        // Draw with reduced opacity if on cooldown or unavailable
-        // This will be implemented when sprites are available
     }
 
-    public void OnDragStart(InputState input)
+    public bool HitTest(System.Drawing.Point mousePos)
+    {
+        return Bounds.Contains(mousePos);
+    }
+
+    public void OnClick(MouseController mouse)
+    {
+        // Click handling done by Game1.HandleClick
+    }
+
+    public void OnDragStart(MouseController mouse)
     {
         if (IsAvailable && !IsOnCooldown)
         {
@@ -45,18 +54,19 @@ public class SeedPacket : ISeedPacket
         }
     }
 
-    public void OnDrag(InputState input)
+    public void OnDrag(MouseController mouse)
     {
         if (IsDragging)
         {
-            // Update position to follow mouse
-            Bounds = new Rectangle(input.MousePosition.X - Bounds.Width / 2,
-                                  input.MousePosition.Y - Bounds.Height / 2,
-                                  Bounds.Width, Bounds.Height);
+            var state = mouse.GetState();
+            Bounds = new System.Drawing.Rectangle(
+                state.Position.X - Bounds.Width / 2,
+                state.Position.Y - Bounds.Height / 2,
+                Bounds.Width, Bounds.Height);
         }
     }
 
-    public void OnDragEnd(InputState input)
+    public void OnDragEnd(MouseController mouse)
     {
         IsDragging = false;
     }
@@ -71,8 +81,6 @@ public class SeedPacket : ISeedPacket
         if (CanPlantOn(plot) && IsAvailable && !IsOnCooldown)
         {
             // TODO: Create plant instance based on PlantType and place on plot
-            // This will be implemented when plant classes are available
-            // For now, just start cooldown
             StartCooldown();
         }
     }
@@ -89,7 +97,7 @@ public class SeedPacket : ISeedPacket
         CooldownRemaining = cooldownTime;
     }
 
-    public void UpdateCooldown(Gametime gameTime)
+    public void UpdateCooldown(GameTime gameTime)
     {
         if (IsOnCooldown)
         {

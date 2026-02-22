@@ -19,16 +19,14 @@ public class GridPlot : IGridPlot
         IsOccupied = false;
         CanPlacePlant = true;
         Plant = null;
-        DrawOrder = 10; // Low draw order, drawn before plants
+        DrawOrder = 10;
     }
 
     public void Draw(SpriteBatch sprite)
     {
         // TODO: Draw plot sprite/background
-        // This will be implemented when sprites are available
 
-        // Draw plant if occupied
-        if (IsOccupied && Plant != null && Plant is IDrawable drawablePlant)
+        if (IsOccupied && Plant != null && Plant is IPvZDrawable drawablePlant)
         {
             drawablePlant.Draw(sprite);
         }
@@ -66,8 +64,8 @@ public class GridPlot : IGridPlot
         return Bounds.Contains(mousePos);
     }
 
-    public void OnClick(InputState input)
+    public void OnClick(MouseController mouse)
     {
-        // Click handling is typically done by the game/controller using GridManager.GetPlotAt.
+        // Click handling is done by the game/controller using GridManager.GetPlotAt.
     }
 }
