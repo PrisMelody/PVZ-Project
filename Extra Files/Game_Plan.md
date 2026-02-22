@@ -1,0 +1,22 @@
+## Sprint 2
+> Goal: to draw all sprites and make them move. Literally
+- Plants to build: every plant on day level, 8 in total
+  - peashooter
+  - sunflower
+  - Cherry Bomb
+  - Wall-nut
+  - Potato mine
+  - Icy pea
+  - Chomper
+  - Repeater
+- Zombies to build: every zombie on day level, 5 in total
+  - Normal zombie
+  - Cone-head
+  - Bucket head
+  - Pole-jumping
+  - Flag zombie
+- Other features to implement:
+  - Plant slot
+  - lawnmower
+  - sun
+  - shovel
