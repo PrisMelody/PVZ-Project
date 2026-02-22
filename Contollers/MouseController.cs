@@ -4,9 +4,9 @@ using Microsoft.Xna.Framework.Input;
 public class MouseController : IMouse
 {
     private MouseState previousSttate;
-    private Game1 game;
+    private PVZ_Project.Game1 game;
 
-    public MouseController(Game1 game)
+    public MouseController(PVZ_Project.Game1 game)
     {
         this.game = game;
     }
