@@ -1,13 +1,15 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-
+using MonoGameLibrary.Sprites;
 namespace zombieBranch;
 
 public class Game1 : Game
 {
     private GraphicsDeviceManager _graphics;
     private SpriteBatch _spriteBatch;
+    
+    private AnimatedSprite _peashooter;
 
     IZombie testZombie;
 
@@ -32,6 +34,19 @@ public class Game1 : Game
         testZombie = new BasicZombie(500.0f, 100.0f);
 
         TempZombieSpriteHandler.FlagZombie = Content.Load<Texture2D>("images/Placeholder Zombie");
+        ITextureAtlasLoader loader = new XmlTextureAtlasLoader();
+
+        TextureAtlas atlas = loader.Load(Content, "plants");
+        
+        var frames = atlas.GetRegionsStartingWith("peashooter_");
+
+        Animation peashooterAnim = new Animation(frames, 0.15f);
+
+        _peashooter = new AnimatedSprite(
+        peashooterAnim,
+        new Vector2(100, 100)
+        );
+
 
     }
 
@@ -43,6 +58,7 @@ public class Game1 : Game
         testZombie.Update(gameTime);
 
         base.Update(gameTime);
+        _peashooter.Update(gameTime);
     }
 
     protected override void Draw(GameTime gameTime)
@@ -51,6 +67,7 @@ public class Game1 : Game
 
         _spriteBatch.Begin();
         testZombie.Draw(_spriteBatch);
+        _peashooter.Draw(_spriteBatch);
         _spriteBatch.End();
 
         base.Draw(gameTime);

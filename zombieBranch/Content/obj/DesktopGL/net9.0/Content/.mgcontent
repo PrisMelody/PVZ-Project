@@ -4,10 +4,14 @@
   <Platform>DesktopGL</Platform>
   <Config />
   <SourceFiles>
-    <File>C:/Users/NoahMudrick/Documents/GitHub/PVZ-Project/zombieBranch/Content/images/Buckethead Zombie.webp</File>
-    <File>C:/Users/NoahMudrick/Documents/GitHub/PVZ-Project/zombieBranch/Content/images/Placeholder Zombie.png</File>
+    <File>C:/Users/mukun/PVZ-Project/PVZ-Project/zombieBranch/Content/full peashotters.png</File>
+    <File>C:/Users/mukun/PVZ-Project/PVZ-Project/zombieBranch/Content/images/Buckethead Zombie.webp</File>
+    <File>C:/Users/mukun/PVZ-Project/PVZ-Project/zombieBranch/Content/images/Placeholder Zombie.png</File>
+    <File>C:/Users/mukun/PVZ-Project/PVZ-Project/zombieBranch/Content/normal peashoter.png</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
   </DestFiles>

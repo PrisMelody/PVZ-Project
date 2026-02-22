@@ -1,0 +1,7 @@
+﻿<TextureAtlas>
+    <Texture>full peashotters</Texture>
+    <SubTexture name="peashooter_0" x="0" y="0" width="115" height="113"/>
+    <SubTexture name="peashooter_1" x="115" y="0" width="115" height="113"/>
+    <SubTexture name="peashooter_2" x="230" y="0" width="115" height="113"/>
+    <SubTexture name="peashooter_3" x="345" y="0" width="115" height="113"/>
+</TextureAtlas>
