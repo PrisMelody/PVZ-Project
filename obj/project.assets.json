@@ -295,24 +295,31 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\NoahMudrick\\.nuget\\packages\\": {}
+    "C:\\Users\\ctcop\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\NoahMudrick\\Documents\\GitHub\\PVZ-Project\\zombieBranch.csproj",
+      "projectUniqueName": "C:\\Users\\ctcop\\OneDrive\\Documents\\Monogame\\PVZ-Project\\zombieBranch.csproj",
       "projectName": "zombieBranch",
-      "projectPath": "C:\\Users\\NoahMudrick\\Documents\\GitHub\\PVZ-Project\\zombieBranch.csproj",
-      "packagesPath": "C:\\Users\\NoahMudrick\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\NoahMudrick\\Documents\\GitHub\\PVZ-Project\\obj\\",
+      "projectPath": "C:\\Users\\ctcop\\OneDrive\\Documents\\Monogame\\PVZ-Project\\zombieBranch.csproj",
+      "packagesPath": "C:\\Users\\ctcop\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\ctcop\\OneDrive\\Documents\\Monogame\\PVZ-Project\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "C:\\Users\\NoahMudrick\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\ctcop\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net9.0"
       ],
       "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -360,19 +367,19 @@
         "downloadDependencies": [
           {
             "name": "Microsoft.AspNetCore.App.Ref",
-            "version": "[9.0.12, 9.0.12]"
+            "version": "[9.0.13, 9.0.13]"
           },
           {
             "name": "Microsoft.NETCore.App.Host.win-x64",
-            "version": "[9.0.12, 9.0.12]"
+            "version": "[9.0.13, 9.0.13]"
           },
           {
             "name": "Microsoft.NETCore.App.Ref",
-            "version": "[9.0.12, 9.0.12]"
+            "version": "[9.0.13, 9.0.13]"
           },
           {
             "name": "Microsoft.WindowsDesktop.App.Ref",
-            "version": "[9.0.12, 9.0.12]"
+            "version": "[9.0.13, 9.0.13]"
           }
         ],
         "frameworkReferences": {
@@ -380,7 +387,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.102/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.103/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

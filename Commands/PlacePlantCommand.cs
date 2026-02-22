@@ -2,17 +2,17 @@ using Microsoft.Xna.Framework;
 
 public class PlacePlantCommand : ICommand
 {
-    private Game1 game;
-    private Point position;
+    private readonly IPlayerActions _player;
+    private readonly Point _position;
 
-    public PlacePlantCommand(Game1 game, Point pos)
+    public PlacePlantCommand(IPlayerActions player, Point position)
     {
-        this.game = game;
-        position = pos;
+        _player = player ?? throw new System.ArgumentNullException(nameof(player));
+        _position = position;
     }
 
     public void Execute()
     {
-        game.PlacePlant(position);
+        _player.PlacePlant(_position);
     }
 }
