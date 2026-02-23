@@ -37,7 +37,7 @@
 /processorParam:TextureFormat=Color
 /build:icypea.png;snowpea.png
 
-#begin images/Buckethead Zombie.webp
+#begin images/base_zombiesforproj.webp
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -47,19 +47,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:images/Buckethead Zombie.webp
-
-#begin images/Placeholder Zombie.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:images/Placeholder Zombie.png
+/build:images/base_zombiesforproj.webp
 
 #begin PC _ Computer - Plants vs. Zombies - Miscellaneous - Projectiles (1).png
 /importer:TextureImporter

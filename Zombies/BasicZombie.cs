@@ -4,10 +4,11 @@ using Microsoft.Xna.Framework.Input;
 
 
 public class BasicZombie : IZombie
+//TODO: add some way to handle freezing, presumably this will mostly just slow how often updates occur.
 {
     public bool IsAttacking {get; set;} = false;
 
-    public int Speed {get; set;} = 1;
+    public float Speed {get; set;} = 0.5f;
     public float xCoord {get; set;}
     public float yCoord {get; set;}
 
@@ -46,13 +47,13 @@ public class BasicZombie : IZombie
     virtual public void Draw (SpriteBatch spriteBatch)
     {    //This is a placeholder using a static class instead of a dedicated sprite handling setup.
         spriteBatch.Draw(
-            TempZombieSpriteHandler.BasicZombie, 
+            TempZombieSpriteHandler.Zombies, 
             new Vector2(xCoord, yCoord), 
-            null, 
+            new Rectangle(475, 42, 86, 153), 
             Color.White, 
             0.0f, 
             Vector2.Zero,
-            1f,
+            0.5f,
             SpriteEffects.None,
             0.0f //For now this is just a constant, later it should use drawOrder, or whatever we go with.
         );
@@ -71,7 +72,5 @@ public class BasicZombie : IZombie
     }
 }
 
-//Current priority should be trying to get something that can appear on screen. After that:
-//Deal with freezing/unfreezing (frozenState? Decorator? Could probably work with some if/else statments but that feels sloppy)
-//Add other zombie types. Should it be decorators or states?
+
 

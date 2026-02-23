@@ -4,27 +4,25 @@
   <Platform>DesktopGL</Platform>
   <Config />
   <SourceFiles>
-    <File>c:/Users/ctcop/OneDrive/Documents/Monogame/PVZ-Project/Content/daylevel.png</File>
-    <File>c:/Users/ctcop/OneDrive/Documents/Monogame/PVZ-Project/Content/icypea.png</File>
-    <File>c:/Users/ctcop/OneDrive/Documents/Monogame/PVZ-Project/Content/images/Buckethead Zombie.webp</File>
-    <File>c:/Users/ctcop/OneDrive/Documents/Monogame/PVZ-Project/Content/images/Placeholder Zombie.png</File>
-    <File>c:/Users/ctcop/OneDrive/Documents/Monogame/PVZ-Project/Content/PC _ Computer - Plants vs. Zombies - Miscellaneous - Projectiles (1).png</File>
-    <File>c:/Users/ctcop/OneDrive/Documents/Monogame/PVZ-Project/Content/PC _ Computer - Plants vs. Zombies - Miscellaneous - Projectiles.png</File>
-    <File>c:/Users/ctcop/OneDrive/Documents/Monogame/PVZ-Project/Content/peashooter.png</File>
-    <File>c:/Users/ctcop/OneDrive/Documents/Monogame/PVZ-Project/Content/PeashooterSeedPacket.webp</File>
-    <File>c:/Users/ctcop/OneDrive/Documents/Monogame/PVZ-Project/Content/repeater.png</File>
-    <File>c:/Users/ctcop/OneDrive/Documents/Monogame/PVZ-Project/Content/RepeaterSeedPacket.webp</File>
-    <File>c:/Users/ctcop/OneDrive/Documents/Monogame/PVZ-Project/Content/SeedSlot.webp</File>
-    <File>c:/Users/ctcop/OneDrive/Documents/Monogame/PVZ-Project/Content/Shovel.webp</File>
-    <File>c:/Users/ctcop/OneDrive/Documents/Monogame/PVZ-Project/Content/SnowPeaSeedPacket.webp</File>
-    <File>c:/Users/ctcop/OneDrive/Documents/Monogame/PVZ-Project/Content/sun.webp</File>
-    <File>c:/Users/ctcop/OneDrive/Documents/Monogame/PVZ-Project/Content/sunflower.png</File>
-    <File>c:/Users/ctcop/OneDrive/Documents/Monogame/PVZ-Project/Content/SunflowerSeedPacket.webp</File>
+    <File>C:/Users/NoahMudrick/Documents/GitHub/PVZ-Project/Content/daylevel.png</File>
+    <File>C:/Users/NoahMudrick/Documents/GitHub/PVZ-Project/Content/icypea.png</File>
+    <File>C:/Users/NoahMudrick/Documents/GitHub/PVZ-Project/Content/images/base_zombiesforproj.webp</File>
+    <File>C:/Users/NoahMudrick/Documents/GitHub/PVZ-Project/Content/PC _ Computer - Plants vs. Zombies - Miscellaneous - Projectiles (1).png</File>
+    <File>C:/Users/NoahMudrick/Documents/GitHub/PVZ-Project/Content/PC _ Computer - Plants vs. Zombies - Miscellaneous - Projectiles.png</File>
+    <File>C:/Users/NoahMudrick/Documents/GitHub/PVZ-Project/Content/peashooter.png</File>
+    <File>C:/Users/NoahMudrick/Documents/GitHub/PVZ-Project/Content/PeashooterSeedPacket.webp</File>
+    <File>C:/Users/NoahMudrick/Documents/GitHub/PVZ-Project/Content/repeater.png</File>
+    <File>C:/Users/NoahMudrick/Documents/GitHub/PVZ-Project/Content/RepeaterSeedPacket.webp</File>
+    <File>C:/Users/NoahMudrick/Documents/GitHub/PVZ-Project/Content/SeedSlot.webp</File>
+    <File>C:/Users/NoahMudrick/Documents/GitHub/PVZ-Project/Content/Shovel.webp</File>
+    <File>C:/Users/NoahMudrick/Documents/GitHub/PVZ-Project/Content/SnowPeaSeedPacket.webp</File>
+    <File>C:/Users/NoahMudrick/Documents/GitHub/PVZ-Project/Content/sun.webp</File>
+    <File>C:/Users/NoahMudrick/Documents/GitHub/PVZ-Project/Content/sunflower.png</File>
+    <File>C:/Users/NoahMudrick/Documents/GitHub/PVZ-Project/Content/SunflowerSeedPacket.webp</File>
   </SourceFiles>
   <DestFiles>
     <File>day_level.png</File>
     <File>snowpea.png</File>
-    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File>snowpea_projectile.png</File>
     <File>pea_projectile.png</File>
