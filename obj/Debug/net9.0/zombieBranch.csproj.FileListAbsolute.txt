@@ -79,3 +79,17 @@ c:\Users\ctcop\OneDrive\Documents\Monogame\PVZ-Project\bin\Debug\net9.0\runtimes
 c:\Users\ctcop\OneDrive\Documents\Monogame\PVZ-Project\obj\Debug\net9.0\zombieBr.01104EEC.Up2Date
 c:\Users\ctcop\OneDrive\Documents\Monogame\PVZ-Project\obj\Debug\net9.0\zombieBranch.genruntimeconfig.cache
 c:\Users\ctcop\OneDrive\Documents\Monogame\PVZ-Project\obj\Debug\net9.0\ref\zombieBranch.dll
+C:\Users\ctcop\OneDrive\Documents\Monogame\PVZ-Project\bin\Debug\net9.0\Content\day_level.xnb
+C:\Users\ctcop\OneDrive\Documents\Monogame\PVZ-Project\bin\Debug\net9.0\Content\peashooter.xnb
+C:\Users\ctcop\OneDrive\Documents\Monogame\PVZ-Project\bin\Debug\net9.0\Content\peashooter_seedpacket.xnb
+C:\Users\ctcop\OneDrive\Documents\Monogame\PVZ-Project\bin\Debug\net9.0\Content\pea_projectile.xnb
+C:\Users\ctcop\OneDrive\Documents\Monogame\PVZ-Project\bin\Debug\net9.0\Content\repeater.xnb
+C:\Users\ctcop\OneDrive\Documents\Monogame\PVZ-Project\bin\Debug\net9.0\Content\repeater_seedpacket.xnb
+C:\Users\ctcop\OneDrive\Documents\Monogame\PVZ-Project\bin\Debug\net9.0\Content\seedslot.xnb
+C:\Users\ctcop\OneDrive\Documents\Monogame\PVZ-Project\bin\Debug\net9.0\Content\shovel.xnb
+C:\Users\ctcop\OneDrive\Documents\Monogame\PVZ-Project\bin\Debug\net9.0\Content\snowpea.xnb
+C:\Users\ctcop\OneDrive\Documents\Monogame\PVZ-Project\bin\Debug\net9.0\Content\snowpea_projectile.xnb
+C:\Users\ctcop\OneDrive\Documents\Monogame\PVZ-Project\bin\Debug\net9.0\Content\snowpea_seedpacket.xnb
+C:\Users\ctcop\OneDrive\Documents\Monogame\PVZ-Project\bin\Debug\net9.0\Content\sun.xnb
+C:\Users\ctcop\OneDrive\Documents\Monogame\PVZ-Project\bin\Debug\net9.0\Content\sunflower.xnb
+C:\Users\ctcop\OneDrive\Documents\Monogame\PVZ-Project\bin\Debug\net9.0\Content\sunflower_seedpacket.xnb

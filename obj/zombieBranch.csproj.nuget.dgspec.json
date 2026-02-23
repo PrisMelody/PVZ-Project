@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "c:\\Users\\ctcop\\OneDrive\\Documents\\Monogame\\PVZ-Project\\zombieBranch.csproj": {}
+    "C:\\Users\\ctcop\\OneDrive\\Documents\\Monogame\\PVZ-Project\\zombieBranch.csproj": {}
   },
   "projects": {
-    "c:\\Users\\ctcop\\OneDrive\\Documents\\Monogame\\PVZ-Project\\zombieBranch.csproj": {
+    "C:\\Users\\ctcop\\OneDrive\\Documents\\Monogame\\PVZ-Project\\zombieBranch.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Users\\ctcop\\OneDrive\\Documents\\Monogame\\PVZ-Project\\zombieBranch.csproj",
+        "projectUniqueName": "C:\\Users\\ctcop\\OneDrive\\Documents\\Monogame\\PVZ-Project\\zombieBranch.csproj",
         "projectName": "zombieBranch",
-        "projectPath": "c:\\Users\\ctcop\\OneDrive\\Documents\\Monogame\\PVZ-Project\\zombieBranch.csproj",
+        "projectPath": "C:\\Users\\ctcop\\OneDrive\\Documents\\Monogame\\PVZ-Project\\zombieBranch.csproj",
         "packagesPath": "C:\\Users\\ctcop\\.nuget\\packages\\",
-        "outputPath": "c:\\Users\\ctcop\\OneDrive\\Documents\\Monogame\\PVZ-Project\\obj\\",
+        "outputPath": "C:\\Users\\ctcop\\OneDrive\\Documents\\Monogame\\PVZ-Project\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

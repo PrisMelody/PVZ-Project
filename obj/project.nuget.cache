@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "F1ib52/7uHU=",
+  "dgSpecHash": "/5bhueR7pR4=",
   "success": true,
-  "projectFilePath": "c:\\Users\\ctcop\\OneDrive\\Documents\\Monogame\\PVZ-Project\\zombieBranch.csproj",
+  "projectFilePath": "c:\\Users\\ctcop\\OneDrive\\Documents\\Monogame\\PVZ-Project\\PlantsVsZombies.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\ctcop\\.nuget\\packages\\monogame.content.builder.task\\3.8.4.1\\monogame.content.builder.task.3.8.4.1.nupkg.sha512",
     "C:\\Users\\ctcop\\.nuget\\packages\\monogame.framework.desktopgl\\3.8.4.1\\monogame.framework.desktopgl.3.8.4.1.nupkg.sha512",
