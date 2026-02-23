@@ -5,6 +5,6 @@ using Microsoft.Xna.Framework.Input;
 public interface IPvZDrawable
 {
     // The order of layer. For example, plants should be above lawn.
-    int DrawOrder {get;}
+    int DrawOrder {get; set;}
     void Draw (SpriteBatch sprite);
 }

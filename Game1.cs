@@ -11,7 +11,7 @@ public class Game1 : Game, IGameInputHandler, IPlayerActions
     private IController _mouseController;
 
     private IMap _map;
-    private IZombie testZombie;
+    private IZombie [] testZombies;
 
     public int SelectedPlantType => _map?.SelectedPlantType ?? -1;
 
@@ -38,8 +38,14 @@ public class Game1 : Game, IGameInputHandler, IPlayerActions
 
         _map = new Map(Content, GraphicsDevice);
 
-        testZombie = new BasicZombie(500.0f, 100.0f);
-        TempZombieSpriteHandler.BasicZombie = Content.Load<Texture2D>("images/Placeholder Zombie");
+        testZombies = new IZombie[4];
+        testZombies[0] = new BasicZombie(900.0f, 90.0f);
+        testZombies[1] = new ConeheadZombie(900.0f, 150.0f);
+        testZombies[2] = new BucketheadZombie(900.0f, 375.0f);
+        testZombies[3] = new FlagZombie(900.0f, 475.0f);
+
+
+        TempZombieSpriteHandler.Zombies = Content.Load<Texture2D>("images/base_zombiesforproj");
     }
 
     protected override void Update(GameTime gameTime)
@@ -50,7 +56,10 @@ public class Game1 : Game, IGameInputHandler, IPlayerActions
 
         _mouseController?.Update();
         _map?.Update(gameTime);
-        testZombie.Update(gameTime);
+        foreach (IZombie zombie in testZombies)
+        {
+            zombie.Update(gameTime);
+        }
 
         base.Update(gameTime);
     }
@@ -94,7 +103,10 @@ public class Game1 : Game, IGameInputHandler, IPlayerActions
 
         _spriteBatch.Begin();
         _map.Draw(_spriteBatch);
-        testZombie.Draw(_spriteBatch);
+        foreach (IZombie zombie in testZombies)
+        {
+            zombie.Draw(_spriteBatch);
+        }
         _spriteBatch.End();
 
         base.Draw(gameTime);

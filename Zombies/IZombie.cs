@@ -5,7 +5,7 @@ using Microsoft.Xna.Framework.Input;
 
 interface IZombie :  IDamageable, IPvZDrawable, IPvZUpdatable
 {
-    int Speed{get; set;}
+    float Speed{get; set;}
     bool IsAttacking{get; set;}
 
     float xCoord{get; set;}

@@ -8,8 +8,8 @@ public class Lawnmower : ILawnmower
     public bool IsActivated { get; private set; }
     public bool IsMoving { get; private set; }
     public float Speed { get; private set; }
-    public int Health { get; private set; }
-    public bool IsDead { get; private set; }
+    public int Health { get; set; }
+    public bool IsDead { get; set; }
     public int DrawOrder { get; set; }
 
     private int maxHealth;
