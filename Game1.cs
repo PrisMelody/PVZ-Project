@@ -10,16 +10,10 @@ public class Game1 : Game, IGameInputHandler, IPlayerActions
     private SpriteBatch _spriteBatch;
     private IController _mouseController;
 
+    private IMap _map;
     private IZombie testZombie;
 
-    /// <summary>Currently displayed plant type on the single plot. -1 = no plant (shovel cleared).</summary>
-    public int SelectedPlantType { get; private set; } = -1;
-
-    private Rectangle _singlePlotBounds;
-    private Rectangle[] _seedPacketBounds;
-    private Rectangle _shovelBounds;
-    private Texture2D _pixel;
-    private Texture2D _plantPlaceholder;
+    public int SelectedPlantType => _map?.SelectedPlantType ?? -1;
 
     public Game1()
     {
@@ -42,28 +36,7 @@ public class Game1 : Game, IGameInputHandler, IPlayerActions
     {
         _spriteBatch = new SpriteBatch(GraphicsDevice);
 
-        _pixel = new Texture2D(GraphicsDevice, 1, 1);
-        _pixel.SetData(new[] { Color.White });
-
-        _singlePlotBounds = new Rectangle(200, 300, 80, 80);
-
-        _seedPacketBounds = new[]
-        {
-            new Rectangle(80, 100, 70, 80),
-            new Rectangle(160, 100, 70, 80),
-            new Rectangle(240, 100, 70, 80),
-        };
-
-        _shovelBounds = new Rectangle(700, 100, 70, 80);
-
-        try
-        {
-            _plantPlaceholder = Content.Load<Texture2D>("images/Placeholder Plant");
-        }
-        catch
-        {
-            _plantPlaceholder = null;
-        }
+        _map = new Map(Content, GraphicsDevice);
 
         testZombie = new BasicZombie(500.0f, 100.0f);
         TempZombieSpriteHandler.BasicZombie = Content.Load<Texture2D>("images/Placeholder Zombie");
@@ -71,10 +44,12 @@ public class Game1 : Game, IGameInputHandler, IPlayerActions
 
     protected override void Update(GameTime gameTime)
     {
-        if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
+        if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed ||
+            Keyboard.GetState().IsKeyDown(Keys.Escape))
             Exit();
 
         _mouseController?.Update();
+        _map?.Update(gameTime);
         testZombie.Update(gameTime);
 
         base.Update(gameTime);
@@ -82,21 +57,25 @@ public class Game1 : Game, IGameInputHandler, IPlayerActions
 
     public void HandleClick(Point screenPosition)
     {
-        if (IsShovelArea(screenPosition))
+        var pt = new System.Drawing.Point(screenPosition.X, screenPosition.Y);
+
+        if (_map.IsShovelAt(pt))
         {
             ClearPlant();
             return;
         }
-        if (IsInPlantMenu(screenPosition))
+
+        int seedIndex = _map.GetSeedPacketIndexAt(pt);
+        if (seedIndex >= 0)
         {
-            int type = GetPlantType(screenPosition);
-            new SelectPlantCommand(this, type).Execute();
+            new SelectPlantCommand(this, seedIndex).Execute();
+            return;
         }
     }
 
     public void SetSelectedPlant(int plantType)
     {
-        SelectedPlantType = plantType;
+        _map.SelectPlant(plantType);
     }
 
     public void PlacePlant(Point gridOrScreenPosition)
@@ -106,32 +85,7 @@ public class Game1 : Game, IGameInputHandler, IPlayerActions
 
     public void ClearPlant()
     {
-        SelectedPlantType = -1;
-    }
-
-    private bool IsInPlantMenu(Point screenPosition)
-    {
-        for (int i = 0; i < _seedPacketBounds.Length; i++)
-        {
-            if (_seedPacketBounds[i].Contains(screenPosition))
-                return true;
-        }
-        return false;
-    }
-
-    private int GetPlantType(Point screenPosition)
-    {
-        for (int i = 0; i < _seedPacketBounds.Length; i++)
-        {
-            if (_seedPacketBounds[i].Contains(screenPosition))
-                return i;
-        }
-        return -1;
-    }
-
-    private bool IsShovelArea(Point screenPosition)
-    {
-        return _shovelBounds.Contains(screenPosition);
+        _map.ClearPlant();
     }
 
     protected override void Draw(GameTime gameTime)
@@ -139,24 +93,8 @@ public class Game1 : Game, IGameInputHandler, IPlayerActions
         GraphicsDevice.Clear(Color.CornflowerBlue);
 
         _spriteBatch.Begin();
-
-        _spriteBatch.Draw(_pixel, _singlePlotBounds, new Color(34, 139, 34));
-
-        if (SelectedPlantType >= 0)
-        {
-            if (_plantPlaceholder != null)
-                _spriteBatch.Draw(_plantPlaceholder, _singlePlotBounds, Color.White);
-            else
-                _spriteBatch.Draw(_pixel, _singlePlotBounds, new Color(255, 200, 100));
-        }
-
+        _map.Draw(_spriteBatch);
         testZombie.Draw(_spriteBatch);
-
-        for (int i = 0; i < _seedPacketBounds.Length; i++)
-            _spriteBatch.Draw(_pixel, _seedPacketBounds[i], new Color(200, 180, 80));
-
-        _spriteBatch.Draw(_pixel, _shovelBounds, new Color(139, 90, 43));
-
         _spriteBatch.End();
 
         base.Draw(gameTime);
