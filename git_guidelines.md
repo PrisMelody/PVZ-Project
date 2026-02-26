@@ -285,15 +285,15 @@ git checkout develop\
 git pull\
 git checkout -b feature/sun-system
 
-# work...
+### work...
 
 git add .\
 git commit -m "Implement sun generation timer"
 
 git push origin feature/sun-system
 
-# Open PR → develop
+### Open PR → develop
 
-# Get review
+### Get review
 
-# Merge
+### Merge
