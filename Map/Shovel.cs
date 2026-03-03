@@ -1,4 +1,4 @@
-using System.Drawing;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 public class Shovel : IShovel
@@ -19,7 +19,6 @@ public class Shovel : IShovel
 
     public void Draw(SpriteBatch sprite)
     {
-        // TODO: Draw shovel sprite
     }
 
     public void Activate()
@@ -37,7 +36,7 @@ public class Shovel : IShovel
         return Bounds.Contains(mousePos);
     }
 
-    public void OnClick(MouseController mouse)
+    public void OnClick(IMouse mouse)
     {
         IsSelected = !IsSelected;
     }

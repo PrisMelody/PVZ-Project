@@ -1,4 +1,3 @@
-using System.Drawing;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -9,15 +8,15 @@ public class SeedPacket : ISeedPacket
     public bool IsAvailable { get; private set; }
     public bool IsOnCooldown { get; private set; }
     public float CooldownRemaining { get; private set; }
-    public System.Drawing.Rectangle Bounds { get; private set; }
+    public Rectangle Bounds { get; private set; }
     public bool IsDragging { get; private set; }
     public int DrawOrder { get; set; }
 
-    private System.Drawing.Point position;
+    private Point position;
     private float cooldownTime;
     private int currentSun;
 
-    public SeedPacket(string plantType, int cost, float cooldownTime, System.Drawing.Point position, System.Drawing.Rectangle bounds)
+    public SeedPacket(string plantType, int cost, float cooldownTime, Point position, Rectangle bounds)
     {
         PlantType = plantType;
         Cost = cost;
@@ -33,20 +32,18 @@ public class SeedPacket : ISeedPacket
 
     public void Draw(SpriteBatch sprite)
     {
-        // TODO: Draw seed packet sprite
     }
 
-    public bool HitTest(System.Drawing.Point mousePos)
+    public bool HitTest(Point mousePos)
     {
         return Bounds.Contains(mousePos);
     }
 
-    public void OnClick(MouseController mouse)
+    public void OnClick(IMouse mouse)
     {
-        // Click handling done by Game1.HandleClick
     }
 
-    public void OnDragStart(MouseController mouse)
+    public void OnDragStart(IMouse mouse)
     {
         if (IsAvailable && !IsOnCooldown)
         {
@@ -54,19 +51,19 @@ public class SeedPacket : ISeedPacket
         }
     }
 
-    public void OnDrag(MouseController mouse)
+    public void OnDrag(IMouse mouse)
     {
         if (IsDragging)
         {
             var state = mouse.GetState();
-            Bounds = new System.Drawing.Rectangle(
+            Bounds = new Rectangle(
                 state.Position.X - Bounds.Width / 2,
                 state.Position.Y - Bounds.Height / 2,
                 Bounds.Width, Bounds.Height);
         }
     }
 
-    public void OnDragEnd(MouseController mouse)
+    public void OnDragEnd(IMouse mouse)
     {
         IsDragging = false;
     }
@@ -80,7 +77,6 @@ public class SeedPacket : ISeedPacket
     {
         if (CanPlantOn(plot) && IsAvailable && !IsOnCooldown)
         {
-            // TODO: Create plant instance based on PlantType and place on plot
             StartCooldown();
         }
     }

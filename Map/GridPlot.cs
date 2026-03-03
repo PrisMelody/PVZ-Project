@@ -1,4 +1,4 @@
-using System.Drawing;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 public class GridPlot : IGridPlot
@@ -24,8 +24,6 @@ public class GridPlot : IGridPlot
 
     public void Draw(SpriteBatch sprite)
     {
-        // TODO: Draw plot sprite/background
-
         if (IsOccupied && Plant != null && Plant is IPvZDrawable drawablePlant)
         {
             drawablePlant.Draw(sprite);
@@ -64,8 +62,7 @@ public class GridPlot : IGridPlot
         return Bounds.Contains(mousePos);
     }
 
-    public void OnClick(MouseController mouse)
+    public void OnClick(IMouse mouse)
     {
-        // Click handling is done by the game/controller using GridManager.GetPlotAt.
     }
 }

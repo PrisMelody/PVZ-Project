@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.Linq;
+using Microsoft.Xna.Framework;
 
 public class GridManager : IGridManager
 {
@@ -18,11 +18,6 @@ public class GridManager : IGridManager
 
     public GridManager() { }
 
-    /// <summary>
-    /// Builds the grid: rows × columns plots. Each plot is created with grid position (row, col)
-    /// and world position (originX + col * cellWidth, originY + row * cellHeight).
-    /// Bounds are the same size as the cell for each plot.
-    /// </summary>
     public void Initialize(int rows, int columns, int cellWidth, int cellHeight, Point origin)
     {
         if (rows <= 0 || columns <= 0 || cellWidth <= 0 || cellHeight <= 0)
