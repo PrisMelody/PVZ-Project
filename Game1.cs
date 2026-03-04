@@ -1,6 +1,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using MonoGameLibrary.Sprites;
 
 namespace PVZ_Project;
 
@@ -10,10 +11,10 @@ public class Game1 : Game, IGameInputHandler, IPlayerActions
     private SpriteBatch _spriteBatch;
     private IController _mouseController;
 
-    private IMap _map;
-    private IZombie [] testZombies;
-
-    public int SelectedPlantType => _map?.SelectedPlantType ?? -1;
+    private Map _map;
+    private ZombieManager _zombieManager;
+    private IGameState _gameState;
+    private bool _shovelActive;
 
     public Game1()
     {
@@ -36,16 +37,23 @@ public class Game1 : Game, IGameInputHandler, IPlayerActions
     {
         _spriteBatch = new SpriteBatch(GraphicsDevice);
 
-        _map = new Map(Content, GraphicsDevice);
+        var plantFactory = new PlantFactory();
+        plantFactory.LoadContent(Content);
 
-        testZombies = new IZombie[4];
-        testZombies[0] = new BasicZombie(900.0f, 90.0f);
-        testZombies[1] = new ConeheadZombie(900.0f, 150.0f);
-        testZombies[2] = new BucketheadZombie(900.0f, 375.0f);
-        testZombies[3] = new FlagZombie(900.0f, 475.0f);
+        _gameState = new GameState();
+        _map = new Map(Content, GraphicsDevice, plantFactory);
 
+        var zombieSheet = Content.Load<Texture2D>("images/base_zombiesforproj");
+        var basicRegion = new TextureRegion("basic", zombieSheet, new Rectangle(475, 42, 86, 153));
+        var flagRegion = new TextureRegion("flag", zombieSheet, new Rectangle(624, 40, 102, 152));
+        var coneRegion = new TextureRegion("cone", zombieSheet, new Rectangle(28, 10, 86, 311));
+        var bucketRegion = new TextureRegion("bucket", zombieSheet, new Rectangle(238, 16, 96, 179));
 
-        TempZombieSpriteHandler.Zombies = Content.Load<Texture2D>("images/base_zombiesforproj");
+        _zombieManager = new ZombieManager();
+        _zombieManager.Add(new BasicZombie(basicRegion, 0.5f, 900.0f, 90.0f));
+        _zombieManager.Add(new ConeheadZombie(coneRegion, 0.6f, basicRegion, 0.5f, 900.0f, 150.0f));
+        _zombieManager.Add(new BucketheadZombie(bucketRegion, 0.5f, basicRegion, 0.5f, 900.0f, 375.0f));
+        _zombieManager.Add(new FlagZombie(flagRegion, 0.5f, 900.0f, 475.0f));
     }
 
     protected override void Update(GameTime gameTime)
@@ -56,45 +64,63 @@ public class Game1 : Game, IGameInputHandler, IPlayerActions
 
         _mouseController?.Update();
         _map?.Update(gameTime);
-        foreach (IZombie zombie in testZombies)
-        {
-            zombie.Update(gameTime);
-        }
+        _zombieManager?.Update(gameTime);
 
         base.Update(gameTime);
     }
 
     public void HandleClick(Point screenPosition)
     {
-        var pt = new System.Drawing.Point(screenPosition.X, screenPosition.Y);
-
-        if (_map.IsShovelAt(pt))
+        if (_map.IsShovelAt(screenPosition))
         {
-            ClearPlant();
+            _shovelActive = !_shovelActive;
+            if (_shovelActive)
+                _map.ClearPlant();
             return;
         }
 
-        int seedIndex = _map.GetSeedPacketIndexAt(pt);
+        int seedIndex = _map.GetSeedPacketIndexAt(screenPosition);
         if (seedIndex >= 0)
         {
-            new SelectPlantCommand(this, seedIndex).Execute();
+            _shovelActive = false;
+            var plantType = _map.GetPlantTypeForSlot(seedIndex);
+            if (plantType.HasValue)
+                new SelectPlantCommand(this, plantType.Value).Execute();
             return;
+        }
+
+        if (_shovelActive)
+        {
+            UseShovel(screenPosition);
+            return;
+        }
+
+        if (_map.SelectedPlantType.HasValue)
+        {
+            PlacePlant(screenPosition);
         }
     }
 
-    public void SetSelectedPlant(int plantType)
+    public void SetSelectedPlant(PlantType type)
     {
-        _map.SelectPlant(plantType);
+        _map.SelectPlant(type);
     }
 
-    public void PlacePlant(Point gridOrScreenPosition)
+    public void PlacePlant(Point screenPosition)
     {
-        // Full game: place on grid. Not used this sprint.
+        if (_map.TryPlacePlantAt(screenPosition))
+            _map.ClearPlant();
     }
 
     public void ClearPlant()
     {
         _map.ClearPlant();
+    }
+
+    public void UseShovel(Point screenPosition)
+    {
+        _map.TryRemovePlantAt(screenPosition);
+        _shovelActive = false;
     }
 
     protected override void Draw(GameTime gameTime)
@@ -103,10 +129,7 @@ public class Game1 : Game, IGameInputHandler, IPlayerActions
 
         _spriteBatch.Begin();
         _map.Draw(_spriteBatch);
-        foreach (IZombie zombie in testZombies)
-        {
-            zombie.Draw(_spriteBatch);
-        }
+        _zombieManager?.Draw(_spriteBatch);
         _spriteBatch.End();
 
         base.Draw(gameTime);

@@ -1,94 +1,86 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
+
 public class ConeheadZombie : IZombie
-//I originally tried to make this a subclass of Buckethead zombie, but ran into some weird issues that I didn't have time to fix.
-//As a result, this is pretty much just copypasted from Buckethead.
-
 {
-    private IZombie WrappedZombie;
+    private readonly IZombie _wrappedZombie;
+    private readonly ITextureRegion _coneRegion;
+    private readonly float _coneScale;
 
-    public float Speed {
-        get{return WrappedZombie.Speed;}
-        set{WrappedZombie.Speed = value;}}
-
-    public float xCoord {
-        get{return WrappedZombie.xCoord;}
-        set{WrappedZombie.xCoord = value;}}
-
-    public float yCoord{
-        get{return WrappedZombie.yCoord;}
-        set{WrappedZombie.yCoord = value;}}
-
-    public int Health{
-        get{return WrappedZombie.Health;}
-        set{WrappedZombie.Health = value;}}
-
-    public bool IsDead {
-        get{return WrappedZombie.IsDead;}
-        set{WrappedZombie.IsDead = value;}}
-
-     public bool IsAttacking {
-        get{return WrappedZombie.IsAttacking;}
-        set{WrappedZombie.IsAttacking = value;}}
-
-
-    public int DrawOrder{
-        get{return WrappedZombie.DrawOrder;}
-        set{WrappedZombie.DrawOrder = value;}
+    public float Speed
+    {
+        get => _wrappedZombie.Speed;
+        set => _wrappedZombie.Speed = value;
+    }
+    public float xCoord
+    {
+        get => _wrappedZombie.xCoord;
+        set => _wrappedZombie.xCoord = value;
+    }
+    public float yCoord
+    {
+        get => _wrappedZombie.yCoord;
+        set => _wrappedZombie.yCoord = value;
+    }
+    public int Health
+    {
+        get => _wrappedZombie.Health;
+        set => _wrappedZombie.Health = value;
+    }
+    public bool IsDead
+    {
+        get => _wrappedZombie.IsDead;
+        set => _wrappedZombie.IsDead = value;
+    }
+    public bool IsAttacking
+    {
+        get => _wrappedZombie.IsAttacking;
+        set => _wrappedZombie.IsAttacking = value;
+    }
+    public int DrawOrder
+    {
+        get => _wrappedZombie.DrawOrder;
+        set => _wrappedZombie.DrawOrder = value;
     }
 
-
-    public ConeheadZombie(float x, float y)
+    public ConeheadZombie(ITextureRegion coneRegion, float coneScale,
+        ITextureRegion baseRegion, float baseScale, float x, float y)
     {
-        WrappedZombie = new BasicZombie(x, y);
+        _coneRegion = coneRegion;
+        _coneScale = coneScale;
+        _wrappedZombie = new BasicZombie(baseRegion, baseScale, x, y);
         Health = 640;
     }
 
+    public void Move() => _wrappedZombie.Move();
+    public void Attack() => _wrappedZombie.Attack();
 
-    public void Move()
+    public void TakeDamage(int amount)
     {
-        WrappedZombie.Move();
+        _wrappedZombie.TakeDamage(amount);
     }
 
-    public void Attack()
+    public void Draw(SpriteBatch spriteBatch)
     {
-        WrappedZombie.Attack();
-    }
-    
-    public void TakeDamage (int amount)
-    {
-        WrappedZombie.TakeDamage(amount);
-        if ((Health <= 270) && (Health + amount > 270)) //Basically checking if the health has dropped below the threshhold.
-        {
-            //Insert bucket spawn logic here.
-            System.Console.WriteLine("Welcome to the cone zone!");
-        }
-    }
-
-    public void Draw (SpriteBatch spriteBatch)
-    {    //This is a placeholder using a static class instead of a dedicated sprite handling setup.
         if (Health <= 270)
         {
-            WrappedZombie.Draw(spriteBatch);
+            _wrappedZombie.Draw(spriteBatch);
         }
-        else{
+        else
+        {
             spriteBatch.Draw(
-                TempZombieSpriteHandler.Zombies, 
-                new Vector2(xCoord, yCoord), 
-                new Rectangle(28, 10, 86, 311), 
-                Color.White, 
-                0.0f, 
+                _coneRegion.Texture,
+                new Vector2(xCoord, yCoord),
+                _coneRegion.SourceRectangle,
+                Color.White,
+                0.0f,
                 Vector2.Zero,
-                0.6f,
+                _coneScale,
                 SpriteEffects.None,
-                0.0f //For now this is just a constant, later it should use drawOrder, or whatever we go with.
+                0.0f
             );
         }
     }
 
-    public void Update(GameTime gameTime)
-    {
-        WrappedZombie.Update(gameTime);
-    }
+    public void Update(GameTime gameTime) => _wrappedZombie.Update(gameTime);
 }

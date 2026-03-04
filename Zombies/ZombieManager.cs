@@ -1,0 +1,32 @@
+using System.Collections.Generic;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+
+public class ZombieManager : IPvZDrawable, IPvZUpdatable
+{
+    private readonly List<IZombie> _zombies = new();
+
+    public int DrawOrder { get; set; }
+    public IReadOnlyList<IZombie> Zombies => _zombies;
+
+    public void Add(IZombie zombie)
+    {
+        _zombies.Add(zombie);
+    }
+
+    public void Update(GameTime gameTime)
+    {
+        for (int i = _zombies.Count - 1; i >= 0; i--)
+        {
+            _zombies[i].Update(gameTime);
+            if (_zombies[i].IsDead)
+                _zombies.RemoveAt(i);
+        }
+    }
+
+    public void Draw(SpriteBatch spriteBatch)
+    {
+        foreach (var zombie in _zombies)
+            zombie.Draw(spriteBatch);
+    }
+}
