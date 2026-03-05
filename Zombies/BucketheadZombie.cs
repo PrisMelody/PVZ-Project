@@ -43,6 +43,11 @@ public class BucketheadZombie : IZombie
         set => _wrappedZombie.DrawOrder = value;
     }
 
+    public Rectangle PlantDetectionBox
+    {
+        get => _wrappedZombie.PlantDetectionBox;
+    }
+
     public BucketheadZombie(ITextureRegion bucketRegion, float bucketScale,
         ITextureRegion baseRegion, float baseScale, float x, float y)
     {

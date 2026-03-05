@@ -42,6 +42,10 @@ public class ConeheadZombie : IZombie
         get => _wrappedZombie.DrawOrder;
         set => _wrappedZombie.DrawOrder = value;
     }
+    public Rectangle PlantDetectionBox
+    {
+        get => _wrappedZombie.PlantDetectionBox;
+    }
 
     public ConeheadZombie(ITextureRegion coneRegion, float coneScale,
         ITextureRegion baseRegion, float baseScale, float x, float y)

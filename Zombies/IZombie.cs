@@ -12,6 +12,7 @@ public interface IZombie : IDamageable, IPvZDrawable, IPvZUpdatable
     new int Health { get; set; }
     new bool IsDead { get; set; }
     new int DrawOrder { get; set; }
+    Rectangle PlantDetectionBox{ get; }
 
     void Move();
     void Attack();

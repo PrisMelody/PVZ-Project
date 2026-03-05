@@ -43,6 +43,7 @@ public class Game1 : Game, IGameInputHandler, IPlayerActions
         _gameState = new GameState();
         _map = new Map(Content, GraphicsDevice, plantFactory);
 
+        //Right now, the zombies are using placeholder non-animated sprites. This will be removed once they have animated sprites like the plants.
         var zombieSheet = Content.Load<Texture2D>("images/base_zombiesforproj");
         var basicRegion = new TextureRegion("basic", zombieSheet, new Rectangle(475, 42, 86, 153));
         var flagRegion = new TextureRegion("flag", zombieSheet, new Rectangle(624, 40, 102, 152));
@@ -65,6 +66,26 @@ public class Game1 : Game, IGameInputHandler, IPlayerActions
         _mouseController?.Update();
         _map?.Update(gameTime);
         _zombieManager?.Update(gameTime);
+
+        //TEMPORARY COLLISION CHECKER: THIS IS DUMB AND BAD, REPLACE IT
+
+//TODO: Currently, this is partially working but it's very janky. Fix the DetectionBox system and expand to check all the plots.
+        foreach(IZombie zombie in _zombieManager.Zombies){
+            for(int i = 1; i < 4; i++)
+            {
+                IGridPlot currentPlot = _map._grid.GetPlot(1, i);
+                if(!currentPlot.IsOccupied)
+                {
+                    continue;
+                }
+                if (zombie.PlantDetectionBox.Contains(currentPlot.Plant.XPos, currentPlot.Plant.YPos))
+                {
+                    zombie.IsAttacking = true;
+                    System.Console.WriteLine("Collision detected");
+                }
+            }
+            
+        }
 
         base.Update(gameTime);
     }
