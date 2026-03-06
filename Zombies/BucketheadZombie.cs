@@ -43,17 +43,17 @@ public class BucketheadZombie : IZombie
         set => _wrappedZombie.DrawOrder = value;
     }
 
-    public Rectangle PlantDetectionBox
+    public int Lane
     {
-        get => _wrappedZombie.PlantDetectionBox;
+        get => _wrappedZombie.Lane;
     }
 
     public BucketheadZombie(ITextureRegion bucketRegion, float bucketScale,
-        ITextureRegion baseRegion, float baseScale, float x, float y)
+        ITextureRegion baseRegion, float baseScale, float x, float y, int lane)
     {
         _bucketRegion = bucketRegion;
         _bucketScale = bucketScale;
-        _wrappedZombie = new BasicZombie(baseRegion, baseScale, x, y);
+        _wrappedZombie = new BasicZombie(baseRegion, baseScale, x, y, lane);
         Health = 1370;
     }
 

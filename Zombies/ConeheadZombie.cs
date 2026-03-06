@@ -42,17 +42,17 @@ public class ConeheadZombie : IZombie
         get => _wrappedZombie.DrawOrder;
         set => _wrappedZombie.DrawOrder = value;
     }
-    public Rectangle PlantDetectionBox
+    public int Lane
     {
-        get => _wrappedZombie.PlantDetectionBox;
+        get => _wrappedZombie.Lane;
     }
 
     public ConeheadZombie(ITextureRegion coneRegion, float coneScale,
-        ITextureRegion baseRegion, float baseScale, float x, float y)
+        ITextureRegion baseRegion, float baseScale, float x, float y, int lane)
     {
         _coneRegion = coneRegion;
         _coneScale = coneScale;
-        _wrappedZombie = new BasicZombie(baseRegion, baseScale, x, y);
+        _wrappedZombie = new BasicZombie(baseRegion, baseScale, x, y, lane);
         Health = 640;
     }
 

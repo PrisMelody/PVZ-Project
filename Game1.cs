@@ -51,10 +51,10 @@ public class Game1 : Game, IGameInputHandler, IPlayerActions
         var bucketRegion = new TextureRegion("bucket", zombieSheet, new Rectangle(238, 16, 96, 179));
 
         _zombieManager = new ZombieManager();
-        _zombieManager.Add(new BasicZombie(basicRegion, 0.5f, 900.0f, 90.0f));
-        _zombieManager.Add(new ConeheadZombie(coneRegion, 0.6f, basicRegion, 0.5f, 900.0f, 150.0f));
-        _zombieManager.Add(new BucketheadZombie(bucketRegion, 0.5f, basicRegion, 0.5f, 900.0f, 375.0f));
-        _zombieManager.Add(new FlagZombie(flagRegion, 0.5f, 900.0f, 475.0f));
+        _zombieManager.Add(new BasicZombie(basicRegion, 0.5f, 900.0f, 90.0f, 0));
+        _zombieManager.Add(new ConeheadZombie(coneRegion, 0.6f, basicRegion, 0.5f, 900.0f, 150.0f, 1));
+        _zombieManager.Add(new BucketheadZombie(bucketRegion, 0.5f, basicRegion, 0.5f, 900.0f, 375.0f, 3));
+        _zombieManager.Add(new FlagZombie(flagRegion, 0.5f, 900.0f, 475.0f, 4));
     }
 
     protected override void Update(GameTime gameTime)
@@ -67,28 +67,29 @@ public class Game1 : Game, IGameInputHandler, IPlayerActions
         _map?.Update(gameTime);
         _zombieManager?.Update(gameTime);
 
-        //TEMPORARY COLLISION CHECKER: THIS IS DUMB AND BAD, REPLACE IT
 
-//TODO: Currently, this is partially working but it's very janky. Fix the DetectionBox system and expand to check all the plots.
-        foreach(IZombie zombie in _zombieManager.Zombies){
-            for(int i = 1; i < 4; i++)
+//Janky zombie collision detector, this should probably be its own class/method instead of part of update.
+//Ideally, we could just plug a lane in and it checks everything in that lane.
+//Explosions will still need to be handled seperately.
+    for (int i = 0; i < 5; i++)
+        foreach(IZombie zombie in _zombieManager.Zombies)
+        {
+            if (zombie.Lane != i){continue;} //This is very inefficient, but may require changes to the zombie manager in order to improve.
+            foreach (IGridPlot currentGrid in _map._grid.Lanes[i].Plots) //This is gross.
             {
-                IGridPlot currentPlot = _map._grid.GetPlot(1, i);
-                if(!currentPlot.IsOccupied)
-                {
-                    continue;
-                }
-                if (zombie.PlantDetectionBox.Contains(currentPlot.Plant.XPos, currentPlot.Plant.YPos))
+                if (!currentGrid.IsOccupied){continue;}
+                else if (zombie.xCoord - currentGrid.Plant.XPos < 50 && zombie.xCoord - currentGrid.Plant.XPos > 0)
                 {
                     zombie.IsAttacking = true;
-                    System.Console.WriteLine("Collision detected");
+                    //Insert code to actually do damage.
                 }
             }
-            
-        }
+        } 
 
-        base.Update(gameTime);
+    base.Update(gameTime);
     }
+        
+
 
     public void HandleClick(Point screenPosition)
     {

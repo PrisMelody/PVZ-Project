@@ -13,15 +13,16 @@ public class BasicZombie : IZombie
     public int Health { get; set; } = 270;
     public bool IsDead { get; set; }
     public int DrawOrder { get; set; }
-    public Rectangle PlantDetectionBox{ get => new Rectangle((int) xCoord, (int) yCoord - 30, 300, 100);}
-    //TODO: Making an entirely new rectangle may not be super efficient, but there doesn't seem to be a good way to change the x/y values on the fly.
+    
+    public int Lane {get;}
 
-    public BasicZombie(ITextureRegion region, float scale, float x, float y)
+    public BasicZombie(ITextureRegion region, float scale, float x, float y, int lane)
     {
         _region = region;
         _scale = scale;
         xCoord = x;
         yCoord = y;
+        Lane = lane;
     }
 
     public void Move()
