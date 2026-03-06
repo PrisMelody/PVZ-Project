@@ -70,21 +70,26 @@ public class Game1 : Game, IGameInputHandler, IPlayerActions
 
 //Janky zombie collision detector, this should probably be its own class/method instead of part of update.
 //Ideally, we could just plug a lane in and it checks everything in that lane.
-//Explosions will still need to be handled seperately.
-    for (int i = 0; i < 5; i++)
-        foreach(IZombie zombie in _zombieManager.Zombies)
+//Explosions will still need to be handled seperately. They'll have to check every lane, but that should be alright given they only exist for a frame.
+        for (int i = 0; i < 5; i++)
         {
-            if (zombie.Lane != i){continue;} //This is very inefficient, but may require changes to the zombie manager in order to improve.
-            foreach (IGridPlot currentGrid in _map._grid.Lanes[i].Plots) //This is gross.
+            foreach(IZombie zombie in _zombieManager.Zombies)
             {
-                if (!currentGrid.IsOccupied){continue;}
-                else if (zombie.xCoord - currentGrid.Plant.XPos < 50 && zombie.xCoord - currentGrid.Plant.XPos > 0)
+                if (zombie.Lane != i){continue;} //This is very inefficient, but may require changes to the zombie manager in order to improve.
+                foreach (IGridPlot currentGrid in _map._grid.Lanes[i].Plots) //This is gross.
                 {
-                    zombie.IsAttacking = true;
-                    //Insert code to actually do damage.
+                    if (!currentGrid.IsOccupied){continue;}
+                    float distance = zombie.xCoord - currentGrid.Plant.XPos;
+                    if (zombie.xCoord - currentGrid.Plant.XPos < 50 && zombie.xCoord - currentGrid.Plant.XPos > 0)
+                    //TODO: give zombies a "range" variable instead of using a magic number.
+                    {
+                        zombie.IsAttacking = true;
+                        //Insert code to actually do damage to the plants.
+                    }
+                    break;
                 }
-            }
-        } 
+            } 
+        }
 
     base.Update(gameTime);
     }
