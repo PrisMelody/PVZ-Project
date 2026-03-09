@@ -5,7 +5,7 @@ public class BucketheadZombie : HatZombie
 {
     
     public BucketheadZombie(ITextureRegion bucketRegion, float bucketScale,
-        ITextureRegion baseRegion, float baseScale, float x, float y, int lane)
+        ITextureRegion baseRegion, float baseScale, float x, float y, int lane) 
     {
         _region = bucketRegion;
         _scale = bucketScale;

@@ -68,30 +68,13 @@ public class Game1 : Game, IGameInputHandler, IPlayerActions
         _zombieManager?.Update(gameTime);
 
 
-//Janky zombie collision detector, this should probably be its own class/method instead of part of update.
-//Ideally, we could just plug a lane in and it checks everything in that lane.
-//Explosions will still need to be handled seperately. They'll have to check every lane, but that should be alright given they only exist for a frame.
         for (int i = 0; i < 5; i++)
         {
-            foreach(IZombie zombie in _zombieManager.Zombies)
-            {
-                if (zombie.Lane != i){continue;} //This is very inefficient, but may require changes to the zombie manager in order to improve.
-                foreach (IGridPlot currentGrid in _map._grid.Lanes[i].Plots) //This is gross.
-                {
-                    if (!currentGrid.IsOccupied){continue;}
-                    float distance = zombie.xCoord - currentGrid.Plant.XPos;
-                    if (zombie.xCoord - currentGrid.Plant.XPos < 50 && zombie.xCoord - currentGrid.Plant.XPos > 0)
-                    //TODO: give zombies a "range" variable instead of using a magic number.
-                    {
-                        zombie.IsAttacking = true;
-                        //Insert code to actually do damage to the plants.
-                    }
-                    break;
-                }
-            } 
+            CheckZombiePlantCollision(i);
+            CheckProjectileZombieCollision(i);
         }
-
-    base.Update(gameTime);
+        CheckSplashZombieCollision();
+        base.Update(gameTime);
     }
         
 
@@ -161,4 +144,36 @@ public class Game1 : Game, IGameInputHandler, IPlayerActions
 
         base.Draw(gameTime);
     }
+
+    private void CheckZombiePlantCollision(int lane)
+    {
+        foreach(IZombie zombie in _zombieManager.Zombies)
+        {
+            if (zombie.Lane != lane){continue;} //This is very inefficient, but may require changes to the zombie manager in order to improve.
+            foreach (IGridPlot currentGrid in _map._grid.Lanes[lane].Plots) //This is gross.
+            {
+                if (!currentGrid.IsOccupied){continue;}
+                float distance = zombie.xCoord - currentGrid.Plant.XPos;
+                if (distance < zombie.Range && distance > 0)
+                {
+                    zombie.IsAttacking = true;
+                    //TODO: Insert code to actually do damage to the plants.
+                }
+                break;
+            }
+        } 
+    }
+
+    private void CheckProjectileZombieCollision(int lane)
+    {
+        //TODO: once projectiles are set up, add this.
+    }
+
+    private void CheckSplashZombieCollision()
+    {
+        //TODO: once cherry bombs and mines are set up, add this.
+        //This will probably end up being n^2, but given that explosions last for a single frame that's probably fine.
+    }
+
+
 }

@@ -11,6 +11,11 @@ public abstract class HatZombie : IZombie
     protected float _scale;
     protected int _hatFallOffThreshold;
 
+    public float Range
+    {
+        get => _wrappedZombie.Range;
+    }
+
     public float Speed
     {
         get => _wrappedZombie.Speed;

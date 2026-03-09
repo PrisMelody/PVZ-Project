@@ -6,6 +6,7 @@ public class BasicZombie : IZombie
     private readonly ITextureRegion _region;
     private readonly float _scale;
 
+    public float Range {get;} = 50;
     public bool IsAttacking { get; set; } = false;
     public float Speed { get; set; } = 0.5f;
     public float xCoord { get; set; }

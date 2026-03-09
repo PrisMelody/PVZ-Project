@@ -6,6 +6,8 @@ public interface IZombie : IDamageable, IPvZDrawable, IPvZUpdatable
     float Speed { get; set; }
     bool IsAttacking { get; set; }
 
+    public float Range {get;}
+
     float xCoord { get; set; }
     float yCoord { get; set; }
 
