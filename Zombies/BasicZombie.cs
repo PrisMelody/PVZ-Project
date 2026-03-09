@@ -16,7 +16,7 @@ public class BasicZombie : IZombie
     
     public int Lane {get;}
 
-    public BasicZombie(ITextureRegion region, float scale, float x, float y, int lane)
+    public BasicZombie(ITextureRegion region, float scale, float x, float y, int lane) //TODO: Scale probably doesn't need to be an input.
     {
         _region = region;
         _scale = scale;
@@ -43,7 +43,7 @@ public class BasicZombie : IZombie
         }
     }
 
-    public virtual void Draw(SpriteBatch spriteBatch)
+    public virtual void Draw(SpriteBatch spriteBatch) //TODO: replace Sprites for zombies with the updated plant sprites.
     {
         spriteBatch.Draw(
             _region.Texture,
