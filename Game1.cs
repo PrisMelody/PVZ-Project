@@ -51,10 +51,10 @@ public class Game1 : Game, IGameInputHandler, IPlayerActions
         var bucketRegion = new TextureRegion("bucket", zombieSheet, new Rectangle(238, 16, 96, 179));
 
         _zombieManager = new ZombieManager();
-        _zombieManager.Add(new BasicZombie(basicRegion, 0.5f, 900.0f, 90.0f, 0));
-        _zombieManager.Add(new ConeheadZombie(coneRegion, 0.6f, basicRegion, 0.5f, 900.0f, 150.0f, 1));
-        _zombieManager.Add(new BucketheadZombie(bucketRegion, 0.5f, basicRegion, 0.5f, 900.0f, 375.0f, 3));
-        _zombieManager.Add(new FlagZombie(flagRegion, 0.5f, 900.0f, 475.0f, 4));
+        _zombieManager.Add(new BasicZombie(basicRegion, 0.5f, 0));
+        _zombieManager.Add(new ConeheadZombie(coneRegion, 0.6f, basicRegion, 0.5f, 1));
+        _zombieManager.Add(new BucketheadZombie(bucketRegion, 0.5f, basicRegion, 0.5f, 3));
+        _zombieManager.Add(new FlagZombie(flagRegion, 0.5f, 4));
     }
 
     protected override void Update(GameTime gameTime)
@@ -145,7 +145,7 @@ public class Game1 : Game, IGameInputHandler, IPlayerActions
         base.Draw(gameTime);
     }
 
-    private void CheckZombiePlantCollision(int lane)
+    private void CheckZombiePlantCollision(int lane) //TODO: stick this in its own class. 
     {
         foreach(IZombie zombie in _zombieManager.Zombies)
         {
