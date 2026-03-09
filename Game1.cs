@@ -158,8 +158,8 @@ public class Game1 : Game, IGameInputHandler, IPlayerActions
                 {
                     zombie.IsAttacking = true;
                     //TODO: Insert code to actually do damage to the plants.
+                    break;
                 }
-                break;
             }
         } 
     }
