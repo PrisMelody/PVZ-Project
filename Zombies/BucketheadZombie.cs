@@ -42,6 +42,7 @@ public class BucketheadZombie : IZombie
         get => _wrappedZombie.DrawOrder;
         set => _wrappedZombie.DrawOrder = value;
     }
+    public int SpawnWaveIndex { get; set; }
 
     public BucketheadZombie(ITextureRegion bucketRegion, float bucketScale,
         ITextureRegion baseRegion, float baseScale, float x, float y)

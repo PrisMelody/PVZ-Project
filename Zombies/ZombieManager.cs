@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System.Linq;
 
 public class ZombieManager : IPvZDrawable, IPvZUpdatable
 {
@@ -29,4 +30,14 @@ public class ZombieManager : IPvZDrawable, IPvZUpdatable
         foreach (var zombie in _zombies)
             zombie.Draw(spriteBatch);
     }
+    public bool HasAnyAliveZombies()
+    {
+        return _zombies.Any(z => !z.IsDead);
+    }
+
+    public bool HasAliveZombiesInWave(int waveIndex)
+    {
+        return _zombies.Any(z => !z.IsDead && z.SpawnWaveIndex == waveIndex);
+    }
+
 }

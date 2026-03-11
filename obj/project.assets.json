@@ -295,24 +295,31 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\NoahMudrick\\.nuget\\packages\\": {}
+    "C:\\Users\\Feder\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\NoahMudrick\\Documents\\GitHub\\PVZ-Project\\PlantsVsZombies.csproj",
+      "projectUniqueName": "C:\\Users\\Feder\\OneDrive - The Ohio State University\\coding\\plant_vs_zombie\\PVZ-Project\\PlantsVsZombies.csproj",
       "projectName": "PlantsVsZombies",
-      "projectPath": "C:\\Users\\NoahMudrick\\Documents\\GitHub\\PVZ-Project\\PlantsVsZombies.csproj",
-      "packagesPath": "C:\\Users\\NoahMudrick\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\NoahMudrick\\Documents\\GitHub\\PVZ-Project\\obj\\",
+      "projectPath": "C:\\Users\\Feder\\OneDrive - The Ohio State University\\coding\\plant_vs_zombie\\PVZ-Project\\PlantsVsZombies.csproj",
+      "packagesPath": "C:\\Users\\Feder\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Feder\\OneDrive - The Ohio State University\\coding\\plant_vs_zombie\\PVZ-Project\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "C:\\Users\\NoahMudrick\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\Feder\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net9.0"
       ],
       "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {

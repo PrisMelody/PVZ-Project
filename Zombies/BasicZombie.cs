@@ -13,6 +13,7 @@ public class BasicZombie : IZombie
     public int Health { get; set; } = 270;
     public bool IsDead { get; set; }
     public int DrawOrder { get; set; }
+    public int SpawnWaveIndex { get; set; }
 
     public BasicZombie(ITextureRegion region, float scale, float x, float y)
     {

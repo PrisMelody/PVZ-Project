@@ -42,6 +42,7 @@ public class ConeheadZombie : IZombie
         get => _wrappedZombie.DrawOrder;
         set => _wrappedZombie.DrawOrder = value;
     }
+     public int SpawnWaveIndex { get; set; }
 
     public ConeheadZombie(ITextureRegion coneRegion, float coneScale,
         ITextureRegion baseRegion, float baseScale, float x, float y)
