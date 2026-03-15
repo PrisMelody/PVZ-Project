@@ -1,6 +1,8 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+namespace PlantsVsZombies.Zombies
+{
 public class ConeheadZombie : IZombie
 //I originally tried to make this a subclass of Buckethead zombie, but ran into some weird issues that I didn't have time to fix.
 //As a result, this is pretty much just copypasted from Buckethead.
@@ -23,7 +25,10 @@ public class ConeheadZombie : IZombie
     public int Health{
         get{return WrappedZombie.Health;}
         set{WrappedZombie.Health = value;}}
-
+public Rectangle Hitbox
+{
+    get { return WrappedZombie.Hitbox; }
+}
     public bool IsDead {
         get{return WrappedZombie.IsDead;}
         set{WrappedZombie.IsDead = value;}}
@@ -91,4 +96,5 @@ public class ConeheadZombie : IZombie
     {
         WrappedZombie.Update(gameTime);
     }
+}
 }

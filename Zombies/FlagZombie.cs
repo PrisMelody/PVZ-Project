@@ -1,7 +1,9 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-public class FlagZombie : BasicZombie
+namespace PlantsVsZombies.Zombies
+{
+    public class FlagZombie : BasicZombie
 {
     public FlagZombie(float x, float y) : base(x, y)
     {
@@ -24,4 +26,5 @@ public class FlagZombie : BasicZombie
             0.0f //For now this is just a constant, later it should use drawOrder, or whatever we go with.
         );
     }
+}
 }

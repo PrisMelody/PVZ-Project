@@ -1,7 +1,8 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-
+namespace PlantsVsZombies.Zombies
+{
 //Wrapper for BasicZombie that adds a bucket. Yippee!
 public class BucketheadZombie : IZombie
 {
@@ -11,6 +12,10 @@ public class BucketheadZombie : IZombie
         get{return WrappedZombie.Speed;}
         set{WrappedZombie.Speed = value;}}
 
+ public Rectangle Hitbox
+    {
+        get { return WrappedZombie.Hitbox; }
+    }
     public float xCoord {
         get{return WrappedZombie.xCoord;}
         set{WrappedZombie.xCoord = value;}}
@@ -92,4 +97,5 @@ public class BucketheadZombie : IZombie
     {
         WrappedZombie.Update(gameTime);
     }
+}
 }

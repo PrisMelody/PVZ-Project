@@ -11,4 +11,5 @@ public interface IGameInputHandler
     /// plant menu, grid, shovel, etc., and runs the appropriate command.
     /// </summary>
     void HandleClick(Point screenPosition);
+    void PlacePlant(Point screenPosition);
 }

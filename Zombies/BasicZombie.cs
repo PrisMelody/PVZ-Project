@@ -2,8 +2,9 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
-
-public class BasicZombie : IZombie
+namespace PlantsVsZombies.Zombies
+{
+    public class BasicZombie : IZombie
 //TODO: add some way to handle freezing, presumably this will mostly just slow how often updates occur.
 {
     public bool IsAttacking {get; set;} = false;
@@ -23,7 +24,13 @@ public class BasicZombie : IZombie
         yCoord = y;
     }
 
-
+public Rectangle Hitbox
+{
+    get
+    {
+        return new Rectangle((int)xCoord, (int)yCoord, 80, 80);
+    }
+}
     public void Move()
     {
         xCoord -= Speed;
@@ -71,6 +78,6 @@ public class BasicZombie : IZombie
         }
     }
 }
-
+}
 
 
