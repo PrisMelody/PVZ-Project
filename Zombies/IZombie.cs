@@ -6,12 +6,18 @@ public interface IZombie : IDamageable, IPvZDrawable, IPvZUpdatable
     float Speed { get; set; }
     bool IsAttacking { get; set; }
 
+    public float Range {get;}
+
     float xCoord { get; set; }
     float yCoord { get; set; }
 
     new int Health { get; set; }
     new bool IsDead { get; set; }
     new int DrawOrder { get; set; }
+
+     int Lane {get;}
+
+
 
     void Move();
     void Attack();

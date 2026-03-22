@@ -16,7 +16,7 @@ public class Map : IMap
     private readonly Texture2D _shovelTexture;
     private readonly Rectangle _shovelBounds;
     private readonly IPlantFactory _plantFactory;
-    private readonly GridManager _grid;
+    public readonly GridManager _grid;
 
     private const int ScreenWidth = 800;
     private const int ScreenHeight = 600;

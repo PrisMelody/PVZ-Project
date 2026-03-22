@@ -43,6 +43,7 @@ public class Game1 : Game, IGameInputHandler, IPlayerActions
         _gameState = new GameState();
         _map = new Map(Content, GraphicsDevice, plantFactory);
 
+        //Right now, the zombies are using placeholder non-animated sprites. This will be removed once they have animated sprites like the plants.
         var zombieSheet = Content.Load<Texture2D>("images/base_zombiesforproj");
         var basicRegion = new TextureRegion("basic", zombieSheet, new Rectangle(475, 42, 86, 153));
         var flagRegion = new TextureRegion("flag", zombieSheet, new Rectangle(624, 40, 102, 152));
@@ -50,10 +51,10 @@ public class Game1 : Game, IGameInputHandler, IPlayerActions
         var bucketRegion = new TextureRegion("bucket", zombieSheet, new Rectangle(238, 16, 96, 179));
 
         _zombieManager = new ZombieManager();
-        _zombieManager.Add(new BasicZombie(basicRegion, 0.5f, 900.0f, 90.0f));
-        _zombieManager.Add(new ConeheadZombie(coneRegion, 0.6f, basicRegion, 0.5f, 900.0f, 150.0f));
-        _zombieManager.Add(new BucketheadZombie(bucketRegion, 0.5f, basicRegion, 0.5f, 900.0f, 375.0f));
-        _zombieManager.Add(new FlagZombie(flagRegion, 0.5f, 900.0f, 475.0f));
+        _zombieManager.Add(new BasicZombie(basicRegion, 0.5f, 0));
+        _zombieManager.Add(new ConeheadZombie(coneRegion, 0.6f, basicRegion, 0.5f, 1));
+        _zombieManager.Add(new BucketheadZombie(bucketRegion, 0.5f, basicRegion, 0.5f, 3));
+        _zombieManager.Add(new FlagZombie(flagRegion, 0.5f, 4));
     }
 
     protected override void Update(GameTime gameTime)
@@ -66,8 +67,17 @@ public class Game1 : Game, IGameInputHandler, IPlayerActions
         _map?.Update(gameTime);
         _zombieManager?.Update(gameTime);
 
+
+        for (int i = 0; i < 5; i++)
+        {
+            CheckZombiePlantCollision(i);
+            CheckProjectileZombieCollision(i);
+        }
+        CheckSplashZombieCollision();
         base.Update(gameTime);
     }
+        
+
 
     public void HandleClick(Point screenPosition)
     {
@@ -134,4 +144,36 @@ public class Game1 : Game, IGameInputHandler, IPlayerActions
 
         base.Draw(gameTime);
     }
+
+    private void CheckZombiePlantCollision(int lane) //TODO: stick this in its own class. 
+    {
+        foreach(IZombie zombie in _zombieManager.Zombies)
+        {
+            if (zombie.Lane != lane){continue;} //This is very inefficient, but may require changes to the zombie manager in order to improve.
+            foreach (IGridPlot currentGrid in _map._grid.Lanes[lane].Plots) //This is gross.
+            {
+                if (!currentGrid.IsOccupied){continue;}
+                float distance = zombie.xCoord - currentGrid.Plant.XPos;
+                if (distance < zombie.Range && distance > 0)
+                {
+                    zombie.IsAttacking = true;
+                    //TODO: Insert code to actually do damage to the plants.
+                    break;
+                }
+            }
+        } 
+    }
+
+    private void CheckProjectileZombieCollision(int lane)
+    {
+        //TODO: once projectiles are set up, add this.
+    }
+
+    private void CheckSplashZombieCollision()
+    {
+        //TODO: once cherry bombs and mines are set up, add this.
+        //This will probably end up being n^2, but given that explosions last for a single frame that's probably fine.
+    }
+
+
 }

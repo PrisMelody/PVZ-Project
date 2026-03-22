@@ -1,25 +1,37 @@
+using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 public class BasicZombie : IZombie
 {
+    
+    readonly protected static Dictionary<int, float> LaneSpawnLocations = new Dictionary<int, float>(){
+            { 0, 90.0f }, //Note: these are inaccurate placeholder values.
+            { 1, 150.0f }, 
+            { 2, 270.0f },
+            { 3, 375.0f },
+            { 4, 475.0f },
+        };
     private readonly ITextureRegion _region;
     private readonly float _scale;
 
+    public float Range {get;} = 50;
     public bool IsAttacking { get; set; } = false;
     public float Speed { get; set; } = 0.5f;
-    public float xCoord { get; set; }
+    public float xCoord { get; set; } = 900.0f;
     public float yCoord { get; set; }
     public int Health { get; set; } = 270;
     public bool IsDead { get; set; }
     public int DrawOrder { get; set; }
+    
+    public int Lane {get;}
 
-    public BasicZombie(ITextureRegion region, float scale, float x, float y)
+    public BasicZombie(ITextureRegion region, float scale, int lane) //TODO: Scale probably doesn't need to be an input.
     {
         _region = region;
         _scale = scale;
-        xCoord = x;
-        yCoord = y;
+        yCoord = LaneSpawnLocations[lane];
+        Lane = lane;
     }
 
     public void Move()
@@ -40,7 +52,7 @@ public class BasicZombie : IZombie
         }
     }
 
-    public virtual void Draw(SpriteBatch spriteBatch)
+    public virtual void Draw(SpriteBatch spriteBatch) //TODO: replace Sprites for zombies with the updated plant sprites.
     {
         spriteBatch.Draw(
             _region.Texture,
@@ -64,6 +76,7 @@ public class BasicZombie : IZombie
         else
         {
             Attack();
+            IsAttacking = false;
         }
     }
 }
