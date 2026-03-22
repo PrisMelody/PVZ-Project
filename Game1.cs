@@ -13,6 +13,7 @@ public class Game1 : Game, IGameInputHandler, IPlayerActions
 
     private Map _map;
     private ZombieManager _zombieManager;
+    private CollectableManager _collectableManager;
     private IGameState _gameState;
     private bool _shovelActive;
 
@@ -43,6 +44,10 @@ public class Game1 : Game, IGameInputHandler, IPlayerActions
         _gameState = new GameState();
         _map = new Map(Content, GraphicsDevice, plantFactory);
 
+        var sunTexture = Content.Load<Texture2D>("sun");
+        var coinTexture = Content.Load<Texture2D>("coin");
+        _collectableManager = new CollectableManager(sunTexture, coinTexture);
+
         //Right now, the zombies are using placeholder non-animated sprites. This will be removed once they have animated sprites like the plants.
         var zombieSheet = Content.Load<Texture2D>("images/base_zombiesforproj");
         var basicRegion = new TextureRegion("basic", zombieSheet, new Rectangle(475, 42, 86, 153));
@@ -50,7 +55,7 @@ public class Game1 : Game, IGameInputHandler, IPlayerActions
         var coneRegion = new TextureRegion("cone", zombieSheet, new Rectangle(28, 10, 86, 311));
         var bucketRegion = new TextureRegion("bucket", zombieSheet, new Rectangle(238, 16, 96, 179));
 
-        _zombieManager = new ZombieManager();
+        _zombieManager = new ZombieManager(_collectableManager);
         _zombieManager.Add(new BasicZombie(basicRegion, 0.5f, 0));
         _zombieManager.Add(new ConeheadZombie(coneRegion, 0.6f, basicRegion, 0.5f, 1));
         _zombieManager.Add(new BucketheadZombie(bucketRegion, 0.5f, basicRegion, 0.5f, 3));
@@ -66,6 +71,7 @@ public class Game1 : Game, IGameInputHandler, IPlayerActions
         _mouseController?.Update();
         _map?.Update(gameTime);
         _zombieManager?.Update(gameTime);
+        _collectableManager?.Update(gameTime);
 
 
         for (int i = 0; i < 5; i++)
@@ -81,6 +87,19 @@ public class Game1 : Game, IGameInputHandler, IPlayerActions
 
     public void HandleClick(Point screenPosition)
     {
+        if (_collectableManager != null)
+        {
+            var pickup = _collectableManager.TryCollectAt(screenPosition);
+            if (pickup.Collected)
+            {
+                if (pickup.Kind == CollectableKind.Sun)
+                    _gameState.AddSun(pickup.Value);
+                else
+                    _gameState.AddCoins(pickup.Value);
+                return;
+            }
+        }
+
         if (_map.IsShovelAt(screenPosition))
         {
             _shovelActive = !_shovelActive;
@@ -140,6 +159,7 @@ public class Game1 : Game, IGameInputHandler, IPlayerActions
         _spriteBatch.Begin();
         _map.Draw(_spriteBatch);
         _zombieManager?.Draw(_spriteBatch);
+        _collectableManager?.Draw(_spriteBatch);
         _spriteBatch.End();
 
         base.Draw(gameTime);
