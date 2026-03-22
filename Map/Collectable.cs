@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 /// <summary>
-/// Shared sun/coin pickup: falls to a target Y, then bobs until collected or idle time expires.
+/// Shared sun/coin pickup: falls at constant speed to a target Y, then rests until collected or idle time expires.
 /// </summary>
 public class Collectable : ICollectable
 {
@@ -14,20 +14,22 @@ public class Collectable : ICollectable
     private float _x;
     private float _y;
     private readonly float _targetY;
-    private float _fallVelocity;
-    private readonly float _fallAcceleration;
+    /// <summary>Pixels per second downward while falling; zero means no movement (should not happen).</summary>
+    private readonly float _fallSpeed;
 
     private CollectablePhase _phase;
     private readonly float _idleDurationSeconds;
     private float _idleTimeRemaining;
-    private float _bobPhase;
     private bool _gone;
 
     public const int DefaultSunValue = 25;
     public const int DefaultCoinValue = 1;
 
-    private const float BobSpeed = 6f;
-    private const float BobAmplitude = 4f;
+    /// <summary>Sky sun: slow linear fall (PvZ-like).</summary>
+    private const float SkySunFallSpeed = 72f;
+
+    /// <summary>Coin drop: short linear fall from above the zombie.</summary>
+    private const float CoinFallSpeed = 140f;
 
     private enum CollectablePhase
     {
@@ -54,7 +56,7 @@ public class Collectable : ICollectable
     public int DrawOrder { get; set; }
 
     /// <summary>
-    /// Sky sun: starts above screen, falls to <paramref name="targetY"/>.
+    /// Sky sun: starts above screen, falls linearly to <paramref name="targetY"/>.
     /// </summary>
     public static Collectable CreateSkySun(
         Texture2D texture,
@@ -70,13 +72,12 @@ public class Collectable : ICollectable
             startX,
             startY,
             targetY,
-            initialFallVelocity: 120f,
-            fallAcceleration: 420f,
+            SkySunFallSpeed,
             idleDurationSeconds);
     }
 
     /// <summary>
-    /// Zombie coin drop: short fall from slightly above spawn point.
+    /// Zombie coin drop: short linear fall from slightly above spawn point.
     /// </summary>
     public static Collectable CreateCoinDrop(
         Texture2D texture,
@@ -94,8 +95,7 @@ public class Collectable : ICollectable
             worldX,
             startY,
             targetY,
-            initialFallVelocity: 0f,
-            fallAcceleration: 980f,
+            CoinFallSpeed,
             idleDurationSeconds);
     }
 
@@ -106,8 +106,7 @@ public class Collectable : ICollectable
         float startX,
         float startY,
         float targetY,
-        float initialFallVelocity,
-        float fallAcceleration,
+        float fallSpeedPixelsPerSecond,
         float idleDurationSeconds)
     {
         _kind = kind;
@@ -116,8 +115,7 @@ public class Collectable : ICollectable
         _x = startX;
         _y = startY;
         _targetY = targetY;
-        _fallVelocity = initialFallVelocity;
-        _fallAcceleration = fallAcceleration;
+        _fallSpeed = fallSpeedPixelsPerSecond;
         _phase = CollectablePhase.Falling;
         _idleDurationSeconds = idleDurationSeconds;
         _idleTimeRemaining = 0f;
@@ -134,20 +132,17 @@ public class Collectable : ICollectable
 
         if (_phase == CollectablePhase.Falling)
         {
-            _fallVelocity += _fallAcceleration * dt;
-            _y += _fallVelocity * dt;
+            _y += _fallSpeed * dt;
 
             if (_y >= _targetY)
             {
                 _y = _targetY;
                 _phase = CollectablePhase.Idle;
-                _bobPhase = 0f;
                 _idleTimeRemaining = _idleDurationSeconds;
             }
         }
         else
         {
-            _bobPhase += dt * BobSpeed;
             _idleTimeRemaining -= dt;
             if (_idleTimeRemaining <= 0f)
                 _gone = true;
@@ -158,14 +153,10 @@ public class Collectable : ICollectable
 
     private void UpdateBounds()
     {
-        float bobY = _phase == CollectablePhase.Idle
-            ? (float)(Math.Sin(_bobPhase) * BobAmplitude)
-            : 0f;
-
         int w = _texture.Width;
         int h = _texture.Height;
         int drawX = (int)Math.Round(_x - w / 2f);
-        int drawY = (int)Math.Round(_y - h / 2f + bobY);
+        int drawY = (int)Math.Round(_y - h / 2f);
         Bounds = new Rectangle(drawX, drawY, w, h);
     }
 
@@ -174,13 +165,9 @@ public class Collectable : ICollectable
         if (_gone)
             return;
 
-        float bobY = _phase == CollectablePhase.Idle
-            ? (float)(Math.Sin(_bobPhase) * BobAmplitude)
-            : 0f;
-
         var pos = new Vector2(
             (float)Math.Round(_x - _texture.Width / 2f),
-            (float)Math.Round(_y - _texture.Height / 2f + bobY));
+            (float)Math.Round(_y - _texture.Height / 2f));
         var tint = _kind == CollectableKind.Coin ? new Color(255, 210, 64) : Color.White;
         spriteBatch.Draw(_texture, pos, tint);
     }

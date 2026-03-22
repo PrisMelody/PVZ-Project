@@ -295,7 +295,7 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\ctcop\\.nuget\\packages\\": {},
+    "C:\\Users\\ctcop\\AppData\\Local\\Temp\\cursor-sandbox-cache\\df78e31eddfa1b3e0d50895eae5f260a\\nuget": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
@@ -304,7 +304,7 @@
       "projectUniqueName": "c:\\Users\\ctcop\\OneDrive\\Documents\\Monogame\\PVZ-Project\\PlantsVsZombies.csproj",
       "projectName": "PlantsVsZombies",
       "projectPath": "c:\\Users\\ctcop\\OneDrive\\Documents\\Monogame\\PVZ-Project\\PlantsVsZombies.csproj",
-      "packagesPath": "C:\\Users\\ctcop\\.nuget\\packages\\",
+      "packagesPath": "C:\\Users\\ctcop\\AppData\\Local\\Temp\\cursor-sandbox-cache\\df78e31eddfa1b3e0d50895eae5f260a\\nuget",
       "outputPath": "c:\\Users\\ctcop\\OneDrive\\Documents\\Monogame\\PVZ-Project\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
