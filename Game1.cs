@@ -164,6 +164,8 @@ public class Game1 : Game, IGameInputHandler, IPlayerActions
         } 
     }
 
+    //May need some kind of PlantZombieDetector method for triggering plant attacks.
+
     private void CheckProjectileZombieCollision(int lane)
     {
         //TODO: once projectiles are set up, add this.
@@ -171,7 +173,7 @@ public class Game1 : Game, IGameInputHandler, IPlayerActions
 
     private void CheckSplashZombieCollision()
     {
-        //TODO: once cherry bombs and mines are set up, add this.
+        //TODO: once cherry bombs and mines are working, add this.
         //This will probably end up being n^2, but given that explosions last for a single frame that's probably fine.
     }
 
