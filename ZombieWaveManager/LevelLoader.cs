@@ -41,7 +41,7 @@ public static class LevelLoader
                 SpawnEvent spawnEvent = new SpawnEvent
                 {
                     TriggerTime = (float?)spawnElement.Attribute("Time") ?? 0f,
-                    ZombieType = Enum.Parse<ZombieType>((string?)spawnElement.Attribute("ZombieType") ?? "Normal"),
+                    type = Enum.Parse<ZombieType>((string?)spawnElement.Attribute("ZombieType") ?? "Normal"),
                     Count = (int?)spawnElement.Attribute("Count") ?? 1,
                     AllowedLanes = lanes,
                     WaveIndex = wave.WaveIndex
