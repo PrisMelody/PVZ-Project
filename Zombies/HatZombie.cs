@@ -1,0 +1,91 @@
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+
+//Abstract class used for the Buckethead and Conehead Zombies.
+//Could also be used to implement other zombies (even without hats!), like the screen door shield zombie, in future sprints.
+
+public abstract class HatZombie : IZombie
+{
+    protected IZombie _wrappedZombie;
+    protected ITextureRegion _region;
+    protected float _scale;
+    protected int _hatFallOffThreshold;
+
+    public float Range
+    {
+        get => _wrappedZombie.Range;
+    }
+
+    public float Speed
+    {
+        get => _wrappedZombie.Speed;
+        set => _wrappedZombie.Speed = value;
+    }
+    public float xCoord
+    {
+        get => _wrappedZombie.xCoord;
+        set => _wrappedZombie.xCoord = value;
+    }
+    public float yCoord
+    {
+        get => _wrappedZombie.yCoord;
+        set => _wrappedZombie.yCoord = value;
+    }
+    public int Health
+    {
+        get => _wrappedZombie.Health;
+        set => _wrappedZombie.Health = value;
+    }
+    public bool IsDead
+    {
+        get => _wrappedZombie.IsDead;
+        set => _wrappedZombie.IsDead = value;
+    }
+    public bool IsAttacking
+    {
+        get => _wrappedZombie.IsAttacking;
+        set => _wrappedZombie.IsAttacking = value;
+    }
+    public int DrawOrder
+    {
+        get => _wrappedZombie.DrawOrder;
+        set => _wrappedZombie.DrawOrder = value;
+    }
+
+    public int Lane
+    {
+        get => _wrappedZombie.Lane;
+    }
+
+    public void Move() => _wrappedZombie.Move();
+    public void Attack() => _wrappedZombie.Attack();
+
+    public void TakeDamage(int amount)
+    {
+        _wrappedZombie.TakeDamage(amount);
+    }
+
+    public void Draw(SpriteBatch spriteBatch)
+    {
+        if (Health <= _hatFallOffThreshold)
+        {
+            _wrappedZombie.Draw(spriteBatch);
+        }
+        else
+        {
+            spriteBatch.Draw(
+                _region.Texture,
+                new Vector2(xCoord, yCoord),
+                _region.SourceRectangle,
+                Color.White,
+                0.0f,
+                Vector2.Zero,
+                _scale,
+                SpriteEffects.None,
+                0.0f
+            );
+        }
+    }
+
+    public void Update(GameTime gameTime) => _wrappedZombie.Update(gameTime);
+}
