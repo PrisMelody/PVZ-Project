@@ -3,6 +3,11 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Linq;
 
+/*
+* This class manage all the zombies that are currently on the level and alive.
+* It adds new zombie as ZombieSpawnManager requests.
+* It updates zombies and remove dead zombies.
+*/
 public class ZombieManager : IPvZDrawable, IPvZUpdatable
 {
     private readonly List<IZombie> _zombies = new();

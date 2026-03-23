@@ -16,53 +16,39 @@ public class ZombieFactory
     private readonly ITextureRegion _coneheadTexture;
     private readonly ITextureRegion _bucketheadTexture;
     private readonly ITextureRegion _flagTexture;
+    private float _scale;
 
     // Initialize zombie factory with sprites for all types of zombies. Should be done at beginning of the level.
     public ZombieFactory(
         ITextureRegion basicZombieTexture,
         ITextureRegion coneheadTexture,
         ITextureRegion bucketheadTexture,
-        ITextureRegion flagTexture)
+        ITextureRegion flagTexture,
+        float scale)
     {
         _basicZombieTexture = basicZombieTexture;
         _coneheadTexture = coneheadTexture;
         _bucketheadTexture = bucketheadTexture;
         _flagTexture = flagTexture;
+        _scale = scale;
     }
 
     // Since not all zombie have decor, so decorScale is an optional parameter with default value to make it optional.
-    public IZombie CreateZombie(ZombieType type, int lane, float scale, float decorScale = 1.0f)
+    public IZombie CreateZombie(ZombieType type, int lane, float decorScale = 1.0f)
     {
-        // Coordinate for spawning the zombie.
-        int x = 0, y = 0;
-        // Calculate coordinate based on the lane.
-        switch (lane)
-        {
-            // TODO: add coordinate for each lane.
-            case 1:
-                break;
-            case 2:
-                break;
-            case 3:
-                break;
-            case 4:
-                break;
-            case 5:
-                break;
-        }
         switch (type)
         {
             case ZombieType.Basic:
-                return new BasicZombie(_basicZombieTexture, scale, x, y);
+                return new BasicZombie(_basicZombieTexture, _scale, lane);
 
             case ZombieType.Conehead:
-                return new ConeheadZombie(_basicZombieTexture, decorScale, _coneheadTexture, scale, x, y);
+                return new ConeheadZombie(_coneheadTexture, decorScale, _basicZombieTexture, _scale, lane);
 
             case ZombieType.Buckethead:
-                return new BucketheadZombie(_basicZombieTexture, decorScale, _bucketheadTexture, scale, x, y);
+                return new BucketheadZombie(_bucketheadTexture, decorScale, _basicZombieTexture, _scale, lane);
             
             case ZombieType.Flag:
-                return new FlagZombie(_basicZombieTexture, scale, x, y);
+                return new FlagZombie(_basicZombieTexture, _scale, lane);
 
             default:
                 throw new ArgumentOutOfRangeException(nameof(type), $"Unknown zombie type: {type}");

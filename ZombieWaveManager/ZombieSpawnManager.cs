@@ -3,6 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Xna.Framework;
 
+/*
+* This class is a dispatch center for spawning zombies.
+* It holds a ZombieManager instance to manage active zombies
+* and use ZombieFactory instance to spawn new zombie and add it to ZombieManager.
+*/
 public class ZombieSpawnManager
 {
     private readonly LevelSpawnData levelData;
