@@ -295,19 +295,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\mukun\\.nuget\\packages\\": {}
+    "C:\\Users\\NoahMudrick\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\mukun\\Desktop\\3902\\PlantsVsZombies.csproj",
+      "projectUniqueName": "C:\\Users\\NoahMudrick\\Documents\\GitHub\\PVZ-Project\\PlantsVsZombies.csproj",
       "projectName": "PlantsVsZombies",
-      "projectPath": "C:\\Users\\mukun\\Desktop\\3902\\PlantsVsZombies.csproj",
-      "packagesPath": "C:\\Users\\mukun\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\mukun\\Desktop\\3902\\obj\\",
+      "projectPath": "C:\\Users\\NoahMudrick\\Documents\\GitHub\\PVZ-Project\\PlantsVsZombies.csproj",
+      "packagesPath": "C:\\Users\\NoahMudrick\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\NoahMudrick\\Documents\\GitHub\\PVZ-Project\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\mukun\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\NoahMudrick\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net9.0"
@@ -331,7 +331,7 @@
         "auditLevel": "low",
         "auditMode": "direct"
       },
-      "SdkAnalysisLevel": "10.0.200"
+      "SdkAnalysisLevel": "10.0.100"
     },
     "frameworks": {
       "net9.0": {
@@ -360,19 +360,19 @@
         "downloadDependencies": [
           {
             "name": "Microsoft.AspNetCore.App.Ref",
-            "version": "[9.0.14, 9.0.14]"
+            "version": "[9.0.12, 9.0.12]"
           },
           {
             "name": "Microsoft.NETCore.App.Host.win-x64",
-            "version": "[9.0.14, 9.0.14]"
+            "version": "[9.0.12, 9.0.12]"
           },
           {
             "name": "Microsoft.NETCore.App.Ref",
-            "version": "[9.0.14, 9.0.14]"
+            "version": "[9.0.12, 9.0.12]"
           },
           {
             "name": "Microsoft.WindowsDesktop.App.Ref",
-            "version": "[9.0.14, 9.0.14]"
+            "version": "[9.0.12, 9.0.12]"
           }
         ],
         "frameworkReferences": {
@@ -380,7 +380,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.201/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.102/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

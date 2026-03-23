@@ -146,9 +146,8 @@ public class Game1 : Game, IGameInputHandler, IPlayerActions
 
     private void CheckZombiePlantCollision(int lane) //TODO: stick this in its own class. 
     {
-        foreach(IZombie zombie in _zombieManager.Zombies)
+        foreach(IZombie zombie in _zombieManager.ZombiesByLane[lane])
         {
-            if (zombie.Lane != lane){continue;} //This is very inefficient, but may require changes to the zombie manager in order to improve.
             foreach (IGridPlot currentGrid in _map._grid.Lanes[lane].Plots) //This is gross.
             {
                 if (!currentGrid.IsOccupied){continue;}
@@ -165,7 +164,7 @@ public class Game1 : Game, IGameInputHandler, IPlayerActions
 
     private void CheckProjectileZombieCollision(int lane)
     {
-        //TODO: once projectiles are set up, add this.
+        
     }
 
     private void CheckSplashZombieCollision()

@@ -1,5 +1,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System.Collections.Generic;
+
 
 public abstract class Projectile : IProjectile
 {
@@ -8,7 +10,16 @@ public abstract class Projectile : IProjectile
     public float XPos { get; set; }
     public float YPos { get; set; }
     public int DrawOrder { get; set; }
+    
     protected Texture2D _texture;
+
+    readonly public static Dictionary<float, int> getLaneFromYPos = new Dictionary<float, int>(){
+            { 120.0f, 0 },
+            { 210.0f, 1 }, 
+            { 300.0f, 2 },
+            { 390.0f, 3 },
+            { 480.0f, 4 },
+        };
 
     protected Projectile(float x, float y, int damage, float speed, Texture2D texture)    {
         XPos = x;
