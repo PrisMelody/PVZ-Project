@@ -25,41 +25,52 @@ public class PlantFactory : IPlantFactory
     public void LoadContent(ContentManager content)
     {
         foreach (var (type, name) in SheetNames)
+        {
             _spriteSheets[type] = content.Load<Texture2D>(name);
+        }
     }
 
     public IPlant Create(PlantType type, float x, float y)
     {
-        AnimatedSprite sprite = null;
-        if (_spriteSheets.TryGetValue(type, out var sheet))
-        {
-            var anim = CreateSpriteSheetAnimation(sheet);
-            sprite = new AnimatedSprite(anim, new Vector2(x, y));
-        }
+        if (!_spriteSheets.TryGetValue(type, out var sheet))
+            return null;
 
+        // ✅ Create ONE full animation using all frames
+        var anim = CreateSpriteSheetAnimation(sheet);
+
+        // ✅ Pass animation into plant (no AnimatedSprite here anymore)
         return type switch
         {
-            PlantType.Peashooter => new Peashooter(sprite, x, y),
-            PlantType.Sunflower => new Sunflower(sprite, x, y),
-            PlantType.SnowPea => new SnowPea(sprite, x, y),
-            PlantType.Repeater => new Repeater(sprite, x, y),
-            PlantType.CherryBomb => new CherryBomb(sprite, x, y),
-            PlantType.WallNut => new WallNut(sprite, x, y),
-            PlantType.PotatoMine => new PotatoMine(sprite, x, y),
-            PlantType.Chomper => new Chomper(sprite, x, y),
+            PlantType.Peashooter => new Peashooter(anim, anim, x, y),
+            PlantType.Sunflower => new Sunflower(anim, anim, x, y),
+            PlantType.SnowPea => new SnowPea(anim, anim, x, y),
+            PlantType.Repeater => new Repeater(anim, anim, x, y),
             _ => null
         };
     }
 
+    // ✅ Your existing function (unchanged, and correct)
     private static Animation CreateSpriteSheetAnimation(Texture2D sheet)
     {
         var frames = new List<ITextureRegion>();
+
         for (int r = 0; r < SpriteSheetRows; r++)
+        {
             for (int c = 0; c < SpriteSheetCols; c++)
+            {
                 frames.Add(new TextureRegion(
                     $"frame_{r * SpriteSheetCols + c}",
                     sheet,
-                    new Rectangle(c * FrameWidth, r * FrameHeight, FrameWidth, FrameHeight)));
+                    new Rectangle(
+                        c * FrameWidth,
+                        r * FrameHeight,
+                        FrameWidth,
+                        FrameHeight
+                    )
+                ));
+            }
+        }
+
         return new Animation(frames, FrameTime);
     }
 }

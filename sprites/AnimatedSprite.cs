@@ -22,6 +22,16 @@ public class AnimatedSprite
     {
         _animation.Update(gameTime);
     }
+    public void SetAnimation(Animation animation)
+    {
+        if (_animation == animation) return; // don’t reset same anim
+
+        _animation = animation;
+        _animation.Reset(); // start new anim from first frame 
+    
+    }
+
+        
 
     public void Draw(SpriteBatch spriteBatch)
     {
