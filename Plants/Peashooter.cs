@@ -8,7 +8,7 @@ public class Peashooter : Plant
     private double _timer;
 
     public Peashooter(Animation idle, Animation action, float x, float y)
-        : base(idle, action, x, y, 300)
+        : base(idle, action, x, y)
     {
         _timer = 0;
     }

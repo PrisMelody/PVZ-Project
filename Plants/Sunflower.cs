@@ -11,7 +11,7 @@ public class Sunflower : Plant
     
 
     public Sunflower(Animation idle, Animation action, float x, float y)
-        : base(idle, action, x, y, 300)
+        : base(idle, action, x, y)
     {
     }
 

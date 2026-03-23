@@ -16,11 +16,11 @@ public abstract class Plant : IPlant
     public float YPos { get; set; }
     public int DrawOrder { get; set; }
 
-    protected Plant(Animation idle, Animation action, float x, float y, int health)
+    protected Plant(Animation idle, Animation action, float x, float y)
     {
         XPos = x;
         YPos = y;
-        Health = health;
+        Health = 100; // Default health
         DrawOrder = 20;
 
         _idleAnim = idle;
