@@ -28,7 +28,7 @@ public class Repeater : Plant
             PlayAnimation(_actionAnim); // same animation for now
             System.Console.WriteLine("Repeater shoots two peas!");
             var pea1 = new Pea(XPos + 40, YPos + 20, _peaTexture);
-            var pea2 = new Pea(XPos + 40, YPos + 50, _peaTexture);
+            var pea2 = new Pea(XPos + 60, YPos + 20, _peaTexture);
 
             _projectiles.Add(pea1);
             _projectiles.Add(pea2);
