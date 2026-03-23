@@ -15,7 +15,16 @@ public enum GameState
 
 public class Game1 : Game, IGameInputHandler, IPlayerActions
 {
-    // ... your existing variables ...
+    private GraphicsDeviceManager _graphics;
+    private SpriteBatch _spriteBatch;
+    private IController _mouseController;
+
+    private IMap _map;
+    private IZombie [] testZombies;
+
+    public int SelectedPlantType => _map?.SelectedPlantType ?? -1;
+
+    
     
     // --- NEW CAMERA VARIABLES ---
     private Camera _camera;
@@ -25,12 +34,18 @@ public class Game1 : Game, IGameInputHandler, IPlayerActions
 
     public Game1()
     {
-        // ... existing constructor ...
+        _graphics = new GraphicsDeviceManager(this);
+        Content.RootDirectory = "Content";
+        IsMouseVisible = true;
     }
 
     protected override void Initialize()
     {
-        // ... existing initialize code ...
+        _graphics.PreferredBackBufferWidth = 800;
+        _graphics.PreferredBackBufferHeight = 600;
+        _graphics.ApplyChanges();
+
+        _mouseController = new MouseController(this);
         
         _camera = new Camera();
         _currentState = GameState.StartCutscenePanRight; // Start the game in the cutscene
