@@ -37,11 +37,10 @@ public class Game1 : Game, IGameInputHandler, IPlayerActions
     {
         _spriteBatch = new SpriteBatch(GraphicsDevice);
 
-        var plantFactory = new PlantFactory();
-        plantFactory.LoadContent(Content);
+        
 
         _gameState = new GameState();
-        _map = new Map(Content, GraphicsDevice, plantFactory);
+        _map = new Map(Content, GraphicsDevice);
 
         //Right now, the zombies are using placeholder non-animated sprites. This will be removed once they have animated sprites like the plants.
         var zombieSheet = Content.Load<Texture2D>("images/base_zombiesforproj");
@@ -158,8 +157,8 @@ public class Game1 : Game, IGameInputHandler, IPlayerActions
                 {
                     zombie.IsAttacking = true;
                     //TODO: Insert code to actually do damage to the plants.
-                    break;
                 }
+                break;
             }
         } 
     }

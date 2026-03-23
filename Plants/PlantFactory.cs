@@ -13,6 +13,9 @@ public class PlantFactory : IPlantFactory
     private const int FrameWidth = 80;
     private const int FrameHeight = 80;
     private const float FrameTime = 0.05f;
+    private List<Projectile> _projectiles;
+    private Texture2D _peaTexture;
+    private Texture2D _snowPeaTexture;
 
     private static readonly Dictionary<PlantType, string> SheetNames = new()
     {
@@ -21,6 +24,12 @@ public class PlantFactory : IPlantFactory
         { PlantType.SnowPea, "snowpea" },
         { PlantType.Repeater, "repeater" },
     };
+    public PlantFactory(List<Projectile> projectiles, Texture2D peaTexture, Texture2D snowPeaTexture)
+    {
+        _projectiles = projectiles;
+        _peaTexture = peaTexture;
+        _snowPeaTexture = snowPeaTexture;
+    }
 
     public void LoadContent(ContentManager content)
     {
@@ -28,6 +37,7 @@ public class PlantFactory : IPlantFactory
         {
             _spriteSheets[type] = content.Load<Texture2D>(name);
         }
+        
     }
 
     public IPlant Create(PlantType type, float x, float y)
@@ -35,21 +45,21 @@ public class PlantFactory : IPlantFactory
         if (!_spriteSheets.TryGetValue(type, out var sheet))
             return null;
 
-        // ✅ Create ONE full animation using all frames
+        //  Create ONE full animation using all frames
         var anim = CreateSpriteSheetAnimation(sheet);
 
-        // ✅ Pass animation into plant (no AnimatedSprite here anymore)
+        //  Pass animation into plant (no AnimatedSprite here anymore)
         return type switch
         {
-            PlantType.Peashooter => new Peashooter(anim, anim, x, y),
+            PlantType.Peashooter => new Peashooter(anim, anim, x, y,_projectiles, _peaTexture),
             PlantType.Sunflower => new Sunflower(anim, anim, x, y),
-            PlantType.SnowPea => new SnowPea(anim, anim, x, y),
-            PlantType.Repeater => new Repeater(anim, anim, x, y),
+            PlantType.SnowPea => new SnowPea(anim, anim, x, y,_projectiles,_snowPeaTexture ),
+            PlantType.Repeater => new Repeater(anim, anim, x, y,_projectiles, _peaTexture),
             _ => null
         };
     }
 
-    // ✅ Your existing function (unchanged, and correct)
+    
     private static Animation CreateSpriteSheetAnimation(Texture2D sheet)
     {
         var frames = new List<ITextureRegion>();
