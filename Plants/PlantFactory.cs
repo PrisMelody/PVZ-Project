@@ -16,6 +16,8 @@ public class PlantFactory : IPlantFactory
     private List<Projectile> _projectiles;
     private Texture2D _peaTexture;
     private Texture2D _snowPeaTexture;
+    private List<SunCollectable> _suns;
+    private Texture2D _sunTexture;
 
     private static readonly Dictionary<PlantType, string> SheetNames = new()
     {
@@ -24,11 +26,13 @@ public class PlantFactory : IPlantFactory
         { PlantType.SnowPea, "snowpea" },
         { PlantType.Repeater, "repeater" },
     };
-    public PlantFactory(List<Projectile> projectiles, Texture2D peaTexture, Texture2D snowPeaTexture)
+    public PlantFactory(List<Projectile> projectiles, Texture2D peaTexture, Texture2D snowPeaTexture, List<SunCollectable> suns, Texture2D sunTexture)
     {
         _projectiles = projectiles;
         _peaTexture = peaTexture;
         _snowPeaTexture = snowPeaTexture;
+        _suns = suns;
+        _sunTexture = sunTexture;
     }
 
     public void LoadContent(ContentManager content)
@@ -52,7 +56,7 @@ public class PlantFactory : IPlantFactory
         return type switch
         {
             PlantType.Peashooter => new Peashooter(anim, anim, x, y,_projectiles, _peaTexture),
-            PlantType.Sunflower => new Sunflower(anim, anim, x, y),
+            PlantType.Sunflower => new Sunflower(anim, anim, x, y, _suns, _sunTexture),
             PlantType.SnowPea => new SnowPea(anim, anim, x, y,_projectiles,_snowPeaTexture ),
             PlantType.Repeater => new Repeater(anim, anim, x, y,_projectiles, _peaTexture),
             _ => null

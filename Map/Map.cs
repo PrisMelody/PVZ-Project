@@ -17,8 +17,11 @@ public class Map : IMap
     private readonly Rectangle _shovelBounds;
     private readonly PlantFactory _plantFactory;
     private List<Projectile> _projectiles = new();
+    private List<SunCollectable> _suns = new();
     private Texture2D _peaTexture;
     private Texture2D _snowPeaTexture;
+    private Texture2D _sunTexture;
+
     public readonly GridManager _grid;
 
     private const int ScreenWidth = 800;
@@ -48,7 +51,9 @@ public class Map : IMap
         _shovelTexture = content.Load<Texture2D>("shovel");
         _peaTexture = content.Load<Texture2D>("pea_projectile");
         _snowPeaTexture = content.Load<Texture2D>("snowpea_projectile");
-        _plantFactory = new PlantFactory(_projectiles, _peaTexture, _snowPeaTexture);
+        _sunTexture = content.Load<Texture2D>("sun");
+
+        _plantFactory = new PlantFactory(_projectiles, _peaTexture, _snowPeaTexture, _suns, _sunTexture);
         _plantFactory.LoadContent(content);
 
         var trayTexture = content.Load<Texture2D>("seedslot");
@@ -134,6 +139,11 @@ public class Map : IMap
 
             }
          _projectiles.RemoveAll(p => p.IsDead);
+        foreach (var sun in _suns)
+        {
+            sun.Update(gameTime);
+        }
+        _suns.RemoveAll(s => s.IsCollected);
         
     }
 
@@ -162,6 +172,10 @@ public class Map : IMap
         foreach (var projectile in _projectiles)
         {
             projectile.Draw(spriteBatch);
+        }
+        foreach (var sun in _suns)
+        {
+            sun.Draw(spriteBatch);
         }
     }
 

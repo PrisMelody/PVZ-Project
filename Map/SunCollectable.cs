@@ -13,8 +13,9 @@ public class SunCollectable : ICollectable
     private float lifetime;
     private float fallSpeed;
     private bool isFalling;
+    private Texture2D _texture;
 
-    public SunCollectable(Point position, int value, float lifetime, Rectangle bounds)
+    public SunCollectable(Point position, int value, float lifetime, Rectangle bounds,bool Falling,Texture2D texture)
     {
         Position = position;
         Value = value;
@@ -23,8 +24,18 @@ public class SunCollectable : ICollectable
         Bounds = bounds;
         IsCollected = false;
         DrawOrder = 50;
-        isFalling = true;
+        isFalling = Falling;
         fallSpeed = 50f;
+        _texture = texture;
+        if (!isFalling)
+        {
+            Bounds = new Rectangle(
+                Position.X - Bounds.Width / 2,
+                Position.Y - Bounds.Height / 2,
+                Bounds.Width, Bounds.Height);
+        }
+        // above if statement is ment to make sure that the sun 
+        //spawns neer the sunflower when it is made by sunflower
     }
 
     public bool HitTest(Point mousePos)
@@ -41,6 +52,7 @@ public class SunCollectable : ICollectable
     {
         if (!IsCollected)
         {
+            sprite.Draw(_texture, Bounds, Color.White);
         }
     }
 
