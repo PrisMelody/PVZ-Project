@@ -155,7 +155,7 @@ public class Game1 : Game, IGameInputHandler, IPlayerActions
                 if (distance < zombie.Range && distance > 0)
                 {
                     zombie.IsAttacking = true;
-                    currentGrid.Plant.TakeDamage(2); //TODO: replace with actual damage method.
+                    currentGrid.Plant.TakeDamage(2); //TODO: this is temporary, zombies should do damage to plants on their own.
                 }
                 break;
             }
