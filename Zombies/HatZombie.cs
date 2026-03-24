@@ -81,7 +81,8 @@ public abstract class HatZombie : IZombie
         {
             spriteBatch.Draw(
                 _region.Texture,
-                new Vector2(xCoord, yCoord),
+                // Since hat change the height of zombies, so I added 30.0f to correct the shift of position.
+                new Vector2(xCoord, yCoord - 30.0f),
                 _region.SourceRectangle,
                 Color.White,
                 0.0f,

@@ -30,29 +30,43 @@ public static class LevelLoader
                 IsHugeWave = (bool?)waveElement.Attribute("IsHugeWave") ?? false
             };
 
-            foreach (XElement spawnElement in waveElement.Elements("SpawnEvent"))
+            foreach (XElement spawnEventElement in waveElement.Elements("SpawnEvent"))
             {
-                string laneText = (string?)spawnElement.Attribute("Lanes") ?? "";
-                List<int> lanes = laneText
-                    .Split(',', StringSplitOptions.RemoveEmptyEntries)
-                    .Select(s => int.Parse(s.Trim()))
-                    .ToList();
+                float triggerTime = (float?)spawnEventElement.Attribute("Time") ?? 0f;
 
-                SpawnEvent spawnEvent = new SpawnEvent
+                foreach (XElement spawnElement in spawnEventElement.Elements("Spawn"))
                 {
-                    TriggerTime = (float?)spawnElement.Attribute("Time") ?? 0f,
-                    type = Enum.Parse<ZombieType>((string?)spawnElement.Attribute("ZombieType") ?? "Normal"),
-                    Count = (int?)spawnElement.Attribute("Count") ?? 1,
-                    AllowedLanes = lanes,
-                    WaveIndex = wave.WaveIndex
-                };
+                    string laneText = (string?)spawnElement.Attribute("Lanes") ?? "";
+                    List<int> lanes = laneText
+                        .Split(',', StringSplitOptions.RemoveEmptyEntries)
+                        .Select(s => int.Parse(s.Trim()))
+                        .ToList();
 
-                wave.SpawnEvents.Add(spawnEvent);
+                    SpawnEvent spawnEvent = new SpawnEvent
+                    {
+                        TriggerTime = triggerTime,
+                        type = ParseZombieType((string?)spawnElement.Attribute("ZombieType")),
+                        Count = (int?)spawnElement.Attribute("Count") ?? 1,
+                        AllowedLanes = lanes,
+                        WaveIndex = wave.WaveIndex
+                    };
+
+                    wave.SpawnEvents.Add(spawnEvent);
+                }
             }
 
             levelData.Waves.Add(wave);
         }
 
         return levelData;
+    }
+
+    private static ZombieType ParseZombieType(string? xmlValue)
+    {
+        return xmlValue switch
+        {
+            null or "" => ZombieType.Basic,
+            _ => Enum.Parse<ZombieType>(xmlValue, ignoreCase: true)
+        };
     }
 }

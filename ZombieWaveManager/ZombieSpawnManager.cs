@@ -93,15 +93,26 @@ public class ZombieSpawnManager
 
     private void SpawnZombies(SpawnEvent spawnEvent)
     {
+        List<int> lanePool = spawnEvent.AllowedLanes == null || spawnEvent.AllowedLanes.Count == 0
+            ? new List<int> { 0, 1, 2, 3, 4 }
+            : new List<int>(spawnEvent.AllowedLanes);
+        List<int> availableLanes = new List<int>(lanePool);
+
         for (int i = 0; i < spawnEvent.Count; i++)
         {
-            int lane = PickLane(spawnEvent.AllowedLanes);
+            if (availableLanes.Count == 0)
+            {
+                availableLanes = new List<int>(lanePool);
+            }
+
+            int lane = PickLane(availableLanes);
             IZombie zombie = zombieFactory.CreateZombie(spawnEvent.type, lane);
 
             // Mark the zombie wave index with spawn wave index.
             zombie.SpawnWaveIndex = spawnEvent.WaveIndex;
 
             zombieManager.Add(zombie);
+            availableLanes.Remove(lane);
         }
     }
 

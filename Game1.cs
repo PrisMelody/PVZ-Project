@@ -3,6 +3,8 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using MonoGameLibrary.Sprites;
+using System;
+using System.IO;
 
 namespace PVZ_Project;
 
@@ -60,13 +62,18 @@ public class Game1 : Game, IGameInputHandler, IPlayerActions
         var bucketRegion = new TextureRegion("bucket", zombieSheet, new Rectangle(238, 16, 96, 179));
         _zombieFactory = new ZombieFactory(basicRegion, coneRegion, bucketRegion, flagRegion, scale);
 
+        var sunTexture = Content.Load<Texture2D>("sun");
+        var coinTexture = Content.Load<Texture2D>("coin");
+        _collectableManager = new CollectableManager(sunTexture, coinTexture);
+
         // ZombieManager to manage active zombies.
         _zombieManager = new ZombieManager(_collectableManager);
         /*
         * Load a level based on the file path.
         * TO-DO: Should develop a function to select path based on UI selection.
         */
-        LevelSpawnData levelSpawnData = LevelLoader.LoadFromXml("ZombieWaveManager/example.xml");
+        string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory,"ZombieWaveManager","example.xml");
+        LevelSpawnData levelSpawnData = LevelLoader.LoadFromXml(path);
         // Initialize zombie dispatch center (ZombieSpawnManager instance).
         _zombieSpawnManager = new ZombieSpawnManager(levelSpawnData, _zombieManager, _zombieFactory);
     }
@@ -79,15 +86,17 @@ public class Game1 : Game, IGameInputHandler, IPlayerActions
 
         _mouseController?.Update();
         _map?.Update(gameTime);
-        _zombieManager?.Update(gameTime);
-        _collectableManager?.Update(gameTime);
-
+        _zombieSpawnManager?.Update(gameTime);
 
         for (int i = 0; i < 5; i++)
         {
             CheckZombiePlantCollision(i);
             CheckProjectileZombieCollision(i);
         }
+
+        _zombieManager?.Update(gameTime);
+        _collectableManager?.Update(gameTime);
+
         CheckSplashZombieCollision();
         base.Update(gameTime);
     }

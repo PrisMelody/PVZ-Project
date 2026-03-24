@@ -6,11 +6,11 @@ public class BasicZombie : IZombie
 {
     
     readonly protected static Dictionary<int, float> LaneSpawnLocations = new Dictionary<int, float>(){
-            { 0, 90.0f }, //Note: these are inaccurate placeholder values.
-            { 1, 150.0f }, 
-            { 2, 270.0f },
-            { 3, 375.0f },
-            { 4, 475.0f },
+            { 0, 20.0f }, //Mostly correct value
+            { 1, 120.0f }, 
+            { 2, 225.0f },
+            { 3, 305.0f },
+            { 4, 415.0f },
         };
     private readonly ITextureRegion _region;
     private readonly float _scale;

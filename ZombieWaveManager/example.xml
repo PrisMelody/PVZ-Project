@@ -3,12 +3,12 @@
   <Wave Index="0" StartTime="5" IsHugeWave="false">
 
     <SpawnEvent Time="5">
-      <Spawn ZombieType="Normal" Count="3" Lanes="0,1,2,3,4" />
+      <Spawn ZombieType="Basic" Count="4" Lanes="0,1,2,3,4" />
     </SpawnEvent>
 
     <SpawnEvent Time="12">
       <Spawn ZombieType="Conehead" Count="1" Lanes="1,3" />
-      <Spawn ZombieType="Normal" Count="2" Lanes="0,2,4" />
+      <Spawn ZombieType="Basic" Count="2" Lanes="0,2,4" />
     </SpawnEvent>
 
   </Wave>
@@ -16,7 +16,7 @@
   <Wave Index="1" StartTime="25" IsHugeWave="false">
 
     <SpawnEvent Time="25">
-      <Spawn ZombieType="Normal" Count="4" Lanes="0,1,2,3,4" />
+      <Spawn ZombieType="Basic" Count="4" Lanes="0,1,2,3,4" />
     </SpawnEvent>
 
     <SpawnEvent Time="30">
@@ -29,7 +29,7 @@
 
     <SpawnEvent Time="50">
       <Spawn ZombieType="Flag" Count="1" Lanes="2" />
-      <Spawn ZombieType="Normal" Count="6" Lanes="0,1,2,3,4" />
+      <Spawn ZombieType="Basic" Count="6" Lanes="0,1,2,3,4" />
     </SpawnEvent>
 
     <SpawnEvent Time="55">
