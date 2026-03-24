@@ -16,6 +16,7 @@ public class Game1 : Game, IGameInputHandler, IPlayerActions
     private ZombieFactory _zombieFactory;
     private ZombieSpawnManager _zombieSpawnManager;
     private ZombieManager _zombieManager;
+    private CollectableManager _collectableManager;
     private IGameState _gameState;
     private bool _shovelActive;
     // Default scale for sprite. Should be configurable in menu or command.
@@ -79,6 +80,7 @@ public class Game1 : Game, IGameInputHandler, IPlayerActions
         _mouseController?.Update();
         _map?.Update(gameTime);
         _zombieManager?.Update(gameTime);
+        _collectableManager?.Update(gameTime);
 
 
         for (int i = 0; i < 5; i++)
@@ -94,6 +96,19 @@ public class Game1 : Game, IGameInputHandler, IPlayerActions
 
     public void HandleClick(Point screenPosition)
     {
+        if (_collectableManager != null)
+        {
+            var pickup = _collectableManager.TryCollectAt(screenPosition);
+            if (pickup.Collected)
+            {
+                if (pickup.Kind == CollectableKind.Sun)
+                    _gameState.AddSun(pickup.Value);
+                else
+                    _gameState.AddCoins(pickup.Value);
+                return;
+            }
+        }
+
         if (_map.IsShovelAt(screenPosition))
         {
             _shovelActive = !_shovelActive;
@@ -153,6 +168,7 @@ public class Game1 : Game, IGameInputHandler, IPlayerActions
         _spriteBatch.Begin();
         _map.Draw(_spriteBatch);
         _zombieManager?.Draw(_spriteBatch);
+        _collectableManager?.Draw(_spriteBatch);
         _spriteBatch.End();
 
         base.Draw(gameTime);

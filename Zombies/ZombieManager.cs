@@ -11,9 +11,15 @@ using System.Linq;
 public class ZombieManager : IPvZDrawable, IPvZUpdatable
 {
     private readonly List<IZombie> _zombies = new();
+    private readonly ICollectableSpawner _collectableSpawner;
 
     public int DrawOrder { get; set; }
     public IReadOnlyList<IZombie> Zombies => _zombies;
+
+    public ZombieManager(ICollectableSpawner collectableSpawner = null)
+    {
+        _collectableSpawner = collectableSpawner;
+    }
 
     public void Add(IZombie zombie)
     {
@@ -26,7 +32,10 @@ public class ZombieManager : IPvZDrawable, IPvZUpdatable
         {
             _zombies[i].Update(gameTime);
             if (_zombies[i].IsDead)
+            {
+                _collectableSpawner?.SpawnCoinAt(new Vector2(_zombies[i].xCoord, _zombies[i].yCoord));
                 _zombies.RemoveAt(i);
+            }
         }
     }
 
