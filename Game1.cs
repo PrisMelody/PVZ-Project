@@ -61,7 +61,7 @@ public class Game1 : Game, IGameInputHandler, IPlayerActions
         _zombieFactory = new ZombieFactory(basicRegion, coneRegion, bucketRegion, flagRegion, scale);
 
         // ZombieManager to manage active zombies.
-        _zombieManager = new ZombieManager();
+        _zombieManager = new ZombieManager(_collectableManager);
         /*
         * Load a level based on the file path.
         * TO-DO: Should develop a function to select path based on UI selection.
