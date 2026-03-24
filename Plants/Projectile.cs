@@ -8,6 +8,10 @@ public abstract class Projectile : IProjectile
     public float XPos { get; set; }
     public float YPos { get; set; }
     public int DrawOrder { get; set; }
+    public bool IsDead { get; private set; }
+    private float _maxDistance = 1000;
+    private float _startX;
+
     protected Texture2D _texture;
 
     protected Projectile(float x, float y, int damage, float speed, Texture2D texture)    {
@@ -17,6 +21,8 @@ public abstract class Projectile : IProjectile
         Speed = speed;
         DrawOrder = 30;
         _texture = texture;
+        _startX = x;    
+        
     }
 
     public virtual void Move()
@@ -27,6 +33,10 @@ public abstract class Projectile : IProjectile
     public virtual void Update(GameTime gameTime)
     {
         Move();
+        if (XPos - _startX > _maxDistance)
+        {
+            IsDead = true;
+        }
     }
 
     public virtual void Draw(SpriteBatch spriteBatch)

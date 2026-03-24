@@ -131,7 +131,10 @@ public class Map : IMap
         foreach (var projectile in _projectiles)
             {
                 projectile.Update(gameTime);
+
             }
+         _projectiles.RemoveAll(p => p.IsDead);
+        
     }
 
     public void Draw(SpriteBatch spriteBatch)
