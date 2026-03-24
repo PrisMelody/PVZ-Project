@@ -1,3 +1,4 @@
+using System.Reflection.Metadata.Ecma335;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -12,10 +13,14 @@ public class Game1 : Game, IGameInputHandler, IPlayerActions
     private IController _mouseController;
 
     private Map _map;
+    private ZombieFactory _zombieFactory;
+    private ZombieSpawnManager _zombieSpawnManager;
     private ZombieManager _zombieManager;
     private CollectableManager _collectableManager;
     private IGameState _gameState;
     private bool _shovelActive;
+    // Default scale for sprite. Should be configurable in menu or command.
+    private float scale = 1.0f;
 
     public Game1()
     {
@@ -44,22 +49,26 @@ public class Game1 : Game, IGameInputHandler, IPlayerActions
         _gameState = new GameState();
         _map = new Map(Content, GraphicsDevice, plantFactory);
 
-        var sunTexture = Content.Load<Texture2D>("sun");
-        var coinTexture = Content.Load<Texture2D>("coin");
-        _collectableManager = new CollectableManager(sunTexture, coinTexture);
-
-        //Right now, the zombies are using placeholder non-animated sprites. This will be removed once they have animated sprites like the plants.
+        /*
+        * Right now, the zombies are using placeholder non-animated sprites. This will be removed once they have animated sprites like the plants.
+        * Load sprite sheet into ZombieFactory instance so it holds sprite for each types of zombie.
+        */
         var zombieSheet = Content.Load<Texture2D>("images/base_zombiesforproj");
         var basicRegion = new TextureRegion("basic", zombieSheet, new Rectangle(475, 42, 86, 153));
         var flagRegion = new TextureRegion("flag", zombieSheet, new Rectangle(624, 40, 102, 152));
         var coneRegion = new TextureRegion("cone", zombieSheet, new Rectangle(28, 10, 86, 311));
         var bucketRegion = new TextureRegion("bucket", zombieSheet, new Rectangle(238, 16, 96, 179));
+        _zombieFactory = new ZombieFactory(basicRegion, coneRegion, bucketRegion, flagRegion, scale);
 
-        _zombieManager = new ZombieManager(_collectableManager);
-        _zombieManager.Add(new BasicZombie(basicRegion, 0.5f, 0));
-        _zombieManager.Add(new ConeheadZombie(coneRegion, 0.6f, basicRegion, 0.5f, 1));
-        _zombieManager.Add(new BucketheadZombie(bucketRegion, 0.5f, basicRegion, 0.5f, 3));
-        _zombieManager.Add(new FlagZombie(flagRegion, 0.5f, 4));
+        // ZombieManager to manage active zombies.
+        _zombieManager = new ZombieManager();
+        /*
+        * Load a level based on the file path.
+        * TO-DO: Should develop a function to select path based on UI selection.
+        */
+        LevelSpawnData levelSpawnData = LevelLoader.LoadFromXml("ZombieWaveManager/example.xml");
+        // Initialize zombie dispatch center (ZombieSpawnManager instance).
+        _zombieSpawnManager = new ZombieSpawnManager(levelSpawnData, _zombieManager, _zombieFactory);
     }
 
     protected override void Update(GameTime gameTime)

@@ -23,7 +23,8 @@ public class BasicZombie : IZombie
     public int Health { get; set; } = 270;
     public bool IsDead { get; set; }
     public int DrawOrder { get; set; }
-    
+    public int SpawnWaveIndex { get; set; }
+
     public int Lane {get;}
 
     public BasicZombie(ITextureRegion region, float scale, int lane) //TODO: Scale probably doesn't need to be an input.
