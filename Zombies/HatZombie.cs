@@ -10,6 +10,12 @@ public abstract class HatZombie : IZombie
     protected ITextureRegion _region;
     protected float _scale;
     protected int _hatFallOffThreshold;
+    
+    public int SpawnWaveIndex
+    {
+        get => _wrappedZombie.SpawnWaveIndex;
+        set => _wrappedZombie.SpawnWaveIndex = value;
+    }
 
     public float Range
     {
