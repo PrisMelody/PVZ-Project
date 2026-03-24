@@ -9,7 +9,7 @@ public abstract class Projectile : IProjectile
     public float YPos { get; set; }
     public int DrawOrder { get; set; }
     public bool IsDead { get; private set; }
-    private float _maxDistance = 1000;
+    private float _maxDistance = 80;
     private float _startX;
 
     protected Texture2D _texture;
