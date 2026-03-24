@@ -4,6 +4,7 @@
   <Platform>DesktopGL</Platform>
   <Config />
   <SourceFiles>
+<<<<<<< HEAD
     <File>C:/Users/NoahMudrick/Documents/GitHub/PVZ-Project/Content/daylevel.png</File>
     <File>C:/Users/NoahMudrick/Documents/GitHub/PVZ-Project/Content/icypea.png</File>
     <File>C:/Users/NoahMudrick/Documents/GitHub/PVZ-Project/Content/images/base_zombiesforproj.webp</File>
@@ -20,6 +21,23 @@
     <File>C:/Users/NoahMudrick/Documents/GitHub/PVZ-Project/Content/coin.webp</File>
     <File>C:/Users/NoahMudrick/Documents/GitHub/PVZ-Project/Content/sunflower.png</File>
     <File>C:/Users/NoahMudrick/Documents/GitHub/PVZ-Project/Content/SunflowerSeedPacket.webp</File>
+=======
+    <File>c:/Users/mukun/Desktop/3902/Content/daylevel.png</File>
+    <File>c:/Users/mukun/Desktop/3902/Content/icypea.png</File>
+    <File>c:/Users/mukun/Desktop/3902/Content/images/base_zombiesforproj.webp</File>
+    <File>c:/Users/mukun/Desktop/3902/Content/PC _ Computer - Plants vs. Zombies - Miscellaneous - Projectiles (1).png</File>
+    <File>c:/Users/mukun/Desktop/3902/Content/PC _ Computer - Plants vs. Zombies - Miscellaneous - Projectiles.png</File>
+    <File>c:/Users/mukun/Desktop/3902/Content/peashooter.png</File>
+    <File>c:/Users/mukun/Desktop/3902/Content/PeashooterSeedPacket.webp</File>
+    <File>c:/Users/mukun/Desktop/3902/Content/repeater.png</File>
+    <File>c:/Users/mukun/Desktop/3902/Content/RepeaterSeedPacket.webp</File>
+    <File>c:/Users/mukun/Desktop/3902/Content/SeedSlot.webp</File>
+    <File>c:/Users/mukun/Desktop/3902/Content/Shovel.webp</File>
+    <File>c:/Users/mukun/Desktop/3902/Content/SnowPeaSeedPacket.webp</File>
+    <File>c:/Users/mukun/Desktop/3902/Content/sun.webp</File>
+    <File>c:/Users/mukun/Desktop/3902/Content/sunflower.png</File>
+    <File>c:/Users/mukun/Desktop/3902/Content/SunflowerSeedPacket.webp</File>
+>>>>>>> trialbranch1
   </SourceFiles>
   <DestFiles>
     <File>day_level.png</File>

@@ -1,7 +1,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
-
+using System.Collections.Generic;
 public class Map : IMap
 {
     private static readonly PlantType[] SlotPlantTypes =
@@ -15,7 +15,13 @@ public class Map : IMap
     private readonly SeedSlot _seedSlot;
     private readonly Texture2D _shovelTexture;
     private readonly Rectangle _shovelBounds;
-    private readonly IPlantFactory _plantFactory;
+    private readonly PlantFactory _plantFactory;
+    private List<Projectile> _projectiles = new();
+    private List<SunCollectable> _suns = new();
+    private Texture2D _peaTexture;
+    private Texture2D _snowPeaTexture;
+    private Texture2D _sunTexture;
+
     public readonly GridManager _grid;
 
     private const int ScreenWidth = 800;
@@ -34,15 +40,21 @@ public class Map : IMap
 
     public PlantType? SelectedPlantType { get; private set; }
 
-    public Map(ContentManager content, GraphicsDevice device, IPlantFactory plantFactory)
+    public Map(ContentManager content, GraphicsDevice device)
     {
-        _plantFactory = plantFactory;
+        
 
         _pixel = new Texture2D(device, 1, 1);
         _pixel.SetData(new[] { Color.White });
 
         _background = content.Load<Texture2D>("day_level");
         _shovelTexture = content.Load<Texture2D>("shovel");
+        _peaTexture = content.Load<Texture2D>("pea_projectile");
+        _snowPeaTexture = content.Load<Texture2D>("snowpea_projectile");
+        _sunTexture = content.Load<Texture2D>("sun");
+
+        _plantFactory = new PlantFactory(_projectiles, _peaTexture, _snowPeaTexture, _suns, _sunTexture);
+        _plantFactory.LoadContent(content);
 
         var trayTexture = content.Load<Texture2D>("seedslot");
         var packetTextures = new Texture2D[SlotPlantTypes.Length];
@@ -121,6 +133,18 @@ public class Map : IMap
             if (plot.IsOccupied && plot.Plant is IPvZUpdatable updatable)
                 updatable.Update(gameTime);
         }
+        foreach (var projectile in _projectiles)
+            {
+                projectile.Update(gameTime);
+
+            }
+         _projectiles.RemoveAll(p => p.IsDead);
+        foreach (var sun in _suns)
+        {
+            sun.Update(gameTime);
+        }
+        _suns.RemoveAll(s => s.IsCollected);
+        
     }
 
     public void Draw(SpriteBatch spriteBatch)
@@ -145,6 +169,14 @@ public class Map : IMap
         _seedSlot.Draw(spriteBatch, selectedIndex);
 
         spriteBatch.Draw(_shovelTexture, _shovelBounds, Color.White);
+        foreach (var projectile in _projectiles)
+        {
+            projectile.Draw(spriteBatch);
+        }
+        foreach (var sun in _suns)
+        {
+            sun.Draw(spriteBatch);
+        }
     }
 
     private void DrawBackground(SpriteBatch spriteBatch)

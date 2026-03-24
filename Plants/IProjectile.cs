@@ -7,6 +7,8 @@ public interface IProjectile : IPvZDrawable, IPvZUpdatable
     float Speed { get; }
     float XPos { get; set; }
     float YPos { get; set; }
+    
+    
 
     void Move();
 }
