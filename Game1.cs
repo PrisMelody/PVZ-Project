@@ -67,11 +67,11 @@ public class Game1 : Game, IGameInputHandler, IPlayerActions
         _zombieManager?.Update(gameTime);
 
 
-        for (int i = 0; i < 5; i++)
+        for (int i = 0; i <= 4; i++) //TODO: remove magic numbers
         {
             CheckZombiePlantCollision(i);
-            CheckProjectileZombieCollision(i);
         }
+        CheckProjectileZombieCollision();
         CheckSplashZombieCollision();
         base.Update(gameTime);
     }
@@ -155,16 +155,27 @@ public class Game1 : Game, IGameInputHandler, IPlayerActions
                 if (distance < zombie.Range && distance > 0)
                 {
                     zombie.IsAttacking = true;
-                    //TODO: Insert code to actually do damage to the plants.
+                    currentGrid.Plant.TakeDamage(2); //TODO: replace with actual damage method.
                 }
                 break;
             }
         } 
     }
 
-    private void CheckProjectileZombieCollision(int lane)
+    private void CheckProjectileZombieCollision()
     {
-        
+        foreach (IProjectile projectile in _map.Projectiles)
+        {
+            int lane = Projectile.getLaneFromYPos[projectile.YPos];
+            foreach(IZombie zombie in _zombieManager.ZombiesByLane[lane])
+            {
+                float distance = zombie.xCoord - projectile.XPos;
+                if(distance < 0  && distance > -30)
+                {
+                    zombie.TakeDamage(projectile.Damage); //TODO: replace with actual projectile damage method.
+                }
+            }
+        }
     }
 
     private void CheckSplashZombieCollision()
