@@ -8,6 +8,8 @@ public interface IProjectile : IPvZDrawable, IPvZUpdatable
     float XPos { get; set; }
     float YPos { get; set; }
 
+    bool IsDead { get; set; }
+
     
     
 

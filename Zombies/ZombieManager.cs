@@ -36,7 +36,7 @@ public class ZombieManager : IPvZDrawable, IPvZUpdatable
             {
                 _zombies[i][j].Update(gameTime);
                 if (_zombies[i][j].IsDead){
-                    _collectableSpawner?.SpawnCoinAt(new Vector2(_zombies[i].xCoord, _zombies[i].yCoord));
+                    _collectableSpawner?.SpawnCoinAt(new Vector2(_zombies[i][j].xCoord, _zombies[i][j].yCoord));
                     _zombies[i].RemoveAt(j);
                 }  
             }
@@ -54,12 +54,20 @@ public class ZombieManager : IPvZDrawable, IPvZUpdatable
     }
     public bool HasAnyAliveZombies()
     {
-        return _zombies.Any(z => !z.IsDead);
+        for (int i = 0; i <= 4; i++) //TODO: remove magic numbers
+        {
+            if (_zombies[i].Any(z => !z.IsDead)) return true;
+        }
+        return false;
     }
 
     public bool HasAliveZombiesInWave(int waveIndex)
     {
-        return _zombies.Any(z => !z.IsDead && z.SpawnWaveIndex == waveIndex);
+        for (int i = 0; i <= 4; i++) //TODO: remove magic numbers
+        {
+            if (_zombies[i].Any(z => !z.IsDead && z.SpawnWaveIndex == waveIndex)) return true;
+        }
+        return false;
     }
 
 }

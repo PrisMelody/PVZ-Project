@@ -10,7 +10,7 @@ public abstract class Projectile : IProjectile
     public float XPos { get; set; }
     public float YPos { get; set; }
     public int DrawOrder { get; set; }
-    public bool IsDead { get; private set; }
+    public bool IsDead { get; set; }
     private float _maxDistance = 1000;
     private float _startX;
 

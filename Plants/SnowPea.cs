@@ -23,10 +23,9 @@ public class SnowPea : Plant
     {
         _timer += gameTime.ElapsedGameTime.TotalSeconds;
 
-        if (_timer > 5) // every 5 seconds
+        if (_timer > 1.425) // TODO: remove magic numbers from this and other plants.
         {
             PlayAnimation(_actionAnim); // same animation for now
-            System.Console.WriteLine("SnowPea shoots a frozen pea!");
             var pea = new Pea(XPos + 40, YPos + 20, _peaTexture); 
             _projectiles.Add(pea);
             _timer = 0;

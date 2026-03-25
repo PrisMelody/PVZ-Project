@@ -75,7 +75,7 @@ public abstract class HatZombie : IZombie
     {
         if (Health <= _hatFallOffThreshold)
         {
-            _wrappedZombie.Draw(spriteBatch);
+            _wrappedZombie.Draw(spriteBatch); //TODO: currently, this doesn't work as intended, as it just uses the sprite for the "outer" zombie still.
         }
         else
         {

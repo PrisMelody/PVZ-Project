@@ -22,14 +22,12 @@ public class Peashooter : Plant
     {
         _timer += gameTime.ElapsedGameTime.TotalSeconds;
 
-        if (_timer > 5) // every 5 seconds
+        if (_timer > 1.425) //TODO: currently, plants will just shoot at stuff automatically.
         {
             PlayAnimation(_actionAnim); // same animation for now
-            System.Console.WriteLine("Repeater shoots two peas!");
             var pea = new Pea(XPos + 40, YPos + 20, _peaTexture); 
             _projectiles.Add(pea);
 
-            
             _timer = 0;
         }
         else

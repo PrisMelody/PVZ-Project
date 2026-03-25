@@ -23,10 +23,9 @@ public class Repeater : Plant
     {
         _timer += gameTime.ElapsedGameTime.TotalSeconds;
 
-        if (_timer > 5) // every 5 seconds
+        if (_timer > 1.5) // TODO: remove magic number from this and other plants.
         {
             PlayAnimation(_actionAnim); // same animation for now
-            System.Console.WriteLine("Repeater shoots two peas!");
             var pea1 = new Pea(XPos + 40, YPos + 20, _peaTexture);
             var pea2 = new Pea(XPos + 60, YPos + 20, _peaTexture);
 
