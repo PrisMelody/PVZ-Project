@@ -87,15 +87,15 @@ public class Game1 : Game, IGameInputHandler, IPlayerActions
         _map?.Update(gameTime);
         _zombieSpawnManager?.Update(gameTime);
 
-        for (int i = 0; i < 5; i++)
+        for (int i = 0; i <= 4; i++) //TODO: remove magic numbers
         {
             CheckZombiePlantCollision(i);
-            CheckProjectileZombieCollision(i);
         }
 
         _zombieManager?.Update(gameTime);
         _collectableManager?.Update(gameTime);
 
+        CheckProjectileZombieCollision();
         CheckSplashZombieCollision();
         base.Update(gameTime);
     }
@@ -184,9 +184,8 @@ public class Game1 : Game, IGameInputHandler, IPlayerActions
 
     private void CheckZombiePlantCollision(int lane) //TODO: stick this in its own class. 
     {
-        foreach(IZombie zombie in _zombieManager.Zombies)
+        foreach(IZombie zombie in _zombieManager.ZombiesByLane[lane])
         {
-            if (zombie.Lane != lane){continue;} //This is very inefficient, but may require changes to the zombie manager in order to improve.
             foreach (IGridPlot currentGrid in _map._grid.Lanes[lane].Plots) //This is gross.
             {
                 if (!currentGrid.IsOccupied){continue;}
@@ -194,16 +193,27 @@ public class Game1 : Game, IGameInputHandler, IPlayerActions
                 if (distance < zombie.Range && distance > 0)
                 {
                     zombie.IsAttacking = true;
-                    //TODO: Insert code to actually do damage to the plants.
+                    currentGrid.Plant.TakeDamage(2); //TODO: this is temporary, zombies should do damage to plants on their own.
                 }
                 break;
             }
         } 
     }
 
-    private void CheckProjectileZombieCollision(int lane)
+    private void CheckProjectileZombieCollision()
     {
-        //TODO: once projectiles are set up, add this.
+        foreach (IProjectile projectile in _map.Projectiles)
+        {
+            int lane = Projectile.getLaneFromYPos[projectile.YPos];
+            foreach(IZombie zombie in _zombieManager.ZombiesByLane[lane])
+            {
+                float distance = zombie.xCoord - projectile.XPos;
+                if(distance < 0  && distance > -30)
+                {
+                    zombie.TakeDamage(projectile.Damage); //TODO: replace with actual projectile damage method.
+                }
+            }
+        }
     }
 
     private void CheckSplashZombieCollision()

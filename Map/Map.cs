@@ -23,6 +23,7 @@ public class Map : IMap
     private Texture2D _sunTexture;
 
     public readonly GridManager _grid;
+    public IReadOnlyList<Projectile> Projectiles => _projectiles;
 
     private const int ScreenWidth = 800;
     private const int ScreenHeight = 600;

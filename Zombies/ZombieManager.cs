@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -10,11 +11,12 @@ using System.Linq;
 */
 public class ZombieManager : IPvZDrawable, IPvZUpdatable
 {
-    private readonly List<IZombie> _zombies = new();
     private readonly ICollectableSpawner _collectableSpawner;
 
+    private readonly List<IZombie>[] _zombies = 
+    {new List<IZombie>(), new List<IZombie>(), new List<IZombie>(), new List<IZombie>(), new List<IZombie>()};
     public int DrawOrder { get; set; }
-    public IReadOnlyList<IZombie> Zombies => _zombies;
+    public IReadOnlyList<List<IZombie>> ZombiesByLane => _zombies;
 
     public ZombieManager(ICollectableSpawner collectableSpawner = null)
     {
@@ -23,26 +25,32 @@ public class ZombieManager : IPvZDrawable, IPvZUpdatable
 
     public void Add(IZombie zombie)
     {
-        _zombies.Add(zombie);
+        _zombies[zombie.Lane].Add(zombie);
     }
 
     public void Update(GameTime gameTime)
     {
-        for (int i = _zombies.Count - 1; i >= 0; i--)
+        for (int i = 0; i <= 4; i++) //TODO: remove magic numbers
         {
-            _zombies[i].Update(gameTime);
-            if (_zombies[i].IsDead)
+            for (int j = _zombies[i].Count - 1; j >= 0; j--)
             {
-                _collectableSpawner?.SpawnCoinAt(new Vector2(_zombies[i].xCoord, _zombies[i].yCoord));
-                _zombies.RemoveAt(i);
+                _zombies[i][j].Update(gameTime);
+                if (_zombies[i][j].IsDead){
+                    _collectableSpawner?.SpawnCoinAt(new Vector2(_zombies[i].xCoord, _zombies[i].yCoord));
+                    _zombies[i].RemoveAt(j);
+                }  
             }
         }
     }
 
     public void Draw(SpriteBatch spriteBatch)
     {
-        foreach (var zombie in _zombies)
+        for (int i = 0; i <= 4; i++) //TODO: remove magic numbers
+        {
+            foreach (var zombie in _zombies[i])
             zombie.Draw(spriteBatch);
+        }
+        
     }
     public bool HasAnyAliveZombies()
     {
