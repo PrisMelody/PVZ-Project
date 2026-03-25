@@ -39,7 +39,7 @@ public class Sunflower : Plant
         base.Update(gameTime);
     }
 
-    private void ProduceSun()
+    private void ProduceSun() //TODO: this doesn't currently work properly with the updated sun collectable system.
     {
         var sun = new SunCollectable(
         new Point((int)XPos + 60, (int)YPos + 60), // tweak this
