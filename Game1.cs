@@ -190,7 +190,7 @@ public class Game1 : Game, IGameInputHandler, IPlayerActions
             {
                 if (!currentGrid.IsOccupied){continue;}
                 float distance = zombie.xCoord - currentGrid.Plant.XPos;
-                if (distance < zombie.Range && distance > 0)
+                if (distance < zombie.MaxRange && distance > zombie.MinRange)
                 {
                     zombie.IsAttacking = true;
                     currentGrid.Plant.TakeDamage(2); //TODO: this is temporary, zombies should do damage to plants on their own.

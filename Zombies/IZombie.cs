@@ -6,7 +6,9 @@ using Microsoft.Xna.Framework.Graphics;
     {
         float Speed { get; set; }
         bool IsAttacking { get; set; }
-        public float Range {get;}
+        public float MaxRange {get;}
+        public float MinRange {get;}
+
 
         float xCoord { get; set; }
         float yCoord { get; set; }

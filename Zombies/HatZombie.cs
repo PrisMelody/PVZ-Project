@@ -17,9 +17,14 @@ public abstract class HatZombie : IZombie
         set => _wrappedZombie.SpawnWaveIndex = value;
     }
 
-    public float Range
+    public float MaxRange
     {
-        get => _wrappedZombie.Range;
+        get => _wrappedZombie.MaxRange;
+    }
+
+     public float MinRange
+    {
+        get => _wrappedZombie.MinRange;
     }
 
     public float Speed
