@@ -8,14 +8,14 @@ public class SnowPea : Plant
 {
     private double _timer;
     private List<Projectile> _projectiles;
-    private Texture2D _peaTexture;
+    private Texture2D _frozenPeaTexture;
 
     public SnowPea(Animation idle, Animation action, float x, float y,
     List<Projectile> projectiles, Texture2D SnowPeaTexture)
         : base(idle, action, x, y) // health example
     {
         _projectiles = projectiles;
-        _peaTexture = SnowPeaTexture;
+        _frozenPeaTexture = SnowPeaTexture;
         _timer = 0;
     }
 
@@ -26,7 +26,7 @@ public class SnowPea : Plant
         if (_timer > 1.425) // TODO: remove magic numbers from this and other plants.
         {
             PlayAnimation(_actionAnim); // same animation for now
-            var pea = new Pea(XPos + 40, YPos + 20, _peaTexture); 
+            var pea = new FrozenPea(XPos + 40, YPos + 20, _frozenPeaTexture); 
             _projectiles.Add(pea);
             _timer = 0;
         }

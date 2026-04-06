@@ -60,4 +60,12 @@ public abstract class Projectile : IProjectile
         );
         // TODO: Draw projectile sprite
     }
+
+    public virtual void OnHit(IZombie zombie)
+    {
+        zombie.TakeDamage(Damage);
+        IsDead = true;
+    }
+
+    
 }

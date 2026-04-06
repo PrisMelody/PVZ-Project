@@ -209,12 +209,9 @@ public class Game1 : Game, IGameInputHandler, IPlayerActions
             {
                 float distance = zombie.xCoord - projectile.XPos;
                 if(distance < 0  && distance > -30)
-                {
-                    zombie.TakeDamage(projectile.Damage); //TODO: replace with actual projectile damage method.
-                    projectile.IsDead = true;
-                    //Current implemenation is both very tightly coupled, and doesn't allow for special effects (such as freezing)
-                    //Also doesn't allow for piercing projectiles.
-                }
+                    projectile.OnHit(zombie);
+                if (projectile.IsDead)
+                    break;
             }
         }
     }
