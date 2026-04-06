@@ -132,7 +132,12 @@ public class Map : IMap
         foreach (var plot in _grid.AllPlots)
         {
             if (plot.IsOccupied && plot.Plant is IPvZUpdatable updatable)
+            {
                 updatable.Update(gameTime);
+                if(plot.Plant.IsDead)
+                plot.RemovePlant();
+            }
+                
         }
         foreach (var projectile in _projectiles)
             {
