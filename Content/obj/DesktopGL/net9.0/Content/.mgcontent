@@ -17,6 +17,7 @@
     <File>C:/Users/NoahMudrick/Documents/GitHub/PVZ-Project/Content/Shovel.webp</File>
     <File>C:/Users/NoahMudrick/Documents/GitHub/PVZ-Project/Content/SnowPeaSeedPacket.webp</File>
     <File>C:/Users/NoahMudrick/Documents/GitHub/PVZ-Project/Content/sun.webp</File>
+    <File>C:/Users/NoahMudrick/Documents/GitHub/PVZ-Project/Content/coin.webp</File>
     <File>C:/Users/NoahMudrick/Documents/GitHub/PVZ-Project/Content/sunflower.png</File>
     <File>C:/Users/NoahMudrick/Documents/GitHub/PVZ-Project/Content/SunflowerSeedPacket.webp</File>
   </SourceFiles>
@@ -33,6 +34,7 @@
     <File>seedslot.webp</File>
     <File>shovel.webp</File>
     <File>snowpea_seedpacket.webp</File>
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File>sunflower_seedpacket.webp</File>

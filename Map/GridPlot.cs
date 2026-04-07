@@ -1,0 +1,68 @@
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+
+public class GridPlot : IGridPlot
+{
+    public Point GridPosition { get; private set; }
+    public Point Position { get; private set; }
+    public bool IsOccupied { get; private set; }
+    public bool CanPlacePlant { get; private set; }
+    public IPlant Plant { get; private set; }
+    public Rectangle Bounds { get; private set; }
+    public int DrawOrder { get; set; }
+
+    public GridPlot(Point gridPosition, Point position, Rectangle bounds)
+    {
+        GridPosition = gridPosition;
+        Position = position;
+        Bounds = bounds;
+        IsOccupied = false;
+        CanPlacePlant = true;
+        Plant = null;
+        DrawOrder = 10;
+    }
+
+    public void Draw(SpriteBatch sprite)
+    {
+        if (IsOccupied && Plant != null && Plant is IPvZDrawable drawablePlant)
+        {
+            drawablePlant.Draw(sprite);
+        }
+    }
+
+    public bool PlacePlant(IPlant plant)
+    {
+        if (CanPlacePlant && !IsOccupied && plant != null)
+        {
+            Plant = plant;
+            IsOccupied = true;
+            CanPlacePlant = false;
+            return true;
+        }
+        return false;
+    }
+
+    public void RemovePlant()
+    {
+        if (IsOccupied)
+        {
+            Plant = null;
+            IsOccupied = false;
+            CanPlacePlant = true;
+        }
+    }
+
+    public bool Contains(Point position)
+    {
+        return Bounds.Contains(position);
+    }
+
+    public bool HitTest(Point mousePos)
+    {
+        return Bounds.Contains(mousePos);
+    }
+
+    public void OnClick(IMouse mouse)
+    {
+    }
+}

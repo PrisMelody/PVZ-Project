@@ -35,4 +35,9 @@ public class Animation
                 _currentFrame = 0;
         }
     }
+    public void Reset()
+        {
+            _currentFrame = 0;
+            _timer = 0f;
+        }
 }

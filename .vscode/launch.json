@@ -8,7 +8,7 @@
         "name": "C#: zombieBranch Debug",
         "type": "dotnet",
         "request": "launch",
-        "projectPath": "${workspaceFolder}/zombieBranch.csproj"
+        "projectPath": "${workspaceFolder}/PlantsVsZombies.csproj"
       }
     ],
   }

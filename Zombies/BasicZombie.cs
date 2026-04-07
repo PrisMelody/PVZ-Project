@@ -1,28 +1,39 @@
+using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
-
 
 public class BasicZombie : IZombie
-//TODO: add some way to handle freezing, presumably this will mostly just slow how often updates occur.
 {
-    public bool IsAttacking {get; set;} = false;
+    
+    readonly protected static Dictionary<int, float> LaneSpawnLocations = new Dictionary<int, float>(){
+            { 0, 20.0f }, //Mostly correct value
+            { 1, 120.0f }, 
+            { 2, 225.0f },
+            { 3, 305.0f },
+            { 4, 415.0f },
+        };
+    private readonly ITextureRegion _region;
+    private readonly float _scale;
 
-    public float Speed {get; set;} = 0.5f;
-    public float xCoord {get; set;}
-    public float yCoord {get; set;}
+    public float Range {get;} = 100;
+    public bool IsAttacking { get; set; } = false;
+    public float Speed { get; set; } = 0.25f;
+    public float xCoord { get; set; } = 900.0f;
+    public float yCoord { get; set; }
+    public int Health { get; set; } = 270;
+    public bool IsDead { get; set; }
+    public int DrawOrder { get; set; }
+    public int SpawnWaveIndex { get; set; }
 
-    public int Health{get; set;} = 270;
-    public bool IsDead {get; set;}
+    public int Lane {get;}
 
-    public int DrawOrder {get; set;}
-
-    public BasicZombie(float x, float y)
+    public BasicZombie(ITextureRegion region, float scale, int lane) //TODO: Scale probably doesn't need to be an input.
     {
-        xCoord = x;
-        yCoord = y;
+        _region = region;
+        _scale = scale;
+        yCoord = LaneSpawnLocations[lane];
+        Lane = lane;
     }
-
 
     public void Move()
     {
@@ -31,10 +42,9 @@ public class BasicZombie : IZombie
 
     public void Attack()
     {
-        //Currently blank, will likely remain so until Sprint 3.
     }
 
-    public void TakeDamage (int amount)
+    public void TakeDamage(int amount)
     {
         Health -= amount;
         if (Health <= 0)
@@ -43,34 +53,31 @@ public class BasicZombie : IZombie
         }
     }
 
-
-    virtual public void Draw (SpriteBatch spriteBatch)
-    {    //This is a placeholder using a static class instead of a dedicated sprite handling setup.
+    public virtual void Draw(SpriteBatch spriteBatch) //TODO: replace Sprites for zombies with the updated plant sprites.
+    {
         spriteBatch.Draw(
-            TempZombieSpriteHandler.Zombies, 
-            new Vector2(xCoord, yCoord), 
-            new Rectangle(475, 42, 86, 153), 
-            Color.White, 
-            0.0f, 
+            _region.Texture,
+            new Vector2(xCoord, yCoord),
+            _region.SourceRectangle,
+            Color.White,
+            0.0f,
             Vector2.Zero,
-            0.5f,
+            _scale,
             SpriteEffects.None,
-            0.0f //For now this is just a constant, later it should use drawOrder, or whatever we go with.
+            0.0f
         );
     }
 
     public void Update(GameTime gameTime)
     {
-    if (!IsAttacking){
+        if (!IsAttacking)
+        {
             Move();
-            //for sprint 3, we'll add some kind of check here to see if there are plants, in which case it will switch to attack mode.
         }
         else
         {
             Attack();
+            IsAttacking = false;
         }
     }
 }
-
-
-
