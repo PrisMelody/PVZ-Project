@@ -1,7 +1,16 @@
+using System.Collections.Generic;
 public class CollisionManager
 {
     private ZombieManager _zombieManager;
     private Map _map;
+
+    readonly private static Dictionary<float, int> getLaneFromYPos = new Dictionary<float, int>(){
+            { 120.0f, 0 },
+            { 210.0f, 1 }, 
+            { 300.0f, 2 },
+            { 390.0f, 3 },
+            { 480.0f, 4 },
+        };
 
     public CollisionManager(ZombieManager zombieManager, Map map)
     {
@@ -21,8 +30,9 @@ public class CollisionManager
                 {
                     zombie.IsAttacking = true;
                     currentGrid.Plant.TakeDamage(2); //TODO: this is temporary, zombies should do damage to plants on their own.
+                    //Zombies really need some kind of larger state rework, which is probably what I'll work on next.
+                    break;
                 }
-                break;
             }
         } 
     }
@@ -31,7 +41,7 @@ public class CollisionManager
     {
         foreach (IProjectile projectile in _map.Projectiles)
         {
-            int lane = Projectile.getLaneFromYPos[projectile.YPos];
+            int lane = getLaneFromYPos[projectile.YPos];
             foreach(IZombie zombie in _zombieManager.ZombiesByLane[lane])
             {
                 float distance = zombie.xCoord - projectile.XPos;
