@@ -44,8 +44,9 @@ public class BasicZombie : IZombie
         xCoord -= Speed;
     }
 
-    public void Attack()
+    public void Attack(IPlant plant)
     {
+        
     }
 
     public void TakeDamage(int amount)
