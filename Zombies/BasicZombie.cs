@@ -25,7 +25,9 @@ public class BasicZombie : IZombie
     public int Health { get; set; } = 270;
     public bool IsDead { get; set; }
     public int DrawOrder { get; set; }
+    public Color DrawColor {get; set; } = Color.White;
     public int SpawnWaveIndex { get; set; }
+
 
     public int Lane {get;}
 
@@ -61,7 +63,7 @@ public class BasicZombie : IZombie
             _region.Texture,
             new Vector2(xCoord, yCoord),
             _region.SourceRectangle,
-            Color.White,
+            DrawColor,
             0.0f,
             Vector2.Zero,
             _scale,

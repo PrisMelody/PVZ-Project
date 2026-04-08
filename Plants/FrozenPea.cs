@@ -10,8 +10,8 @@ public class FrozenPea : Projectile
     public override void OnHit(IZombie zombie)
     {
         zombie.TakeDamage(Damage);
-        //TODO: Add the frozen effect to the zombie, presumably in the form of some kind of wrapper.
-        //System.Console.WriteLine("Freeze!");
-        IsDead = true;
+        zombie.DrawColor = Color.LightSkyBlue;
+        //TODO: make something that actually freezes zombies. I tried making a "hat" that could do it, but was unable to get it to apply properly.
+        //Said hat is in the Zombies folder if someone else wants to take a crack at it.
     }
 }
