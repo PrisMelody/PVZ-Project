@@ -20,5 +20,5 @@ using Microsoft.Xna.Framework.Graphics;
         int SpawnWaveIndex {get; set; }
         int Lane {get;}
         void Move();
-        void Attack(IPlant plant);
+        void Attack();
 }
