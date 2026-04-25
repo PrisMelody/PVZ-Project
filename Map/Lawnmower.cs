@@ -6,7 +6,7 @@ public class LawnMower : Projectile
     private readonly static float ySpriteOffset = -20f;
 
     public LawnMower(float x, float y,Texture2D _texture)
-        : base(x, y, 1000, 0f,_texture)
+        : base(x, y, 10000, 0f,_texture)
     {
     }
 
