@@ -1,6 +1,9 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
+//NOTE: This is an old version of Lawnmower that was built but never actually implemented.
+//I forgot it existed and made a new version from Projectile. Oops!
+
 public class Lawnmower : ILawnmower
 {
     public Vector2 Position { get; set; }

@@ -2,6 +2,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
+using System.Linq;
 public class Map : IMap
 {
     private static readonly PlantType[] SlotPlantTypes =
@@ -21,6 +22,7 @@ public class Map : IMap
     private Texture2D _peaTexture;
     private Texture2D _snowPeaTexture;
     private Texture2D _sunTexture;
+    private Texture2D _lawnMowerTexture;
 
     public readonly GridManager _grid;
     public IReadOnlyList<Projectile> Projectiles => _projectiles;
@@ -53,6 +55,7 @@ public class Map : IMap
         _peaTexture = content.Load<Texture2D>("pea_projectile");
         _snowPeaTexture = content.Load<Texture2D>("snowpea_projectile");
         _sunTexture = content.Load<Texture2D>("sun");
+        _lawnMowerTexture = content.Load<Texture2D>("Lawn_Mower");
 
         _plantFactory = new PlantFactory(_projectiles, _peaTexture, _snowPeaTexture, _suns, _sunTexture);
         _plantFactory.LoadContent(content);
@@ -70,6 +73,15 @@ public class Map : IMap
 
         _grid = new GridManager();
         _grid.Initialize(GridRows, GridCols, CellWidth, CellHeight, new Point(GridOriginX, GridOriginY));
+        
+        //Spawns Lawn Mowers in each lane.
+        for (int lane = 0; lane <= 4; lane++)
+        {
+            float yPos = 120.0f + 90f * lane;
+            _projectiles.Add(new LawnMower(5f, yPos, _lawnMowerTexture));
+        }
+
+
     }
 
     public void SelectPlant(PlantType type)
