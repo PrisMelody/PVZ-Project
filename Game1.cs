@@ -1,4 +1,3 @@
-using System.Reflection.Metadata.Ecma335;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -23,6 +22,19 @@ public class Game1 : Game, IGameInputHandler, IPlayerActions
     private CollectableManager _collectableManager;
     private IGameState _gameState;
     private bool _shovelActive;
+
+    // Reused across restarts (textures are cached by ContentManager)
+    private TextureRegion _basicRegion;
+    private TextureRegion _flagRegion;
+    private TextureRegion _coneRegion;
+    private TextureRegion _bucketRegion;
+    private TextureRegion _jetpackRegion;
+    private Texture2D _sunTexture;
+    private Texture2D _coinTexture;
+
+    private EndScreen _endScreen;
+    private KeyboardState _prevKeyboard;
+
     // Default scale for sprite. Should be configurable in menu or command.
     private float scale = 1.0f;
 
@@ -48,70 +60,96 @@ public class Game1 : Game, IGameInputHandler, IPlayerActions
         _spriteBatch = new SpriteBatch(GraphicsDevice);
         SoundManager.LoadContent(Content);
         SoundManager.PlayMusic();
-        
 
-        _gameState = new GameState();
-        _map = new Map(Content, GraphicsDevice);
-
-        /*
-        * Right now, the zombies are using placeholder non-animated sprites. This will be removed once they have animated sprites like the plants.
-        * Load sprite sheet into ZombieFactory instance so it holds sprite for each types of zombie.
-        */
+        // Load textures that are reused on restart (ContentManager caches them)
         var zombieSheet = Content.Load<Texture2D>("images/base_zombiesforproj");
-        var basicRegion = new TextureRegion("basic", zombieSheet, new Rectangle(475, 42, 86, 153));
-        var flagRegion = new TextureRegion("flag", zombieSheet, new Rectangle(624, 40, 102, 152));
-        var coneRegion = new TextureRegion("cone", zombieSheet, new Rectangle(28, 10, 86, 311));
-        var bucketRegion = new TextureRegion("bucket", zombieSheet, new Rectangle(238, 16, 96, 179));
-        var jetpackRegion = new TextureRegion("jetpack", Content.Load<Texture2D>("images/DiscoJetpack"), new Rectangle(0, 0, 686, 969));
-        _zombieFactory = new ZombieFactory(basicRegion, coneRegion, bucketRegion, flagRegion, jetpackRegion, scale);
+        _basicRegion  = new TextureRegion("basic",   zombieSheet, new Rectangle(475, 42,  86, 153));
+        _flagRegion   = new TextureRegion("flag",    zombieSheet, new Rectangle(624, 40, 102, 152));
+        _coneRegion   = new TextureRegion("cone",    zombieSheet, new Rectangle( 28, 10,  86, 311));
+        _bucketRegion = new TextureRegion("bucket",  zombieSheet, new Rectangle(238, 16,  96, 179));
+        _jetpackRegion = new TextureRegion("jetpack",
+            Content.Load<Texture2D>("images/DiscoJetpack"), new Rectangle(0, 0, 686, 969));
 
-        var sunTexture = Content.Load<Texture2D>("sun");
-        var coinTexture = Content.Load<Texture2D>("coin");
-        _collectableManager = new CollectableManager(sunTexture, coinTexture);
+        _sunTexture  = Content.Load<Texture2D>("sun");
+        _coinTexture = Content.Load<Texture2D>("coin");
 
-        // ZombieManager to manage active zombies.
-        _zombieManager = new ZombieManager(_collectableManager);
-        //CollisionManager to handle collisions. Go figure
-        _collisionManager = new CollisionManager(_zombieManager, _map);
+        // EndScreen needs a 1x1 pixel and the shared font
+        var pixel = new Texture2D(GraphicsDevice, 1, 1);
+        pixel.SetData(new[] { Color.White });
+        var font = Content.Load<SpriteFont>("DefaultFont");
+        _endScreen = new EndScreen(pixel, font);
 
+        StartNewGame();
+    }
 
-        /*
-        * Load a level based on the file path.
-        * TO-DO: Should develop a function to select path based on UI selection.
-        */
-        string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory,"ZombieWaveManager","example.xml");
-        LevelSpawnData levelSpawnData = LevelLoader.LoadFromXml(path);
-        // Initialize zombie dispatch center (ZombieSpawnManager instance).
-        _zombieSpawnManager = new ZombieSpawnManager(levelSpawnData, _zombieManager, _zombieFactory);
+    // Creates / recreates all gameplay objects. Safe to call for restart.
+    private void StartNewGame()
+    {
+        _shovelActive = false;
+        _gameState    = new GameState();
+        _map          = new Map(Content, GraphicsDevice);
+
+        _zombieFactory       = new ZombieFactory(_basicRegion, _coneRegion, _bucketRegion,
+                                                  _flagRegion, _jetpackRegion, scale);
+        _collectableManager  = new CollectableManager(_sunTexture, _coinTexture);
+        _zombieManager       = new ZombieManager(_collectableManager);
+        _collisionManager    = new CollisionManager(_zombieManager, _map);
+
+        string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory,
+                                   "ZombieWaveManager", "example.xml");
+        LevelSpawnData levelData = LevelLoader.LoadFromXml(path);
+        _zombieSpawnManager = new ZombieSpawnManager(levelData, _zombieManager, _zombieFactory);
+
+        // Wire victory: all waves cleared + no zombies alive
+        _zombieSpawnManager.OnLevelCompleted += () => _gameState.SetStatus(GameStatus.Won);
     }
 
     protected override void Update(GameTime gameTime)
     {
+        var keyboard = Keyboard.GetState();
+
         if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed ||
-            Keyboard.GetState().IsKeyDown(Keys.Escape))
+            keyboard.IsKeyDown(Keys.Escape))
             Exit();
+
+        // When the game has ended, only listen for R (restart)
+        if (_gameState.Status == GameStatus.Won || _gameState.Status == GameStatus.Lost)
+        {
+            if (keyboard.IsKeyDown(Keys.R) && !_prevKeyboard.IsKeyDown(Keys.R))
+                StartNewGame();
+
+            _prevKeyboard = keyboard;
+            base.Update(gameTime);
+            return;
+        }
 
         _mouseController?.Update();
         _map?.Update(gameTime);
         _zombieSpawnManager?.Update(gameTime);
 
-        for (int i = 0; i <= 4; i++) //TODO: remove magic numbers
-        {
+        for (int i = 0; i <= 4; i++)
             _collisionManager.CheckZombiePlantCollision(i);
-        }
 
         _zombieManager?.Update(gameTime);
         _collectableManager?.Update(gameTime);
 
         _collisionManager.CheckProjectileZombieCollision();
         _collisionManager.CheckSplashZombieCollision();
+
+        // Defeat: any zombie walked past x=0 (its lane's lawn mower is already gone)
+        if (_zombieManager?.HasZombieReachedHome() == true)
+            _gameState.SetStatus(GameStatus.Lost);
+
+        _prevKeyboard = keyboard;
         base.Update(gameTime);
     }
-        
-
 
     public void HandleClick(Point screenPosition)
     {
+        // Ignore clicks during end screen
+        if (_gameState.Status != GameStatus.Playing)
+            return;
+
         if (_collectableManager != null)
         {
             var pickup = _collectableManager.TryCollectAt(screenPosition);
@@ -150,9 +188,7 @@ public class Game1 : Game, IGameInputHandler, IPlayerActions
         }
 
         if (_map.SelectedPlantType.HasValue)
-        {
             PlacePlant(screenPosition);
-        }
     }
 
     public void SetSelectedPlant(PlantType type)
@@ -189,9 +225,14 @@ public class Game1 : Game, IGameInputHandler, IPlayerActions
         _map.Draw(_spriteBatch, _gameState.Sun);
         _zombieManager?.Draw(_spriteBatch);
         _collectableManager?.Draw(_spriteBatch);
+
+        // Draw end overlay on top of everything when game has ended
+        var status = _gameState.Status;
+        if (status == GameStatus.Won || status == GameStatus.Lost)
+            _endScreen.Draw(_spriteBatch, status);
+
         _spriteBatch.End();
 
         base.Draw(gameTime);
     }
-
 }

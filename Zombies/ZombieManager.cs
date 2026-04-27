@@ -70,4 +70,15 @@ public class ZombieManager : IPvZDrawable, IPvZUpdatable
         return false;
     }
 
+    // Returns true when any living zombie has walked past x=0 (lawn mower for that lane is gone).
+    public bool HasZombieReachedHome()
+    {
+        for (int i = 0; i <= 4; i++)
+        {
+            if (_zombies[i].Any(z => !z.IsDead && z.xCoord <= 0))
+                return true;
+        }
+        return false;
+    }
+
 }
