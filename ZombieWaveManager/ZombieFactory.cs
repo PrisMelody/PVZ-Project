@@ -16,6 +16,9 @@ public class ZombieFactory
     private readonly ITextureRegion _coneheadTexture;
     private readonly ITextureRegion _bucketheadTexture;
     private readonly ITextureRegion _flagTexture;
+
+    private readonly ITextureRegion _jetpackTexture;
+
     private float _scale;
 
     // Initialize zombie factory with sprites for all types of zombies. Should be done at beginning of the level.
@@ -24,12 +27,14 @@ public class ZombieFactory
         ITextureRegion coneheadTexture,
         ITextureRegion bucketheadTexture,
         ITextureRegion flagTexture,
+        ITextureRegion jetpackTexture,
         float scale)
     {
         _basicZombieTexture = basicZombieTexture;
         _coneheadTexture = coneheadTexture;
         _bucketheadTexture = bucketheadTexture;
         _flagTexture = flagTexture;
+        _jetpackTexture = jetpackTexture;
         _scale = scale;
     }
 
@@ -48,7 +53,10 @@ public class ZombieFactory
                 return new BucketheadZombie(_bucketheadTexture, decorScale, _basicZombieTexture, _scale, lane);
             
             case ZombieType.Flag:
-                return new FlagZombie(_basicZombieTexture, _scale, lane);
+                return new FlagZombie(_flagTexture, _scale, lane);
+
+            case ZombieType.Jetpack:
+                return new JetpackZombie(_jetpackTexture, _scale * 0.15f, lane);
 
             default:
                 throw new ArgumentOutOfRangeException(nameof(type), $"Unknown zombie type: {type}");

@@ -4,9 +4,11 @@
   <Platform>DesktopGL</Platform>
   <Config />
   <SourceFiles>
+    <File>C:/Users/NoahMudrick/Documents/GitHub/PVZ-Project/Content/coin.webp</File>
     <File>C:/Users/NoahMudrick/Documents/GitHub/PVZ-Project/Content/daylevel.png</File>
     <File>C:/Users/NoahMudrick/Documents/GitHub/PVZ-Project/Content/icypea.png</File>
     <File>C:/Users/NoahMudrick/Documents/GitHub/PVZ-Project/Content/images/base_zombiesforproj.webp</File>
+    <File>C:/Users/NoahMudrick/Documents/GitHub/PVZ-Project/Content/images/DiscoJetpack.png</File>
     <File>C:/Users/NoahMudrick/Documents/GitHub/PVZ-Project/Content/PC _ Computer - Plants vs. Zombies - Miscellaneous - Projectiles (1).png</File>
     <File>C:/Users/NoahMudrick/Documents/GitHub/PVZ-Project/Content/PC _ Computer - Plants vs. Zombies - Miscellaneous - Projectiles.png</File>
     <File>C:/Users/NoahMudrick/Documents/GitHub/PVZ-Project/Content/peashooter.png</File>
@@ -17,13 +19,14 @@
     <File>C:/Users/NoahMudrick/Documents/GitHub/PVZ-Project/Content/Shovel.webp</File>
     <File>C:/Users/NoahMudrick/Documents/GitHub/PVZ-Project/Content/SnowPeaSeedPacket.webp</File>
     <File>C:/Users/NoahMudrick/Documents/GitHub/PVZ-Project/Content/sun.webp</File>
-    <File>C:/Users/NoahMudrick/Documents/GitHub/PVZ-Project/Content/coin.webp</File>
     <File>C:/Users/NoahMudrick/Documents/GitHub/PVZ-Project/Content/sunflower.png</File>
     <File>C:/Users/NoahMudrick/Documents/GitHub/PVZ-Project/Content/SunflowerSeedPacket.webp</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
     <File>day_level.png</File>
     <File>snowpea.png</File>
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File>snowpea_projectile.png</File>
     <File>pea_projectile.png</File>
@@ -34,7 +37,6 @@
     <File>seedslot.webp</File>
     <File>shovel.webp</File>
     <File>snowpea_seedpacket.webp</File>
-    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File>sunflower_seedpacket.webp</File>

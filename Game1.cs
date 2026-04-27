@@ -61,7 +61,8 @@ public class Game1 : Game, IGameInputHandler, IPlayerActions
         var flagRegion = new TextureRegion("flag", zombieSheet, new Rectangle(624, 40, 102, 152));
         var coneRegion = new TextureRegion("cone", zombieSheet, new Rectangle(28, 10, 86, 311));
         var bucketRegion = new TextureRegion("bucket", zombieSheet, new Rectangle(238, 16, 96, 179));
-        _zombieFactory = new ZombieFactory(basicRegion, coneRegion, bucketRegion, flagRegion, scale);
+        var jetpackRegion = new TextureRegion("jetpack", Content.Load<Texture2D>("images/DiscoJetpack"), new Rectangle(0, 0, 686, 969));
+        _zombieFactory = new ZombieFactory(basicRegion, coneRegion, bucketRegion, flagRegion, jetpackRegion, scale);
 
         var sunTexture = Content.Load<Texture2D>("sun");
         var coinTexture = Content.Load<Texture2D>("coin");

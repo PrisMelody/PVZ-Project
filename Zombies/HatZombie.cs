@@ -74,6 +74,12 @@ public abstract class HatZombie : IZombie
         get => _wrappedZombie.Lane;
     }
 
+    public int Damage
+    {
+        get => _wrappedZombie.Damage;
+        set => _wrappedZombie.Damage = value;
+    }
+
     public void Move() => _wrappedZombie.Move();
     public void Attack() => _wrappedZombie.Attack();
 

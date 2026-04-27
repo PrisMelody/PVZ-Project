@@ -8,7 +8,7 @@
 
     <SpawnEvent Time="12">
       <Spawn ZombieType="Conehead" Count="1" Lanes="1,3" />
-      <Spawn ZombieType="Basic" Count="2" Lanes="0,2,4" />
+      <Spawn ZombieType="Jetpack" Count="2" Lanes="0,2,4" />
     </SpawnEvent>
 
   </Wave>
