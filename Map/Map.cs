@@ -5,10 +5,10 @@ using System.Collections.Generic;
 public class Map : IMap
 {
     private static readonly PlantType[] SlotPlantTypes =
-        { PlantType.Peashooter, PlantType.Sunflower, PlantType.SnowPea, PlantType.Repeater };
+        { PlantType.Peashooter, PlantType.Sunflower, PlantType.SnowPea, PlantType.Repeater,PlantType.Chomper,PlantType.WallNut,PlantType.CherryBomb };
 
     private static readonly string[] SeedPacketAssetNames =
-        { "peashooter_seedpacket", "sunflower_seedpacket", "snowpea_seedpacket", "repeater_seedpacket" };
+        { "peashooter_seedpacket", "sunflower_seedpacket", "snowpea_seedpacket", "repeater_seedpacket", "chomper_seedpacket","wallnut_seedpacket", "bomb_seedpacket" };
 
     private readonly Texture2D _background;
     private readonly Texture2D _pixel;
@@ -50,7 +50,7 @@ public class Map : IMap
         _peaTexture = content.Load<Texture2D>("pea_projectile");
         _snowPeaTexture = content.Load<Texture2D>("snowpea_projectile");
         _plantFactory = new PlantFactory(_projectiles, _peaTexture, _snowPeaTexture);
-        _plantFactory.LoadContent(content);
+        _plantFactory.LoadContent(content);  
 
         var trayTexture = content.Load<Texture2D>("seedslot");
         var packetTextures = new Texture2D[SlotPlantTypes.Length];

@@ -1,16 +1,13 @@
-
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-
 
 namespace MonoGameLibrary.Sprites;
+
 public class AnimatedSprite
 {
     private Animation _animation;
     private Vector2 _position;
+    private float _scale = 1f;
 
     public AnimatedSprite(Animation animation, Vector2 position)
     {
@@ -22,24 +19,36 @@ public class AnimatedSprite
     {
         _animation.Update(gameTime);
     }
+
     public void SetAnimation(Animation animation)
     {
-        if (_animation == animation) return; // don’t reset same anim
+        if (_animation == animation) return;
 
         _animation = animation;
-        _animation.Reset(); // start new anim from first frame 
-    
+        _animation.Reset();
     }
 
-        
+    public void SetScale(float scale)
+    {
+        _scale = scale;
+    }
 
     public void Draw(SpriteBatch spriteBatch)
     {
+        var frame = _animation.CurrentFrame;
+
+        Vector2 origin = Vector2.Zero;
+
         spriteBatch.Draw(
-            _animation.CurrentFrame.Texture,
+            frame.Texture,
             _position,
-            _animation.CurrentFrame.SourceRectangle,
-            Color.White
+            frame.SourceRectangle,
+            Color.White,
+            0f,
+            origin,
+            _scale,
+            SpriteEffects.None,
+            0f
         );
     }
 }

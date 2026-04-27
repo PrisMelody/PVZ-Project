@@ -1,18 +1,18 @@
-
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-
 
 namespace MonoGameLibrary.Sprites;
+
 public class Animation
 {
     private List<ITextureRegion> _frames;
     private float _frameTime;
     private int _currentFrame;
     private float _timer;
+
+    
+    private float _speed = 1f;
 
     public ITextureRegion CurrentFrame => _frames[_currentFrame];
 
@@ -22,11 +22,18 @@ public class Animation
         _frameTime = frameTime;
     }
 
+    
+    public void SetSpeed(float speed)
+    {
+        _speed = Math.Max(0.01f, speed); 
+    }
+
     public void Update(GameTime gameTime)
     {
         _timer += (float)gameTime.ElapsedGameTime.TotalSeconds;
 
-        if (_timer >= _frameTime)
+        
+        if (_timer >= _frameTime / _speed)
         {
             _timer = 0f;
             _currentFrame++;
@@ -35,9 +42,10 @@ public class Animation
                 _currentFrame = 0;
         }
     }
+
     public void Reset()
-        {
-            _currentFrame = 0;
-            _timer = 0f;
-        }
+    {
+        _currentFrame = 0;
+        _timer = 0f;
+    }
 }

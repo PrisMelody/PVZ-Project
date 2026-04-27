@@ -1,0 +1,46 @@
+﻿<TextureAtlas>
+    <Texture>chomper</Texture>
+
+    <Animation name="idle">
+        <Frame name="idle_0" x="18" y="8" width="30" height="35" />
+        <Frame name="idle_1" x="65" y="8" width="30" height="35" />
+        <Frame name="idle_2" x="113" y="8" width="30" height="35" />
+        <Frame name="idle_3" x="160" y="8" width="30" height="35" />
+        <Frame name="idle_4" x="211" y="8" width="30" height="35" />
+        <Frame name="idle_5" x="258" y="8" width="30" height="35" />
+        <Frame name="idle_6" x="16" y="55" width="30" height="35" />
+        <Frame name="idle_7" x="65" y="55" width="30" height="35" />
+
+    </Animation>
+
+    <Animation name="attack">
+        <Frame name="attack_0" x="160" y="113" width="30" height="40" />
+        <Frame name="attack_1" x="207" y="113" width="30" height="40" />
+        <Frame name="attack_2" x="256" y="113" width="30" height="40" />
+        <Frame name="attack_3" x="16" y="160" width="50" height="40" />
+        <Frame name="attack_4" x="65" y="160" width="50" height="40" />
+        <Frame name="attack_5" x="130" y="160" width="50" height="40" />
+        <Frame name="attack_6" x="193" y="160" width="50" height="40" />
+        <Frame name="attack_7" x="256" y="168" width="40" height="40" />
+        <Frame name="attack_8" x="16" y="216" width="30" height="35" />
+        <Frame name="attack_9" x="85" y="216" width="30" height="35" />
+        <Frame name="attack_10" x="130" y="216" width="30" height="35" />
+        <Frame name="attack_11" x="181" y="216" width="30" height="35" />
+        <Frame name="attack_12" x="229" y="216" width="30" height="35" />
+        <Frame name="attack_13" x="280" y="216" width="30" height="35" />
+        <Frame name="attack_14" x="12" y="279" width="30" height="35" />
+        <Frame name="attack_15" x="60" y="279" width="30" height="35" />
+        <Frame name="attack_16" x="110" y="279" width="30" height="35" />
+        <Frame name="attack_17" x="154" y="279" width="30" height="35" />
+        <Frame name="attack_18" x="201" y="279" width="30" height="40" />
+        <Frame name="attack_19" x="251" y="279" width="30" height="40" />
+        <Frame name="attack_20" x="12" y="325" width="30" height="40" />
+        <Frame name="attack_21" x="60" y="325" width="30" height="40" />
+        <Frame name="attack_22" x="110" y="325" width="30" height="40" />
+        <Frame name="attack_23" x="154" y="325" width="30" height="40" />
+        <Frame name="attack_24" x="204" y="325" width="30" height="40" />
+        <Frame name="attack_25" x="251" y="325" width="30" height="40" />
+        <Frame name="attack_26" x="14" y="380" width="30" height="40" />
+
+    </Animation>
+</TextureAtlas>

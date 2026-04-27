@@ -1,0 +1,18 @@
+﻿<TextureAtlas>
+    <Texture>wallnut</Texture>
+
+    <Animation name="idle">
+
+        <Frame name="idle_0" x="0" y="0" width="102" height="100" />
+        <Frame name="idle_1" x="102" y="0" width="102" height="100" />
+        <Frame name="idle_2" x="204" y="0" width="102" height="100" />
+
+
+    </Animation>
+    <Animation name="attack">
+        <Frame name="attack_0" x="0" y="33" width="102" height="33" />
+        <Frame name="attack_1" x="102" y="33" width="102" height="33" />
+        <Frame name="attack_2" x="204" y="33" width="102" height="33" />
+    </Animation>
+
+</TextureAtlas>

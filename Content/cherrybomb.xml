@@ -1,0 +1,37 @@
+﻿<TextureAtlas>
+    <Texture>cherrybomb</Texture>
+
+    <Animation name="idle">
+        <Frame name="idle_000000" x="0" y="0" width="638" height="468" />
+        <Frame name="idle_000001" x="638" y="0" width="638" height="468" />
+        <Frame name="idle_000002" x="1276" y="0" width="638" height="468" />
+        <Frame name="idle_000003" x="0" y="468" width="638" height="468" />
+        <Frame name="idle_000004" x="638" y="468" width="638" height="468" />
+        <Frame name="idle_000005" x="1276" y="468" width="638" height="468" />
+        <Frame name="idle_000006" x="0" y="936" width="638" height="468" />
+        <Frame name="idle_000007" x="638" y="936" width="638" height="468" />
+        <Frame name="idle_000008" x="1276" y="936" width="638" height="468" />
+        <Frame name="idle_000009" x="0" y="1404" width="638" height="468" />
+        <Frame name="idle_000010" x="638" y="1404" width="638" height="468" />
+        <Frame name="idle_000011" x="1276" y="1404" width="638" height="468" />
+        <Frame name="idle_000012" x="0" y="1872" width="638" height="468" />
+        <Frame name="idle_000013" x="638" y="1872" width="638" height="468" />
+    </Animation>
+
+    <Animation name="attack">
+        <Frame name="attack_000000" x="0" y="0" width="638" height="468" />
+        <Frame name="attack_000001" x="638" y="0" width="638" height="468" />
+        <Frame name="attack_000002" x="1276" y="0" width="638" height="468" />
+        <Frame name="attack_000003" x="0" y="468" width="638" height="468" />
+        <Frame name="attack_000004" x="638" y="468" width="638" height="468" />
+        <Frame name="attack_000005" x="1276" y="468" width="638" height="468" />
+        <Frame name="attack_000006" x="0" y="936" width="638" height="468" />
+        <Frame name="attack_000007" x="638" y="936" width="638" height="468" />
+        <Frame name="attack_000008" x="1276" y="936" width="638" height="468" />
+        <Frame name="attack_000009" x="0" y="1404" width="638" height="468" />
+        <Frame name="attack_000010" x="638" y="1404" width="638" height="468" />
+        <Frame name="attack_000011" x="1276" y="1404" width="638" height="468" />
+        <Frame name="attack_000012" x="0" y="1872" width="638" height="468" />
+        <Frame name="attack_000013" x="638" y="1872" width="638" height="468" />
+    </Animation>
+</TextureAtlas>
