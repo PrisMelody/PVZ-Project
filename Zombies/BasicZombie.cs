@@ -15,7 +15,9 @@ public class BasicZombie : IZombie
     private readonly ITextureRegion _region;
     private readonly float _scale;
 
-    public float Range {get;} = 100;
+    public float MaxRange {get;} = 50;
+    public float MinRange {get;} = -20;
+
     public bool IsAttacking { get; set; } = false;
     public float Speed { get; set; } = 0.25f;
     public float xCoord { get; set; } = 900.0f;
@@ -23,7 +25,9 @@ public class BasicZombie : IZombie
     public int Health { get; set; } = 270;
     public bool IsDead { get; set; }
     public int DrawOrder { get; set; }
+    public Color DrawColor {get; set; } = Color.White;
     public int SpawnWaveIndex { get; set; }
+
 
     public int Lane {get;}
 
@@ -59,7 +63,7 @@ public class BasicZombie : IZombie
             _region.Texture,
             new Vector2(xCoord, yCoord),
             _region.SourceRectangle,
-            Color.White,
+            DrawColor,
             0.0f,
             Vector2.Zero,
             _scale,

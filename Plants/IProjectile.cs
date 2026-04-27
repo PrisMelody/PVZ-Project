@@ -14,4 +14,6 @@ public interface IProjectile : IPvZDrawable, IPvZUpdatable
     
 
     void Move();
+
+    void OnHit(IZombie zombie);
 }

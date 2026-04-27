@@ -17,9 +17,14 @@ public abstract class HatZombie : IZombie
         set => _wrappedZombie.SpawnWaveIndex = value;
     }
 
-    public float Range
+    public float MaxRange
     {
-        get => _wrappedZombie.Range;
+        get => _wrappedZombie.MaxRange;
+    }
+
+     public float MinRange
+    {
+        get => _wrappedZombie.MinRange;
     }
 
     public float Speed
@@ -58,6 +63,12 @@ public abstract class HatZombie : IZombie
         set => _wrappedZombie.DrawOrder = value;
     }
 
+     public Color DrawColor
+    {
+        get => _wrappedZombie.DrawColor;
+        set => _wrappedZombie.DrawColor = value;
+    }
+
     public int Lane
     {
         get => _wrappedZombie.Lane;
@@ -71,7 +82,7 @@ public abstract class HatZombie : IZombie
         _wrappedZombie.TakeDamage(amount);
     }
 
-    public void Draw(SpriteBatch spriteBatch)
+    virtual public void Draw(SpriteBatch spriteBatch)
     {
         if (Health <= _hatFallOffThreshold)
         {
@@ -84,7 +95,7 @@ public abstract class HatZombie : IZombie
                 // Since hat change the height of zombies, so I added 30.0f to correct the shift of position.
                 new Vector2(xCoord, yCoord - 30.0f),
                 _region.SourceRectangle,
-                Color.White,
+                DrawColor,
                 0.0f,
                 Vector2.Zero,
                 _scale,
@@ -94,5 +105,5 @@ public abstract class HatZombie : IZombie
         }
     }
 
-    public void Update(GameTime gameTime) => _wrappedZombie.Update(gameTime);
+    virtual public void Update(GameTime gameTime) => _wrappedZombie.Update(gameTime);
 }

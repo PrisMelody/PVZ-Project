@@ -18,6 +18,8 @@ public class Game1 : Game, IGameInputHandler, IPlayerActions
     private ZombieFactory _zombieFactory;
     private ZombieSpawnManager _zombieSpawnManager;
     private ZombieManager _zombieManager;
+
+    private CollisionManager _collisionManager;
     private CollectableManager _collectableManager;
     private IGameState _gameState;
     private bool _shovelActive;
@@ -67,6 +69,10 @@ public class Game1 : Game, IGameInputHandler, IPlayerActions
 
         // ZombieManager to manage active zombies.
         _zombieManager = new ZombieManager(_collectableManager);
+        //CollisionManager to handle collisions. Go figure
+        _collisionManager = new CollisionManager(_zombieManager, _map);
+
+
         /*
         * Load a level based on the file path.
         * TO-DO: Should develop a function to select path based on UI selection.
@@ -89,14 +95,14 @@ public class Game1 : Game, IGameInputHandler, IPlayerActions
 
         for (int i = 0; i <= 4; i++) //TODO: remove magic numbers
         {
-            CheckZombiePlantCollision(i);
+            _collisionManager.CheckZombiePlantCollision(i);
         }
 
         _zombieManager?.Update(gameTime);
         _collectableManager?.Update(gameTime);
 
-        CheckProjectileZombieCollision();
-        CheckSplashZombieCollision();
+        _collisionManager.CheckProjectileZombieCollision();
+        _collisionManager.CheckSplashZombieCollision();
         base.Update(gameTime);
     }
         
@@ -181,49 +187,5 @@ public class Game1 : Game, IGameInputHandler, IPlayerActions
 
         base.Draw(gameTime);
     }
-
-    private void CheckZombiePlantCollision(int lane) //TODO: stick this in its own class. 
-    {
-        foreach(IZombie zombie in _zombieManager.ZombiesByLane[lane])
-        {
-            foreach (IGridPlot currentGrid in _map._grid.Lanes[lane].Plots) //This is gross.
-            {
-                if (!currentGrid.IsOccupied){continue;}
-                float distance = zombie.xCoord - currentGrid.Plant.XPos;
-                if (distance < zombie.Range && distance > 0)
-                {
-                    zombie.IsAttacking = true;
-                    currentGrid.Plant.TakeDamage(2); //TODO: this is temporary, zombies should do damage to plants on their own.
-                }
-                break;
-            }
-        } 
-    }
-
-    private void CheckProjectileZombieCollision()
-    {
-        foreach (IProjectile projectile in _map.Projectiles)
-        {
-            int lane = Projectile.getLaneFromYPos[projectile.YPos];
-            foreach(IZombie zombie in _zombieManager.ZombiesByLane[lane])
-            {
-                float distance = zombie.xCoord - projectile.XPos;
-                if(distance < 0  && distance > -30)
-                {
-                    zombie.TakeDamage(projectile.Damage); //TODO: replace with actual projectile damage method.
-                    projectile.IsDead = true;
-                    //Current implemenation is both very tightly coupled, and doesn't allow for special effects (such as freezing)
-                    //Also doesn't allow for piercing projectiles.
-                }
-            }
-        }
-    }
-
-    private void CheckSplashZombieCollision()
-    {
-        //TODO: once cherry bombs and mines are set up, add this.
-        //This will probably end up being n^2, but given that explosions last for a single frame that's probably fine.
-    }
-
 
 }

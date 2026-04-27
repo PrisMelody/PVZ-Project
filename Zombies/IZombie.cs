@@ -6,7 +6,9 @@ using Microsoft.Xna.Framework.Graphics;
     {
         float Speed { get; set; }
         bool IsAttacking { get; set; }
-        public float Range {get;}
+        public float MaxRange {get;}
+        public float MinRange {get;}
+
 
         float xCoord { get; set; }
         float yCoord { get; set; }
@@ -14,6 +16,7 @@ using Microsoft.Xna.Framework.Graphics;
         new int Health { get; set; }
         new bool IsDead { get; set; }
         new int DrawOrder { get; set; }
+        Color DrawColor {get; set; }
         int SpawnWaveIndex {get; set; }
         int Lane {get;}
         void Move();
