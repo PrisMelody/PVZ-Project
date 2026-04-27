@@ -23,6 +23,8 @@ public class PlantFactory : IPlantFactory
     private Texture2D _peaTexture;
     private Texture2D _snowPeaTexture;
 
+    private Texture2D _powTexture;
+
     private static readonly Dictionary<PlantType, float> AnimationSpeeds = new()
     {
         { PlantType.Peashooter, 1.2f },
@@ -47,11 +49,12 @@ public class PlantFactory : IPlantFactory
         { PlantType.PotatoMine, "potatomine" },
 
     };
-    public PlantFactory(List<Projectile> projectiles, Texture2D peaTexture, Texture2D snowPeaTexture)
+    public PlantFactory(List<Projectile> projectiles, Texture2D peaTexture, Texture2D snowPeaTexture, Texture2D powTexture)
     {
         _projectiles = projectiles;
         _peaTexture = peaTexture;
         _snowPeaTexture = snowPeaTexture;
+        _powTexture = powTexture;
     }
 
     public void LoadContent(ContentManager content)
@@ -106,7 +109,7 @@ public class PlantFactory : IPlantFactory
         // NEW (atlas-based plants)
         PlantType.Chomper => new Chomper(idleAnim, attackAnim, x, y),
         PlantType.WallNut => new WallNut(idleAnim, attackAnim, x, y),
-        PlantType.CherryBomb => new CherryBomb(idleAnim, attackAnim, x, y),
+        PlantType.CherryBomb => new CherryBomb(idleAnim, attackAnim, x, y, _projectiles, _powTexture),
         PlantType.PotatoMine => new PotatoMine(idleAnim, attackAnim, x, y),
 
         _ => null

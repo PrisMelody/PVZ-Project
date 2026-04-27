@@ -11,8 +11,9 @@ Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Siz
 "c:/Users/mukun/Desktop/3902/Content/PC _ Computer - Plants vs. Zombies - Miscellaneous - Projectiles (1).png","c:/Users/mukun/Desktop/3902/Content/bin/DesktopGL/Content/snowpea_projectile.xnb","TextureProcessor","Texture2DContent",1748,2789,0.0019496
 "c:/Users/mukun/Desktop/3902/Content/PC _ Computer - Plants vs. Zombies - Miscellaneous - Projectiles.png","c:/Users/mukun/Desktop/3902/Content/bin/DesktopGL/Content/pea_projectile.xnb","TextureProcessor","Texture2DContent",1421,2389,0.0042077
 "c:/Users/mukun/Desktop/3902/Content/PeashooterSeedPacket.webp","c:/Users/mukun/Desktop/3902/Content/bin/DesktopGL/Content/peashooter_seedpacket.xnb","TextureProcessor","Texture2DContent",2634,14085,0.0056856
-"c:/Users/mukun/Desktop/3902/Content/potatomine.png","c:/Users/mukun/Desktop/3902/Content/bin/DesktopGL/Content/potatomine.xnb","TextureProcessor","Texture2DContent",1321877,28530517,0.8113826
 "c:/Users/mukun/Desktop/3902/Content/potatomine.xml","c:\Users\mukun\Desktop\3902\Content\bin\DesktopGL\Content\potatomine.xml","CopyItem","File",2972,2972,0.001699
+"c:/Users/mukun/Desktop/3902/Content/Pow.png","c:/Users/mukun/Desktop/3902/Content/bin/DesktopGL/Content/Pow.xnb","TextureProcessor","Texture2DContent",13924,66997,0.1144314
+"c:/Users/mukun/Desktop/3902/Content/pow.xml","c:\Users\mukun\Desktop\3902\Content\bin\DesktopGL\Content\pow.xml","CopyItem","File",3,3,0.0020266
 "c:/Users/mukun/Desktop/3902/Content/RepeaterSeedPacket.webp","c:/Users/mukun/Desktop/3902/Content/bin/DesktopGL/Content/repeater_seedpacket.xnb","TextureProcessor","Texture2DContent",2484,14085,0.0036423
 "c:/Users/mukun/Desktop/3902/Content/SeedSlot.webp","c:/Users/mukun/Desktop/3902/Content/bin/DesktopGL/Content/seedslot.xnb","TextureProcessor","Texture2DContent",3844,155293,0.0090801
 "c:/Users/mukun/Desktop/3902/Content/Shovel.webp","c:/Users/mukun/Desktop/3902/Content/bin/DesktopGL/Content/shovel.xnb","TextureProcessor","Texture2DContent",3934,78481,0.0071109
@@ -20,4 +21,4 @@ Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Siz
 "c:/Users/mukun/Desktop/3902/Content/SunflowerSeedPacket.webp","c:/Users/mukun/Desktop/3902/Content/bin/DesktopGL/Content/sunflower_seedpacket.xnb","TextureProcessor","Texture2DContent",2500,14085,0.0055789
 "c:/Users/mukun/Desktop/3902/Content/wallnut_seedpacket.png","c:/Users/mukun/Desktop/3902/Content/bin/DesktopGL/Content/wallnut_seedpacket.xnb","TextureProcessor","Texture2DContent",3233,14085,0.121455
 "c:/Users/mukun/Desktop/3902/Content/wallnut.PNG","c:/Users/mukun/Desktop/3902/Content/bin/DesktopGL/Content/wallnut.xnb","TextureProcessor","Texture2DContent",45951,124113,0.1331783
-"c:/Users/mukun/Desktop/3902/Content/wallnut.xml","c:\Users\mukun\Desktop\3902\Content\bin\DesktopGL\Content\wallnut.xml","CopyItem","File",606,606,0.0012746
+"c:/Users/mukun/Desktop/3902/Content/wallnut.xml","c:\Users\mukun\Desktop\3902\Content\bin\DesktopGL\Content\wallnut.xml","CopyItem","File",459,459,0.00212

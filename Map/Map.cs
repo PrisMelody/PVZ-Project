@@ -19,6 +19,8 @@ public class Map : IMap
     private List<Projectile> _projectiles = new();
     private Texture2D _peaTexture;
     private Texture2D _snowPeaTexture;
+
+    private Texture2D _powTexture;
     public readonly GridManager _grid;
     public IReadOnlyList<Projectile> Projectiles => _projectiles;
 
@@ -49,7 +51,8 @@ public class Map : IMap
         _shovelTexture = content.Load<Texture2D>("shovel");
         _peaTexture = content.Load<Texture2D>("pea_projectile");
         _snowPeaTexture = content.Load<Texture2D>("snowpea_projectile");
-        _plantFactory = new PlantFactory(_projectiles, _peaTexture, _snowPeaTexture);
+        _powTexture = content.Load<Texture2D>("pow");
+        _plantFactory = new PlantFactory(_projectiles, _peaTexture, _snowPeaTexture, _powTexture);
         _plantFactory.LoadContent(content);  
 
         var trayTexture = content.Load<Texture2D>("seedslot");

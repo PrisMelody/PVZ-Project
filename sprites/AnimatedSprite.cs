@@ -32,6 +32,7 @@ public class AnimatedSprite
     {
         _scale = scale;
     }
+    public Animation CurrentAnimation => _animation;
 
     public void Draw(SpriteBatch spriteBatch)
     {

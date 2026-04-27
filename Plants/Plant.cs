@@ -53,4 +53,5 @@ public abstract class Plant : IPlant
     {
         _sprite?.Draw(spriteBatch);
     }
+    
 }

@@ -34,6 +34,14 @@ public class Animation
     {
         _looping = looping;
     }
+    public void SetFrame(int index)
+    {
+        if (index < 0 || index >= _frames.Count)
+            return;
+
+        _currentFrame = index;
+        _timer = 0f; 
+    }
 
      public void Update(GameTime gameTime)
     {
