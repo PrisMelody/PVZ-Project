@@ -31,7 +31,7 @@ using System.Collections.Generic;
         {
             if (_sounds.ContainsKey(name))
             {
-                _sounds[name].Play();
+                _sounds[name].Play(0.6f, 0, 0);
             }
         }
     }

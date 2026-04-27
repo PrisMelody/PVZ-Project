@@ -56,6 +56,7 @@ public abstract class Projectile : IProjectile
     {
         zombie.TakeDamage(Damage);
         IsDead = true;
+        SoundManager.PlaySound("PeaHit");
     }
 
     
