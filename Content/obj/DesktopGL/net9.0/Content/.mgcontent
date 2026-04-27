@@ -11,11 +11,13 @@
     <File>c:/Users/mukun/Desktop/3902/Content/daylevel.png</File>
     <File>c:/Users/mukun/Desktop/3902/Content/icypea.png</File>
     <File>c:/Users/mukun/Desktop/3902/Content/images/base_zombiesforproj.webp</File>
+    <File>c:/Users/mukun/Desktop/3902/Content/images/pmine.png</File>
     <File>c:/Users/mukun/Desktop/3902/Content/mine_seedpacket.png</File>
     <File>c:/Users/mukun/Desktop/3902/Content/PC _ Computer - Plants vs. Zombies - Miscellaneous - Projectiles (1).png</File>
     <File>c:/Users/mukun/Desktop/3902/Content/PC _ Computer - Plants vs. Zombies - Miscellaneous - Projectiles.png</File>
     <File>c:/Users/mukun/Desktop/3902/Content/peashooter.png</File>
     <File>c:/Users/mukun/Desktop/3902/Content/PeashooterSeedPacket.webp</File>
+    <File>c:/Users/mukun/Desktop/3902/Content/potatomine.png</File>
     <File>c:/Users/mukun/Desktop/3902/Content/repeater.png</File>
     <File>c:/Users/mukun/Desktop/3902/Content/RepeaterSeedPacket.webp</File>
     <File>c:/Users/mukun/Desktop/3902/Content/SeedSlot.webp</File>
@@ -36,10 +38,12 @@
     <File>snowpea.png</File>
     <File xsi:nil="true" />
     <File xsi:nil="true" />
+    <File xsi:nil="true" />
     <File>snowpea_projectile.png</File>
     <File>pea_projectile.png</File>
     <File xsi:nil="true" />
     <File>peashooter_seedpacket.webp</File>
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File>repeater_seedpacket.webp</File>
     <File>seedslot.webp</File>

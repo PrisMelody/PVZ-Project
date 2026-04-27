@@ -5,10 +5,10 @@ using System.Collections.Generic;
 public class Map : IMap
 {
     private static readonly PlantType[] SlotPlantTypes =
-        { PlantType.Peashooter, PlantType.Sunflower, PlantType.SnowPea, PlantType.Repeater,PlantType.Chomper,PlantType.WallNut,PlantType.CherryBomb };
+        { PlantType.Peashooter, PlantType.Sunflower, PlantType.SnowPea, PlantType.Repeater,PlantType.Chomper,PlantType.WallNut,PlantType.CherryBomb,PlantType.PotatoMine };
 
     private static readonly string[] SeedPacketAssetNames =
-        { "peashooter_seedpacket", "sunflower_seedpacket", "snowpea_seedpacket", "repeater_seedpacket", "chomper_seedpacket","wallnut_seedpacket", "bomb_seedpacket" };
+        { "peashooter_seedpacket", "sunflower_seedpacket", "snowpea_seedpacket", "repeater_seedpacket", "chomper_seedpacket","wallnut_seedpacket", "bomb_seedpacket", "mine_seedpacket" };
 
     private readonly Texture2D _background;
     private readonly Texture2D _pixel;
@@ -26,7 +26,7 @@ public class Map : IMap
     private const int ScreenHeight = 600;
     private const int TrayX = 10;
     private const int TrayY = 8;
-    private const int TrayWidth = 446;
+    private const int TrayWidth = 700;
     private const int ShovelSize = 70;
 
     private const int GridRows = 5;

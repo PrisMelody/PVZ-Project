@@ -43,7 +43,8 @@ public class PlantFactory : IPlantFactory
     {
         { PlantType.Chomper, "chomper" },
         { PlantType.WallNut, "wallnut" },
-        { PlantType.CherryBomb, "cherrybomb" }
+        { PlantType.CherryBomb, "cherrybomb" },
+        { PlantType.PotatoMine, "potatomine" },
 
     };
     public PlantFactory(List<Projectile> projectiles, Texture2D peaTexture, Texture2D snowPeaTexture)
@@ -89,6 +90,12 @@ public class PlantFactory : IPlantFactory
     if (idleAnim == null || attackAnim == null)
         return null;
 
+    if (type == PlantType.PotatoMine|| type == PlantType.CherryBomb)
+    {
+        idleAnim.SetLooping(false);
+        attackAnim.SetLooping(false);
+    }
+
     return type switch
     {
         PlantType.Peashooter => new Peashooter(idleAnim, attackAnim, x, y, _projectiles, _peaTexture),
@@ -100,6 +107,7 @@ public class PlantFactory : IPlantFactory
         PlantType.Chomper => new Chomper(idleAnim, attackAnim, x, y),
         PlantType.WallNut => new WallNut(idleAnim, attackAnim, x, y),
         PlantType.CherryBomb => new CherryBomb(idleAnim, attackAnim, x, y),
+        PlantType.PotatoMine => new PotatoMine(idleAnim, attackAnim, x, y),
 
         _ => null
     };
