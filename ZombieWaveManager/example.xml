@@ -36,6 +36,15 @@
       <Spawn ZombieType="Conehead" Count="3" Lanes="1,2,3" />
     </SpawnEvent>
 
+     <SpawnEvent Time="60">
+      <Spawn ZombieType="Jetpack" Count="2" Lanes="1,2,3" />
+    </SpawnEvent>
+
+    <SpawnEvent Time="65">
+      <Spawn ZombieType="Jetpack" Count="3" Lanes="1,2,3" />
+      <Spawn ZombieType="Basic" Count="6" Lanes="0,1,2,3,4" />
+    </SpawnEvent>
+
   </Wave>
 
 </Level>

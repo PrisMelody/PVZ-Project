@@ -29,7 +29,7 @@ public class CollisionManager
                 if (distance < zombie.MaxRange && distance > zombie.MinRange)
                 {
                     zombie.IsAttacking = true;
-                    currentGrid.Plant.TakeDamage(2); //TODO: this is temporary, zombies should do damage to plants on their own.
+                    currentGrid.Plant.TakeDamage(zombie.Damage); //TODO: this is temporary, zombies should do damage to plants on their own.
                     //Zombies really need some kind of larger state rework, which is probably what I'll work on next.
                     break;
                 }

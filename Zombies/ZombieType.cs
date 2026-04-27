@@ -6,5 +6,6 @@ public enum ZombieType
     Basic,
     Conehead,
     Buckethead,
-    Flag
+    Flag,
+    Jetpack
 }

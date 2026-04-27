@@ -16,6 +16,7 @@ using Microsoft.Xna.Framework.Graphics;
         new int Health { get; set; }
         new bool IsDead { get; set; }
         new int DrawOrder { get; set; }
+        int Damage {get; set;}
         Color DrawColor {get; set; }
         int SpawnWaveIndex {get; set; }
         int Lane {get;}

@@ -73,6 +73,18 @@
 /processorParam:TextureFormat=Color
 /build:Lawn_Mower.png
 
+#begin images/DiscoJetpack.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:images/DiscoJetpack.png
+
 #begin PC _ Computer - Plants vs. Zombies - Miscellaneous - Projectiles (1).png
 /importer:TextureImporter
 /processor:TextureProcessor
