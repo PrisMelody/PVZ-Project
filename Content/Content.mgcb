@@ -181,6 +181,18 @@
 /processorParam:TextureFormat=Color
 /build:SnowPeaSeedPacket.webp;snowpea_seedpacket.webp
 
+#begin Sounds/main_theme.wav
+/importer:WavImporter
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Sounds/main_theme.wav
+
+#begin Sounds/pea_hit.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sounds/pea_hit.wav
+
 #begin sun.webp
 /importer:TextureImporter
 /processor:TextureProcessor

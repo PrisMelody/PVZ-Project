@@ -46,7 +46,8 @@ public class Game1 : Game, IGameInputHandler, IPlayerActions
     protected override void LoadContent()
     {
         _spriteBatch = new SpriteBatch(GraphicsDevice);
-
+        SoundManager.LoadContent(Content);
+        SoundManager.PlayMusic();
         
 
         _gameState = new GameState();

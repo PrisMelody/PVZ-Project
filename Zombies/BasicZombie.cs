@@ -51,6 +51,7 @@ public class BasicZombie : IZombie
     public void TakeDamage(int amount)
     {
         Health -= amount;
+        SoundManager.PlaySound("PeaHit");
         if (Health <= 0)
         {
             IsDead = true;
