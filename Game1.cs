@@ -138,7 +138,7 @@ public class Game1 : Game, IGameInputHandler, IPlayerActions
         {
             _shovelActive = false;
             var plantType = _map.GetPlantTypeForSlot(seedIndex);
-            if (plantType.HasValue)
+            if (plantType.HasValue && _gameState.Sun >= _map.GetCostForSlot(seedIndex))
                 new SelectPlantCommand(this, plantType.Value).Execute();
             return;
         }
@@ -162,8 +162,12 @@ public class Game1 : Game, IGameInputHandler, IPlayerActions
 
     public void PlacePlant(Point screenPosition)
     {
-        if (_map.TryPlacePlantAt(screenPosition))
+        int cost = _map.GetCostForSelectedPlant();
+        if (_gameState.Sun >= cost && _map.TryPlacePlantAt(screenPosition))
+        {
+            _gameState.SpendSun(cost);
             _map.ClearPlant();
+        }
     }
 
     public void ClearPlant()
@@ -182,7 +186,7 @@ public class Game1 : Game, IGameInputHandler, IPlayerActions
         GraphicsDevice.Clear(Color.CornflowerBlue);
 
         _spriteBatch.Begin();
-        _map.Draw(_spriteBatch);
+        _map.Draw(_spriteBatch, _gameState.Sun);
         _zombieManager?.Draw(_spriteBatch);
         _collectableManager?.Draw(_spriteBatch);
         _spriteBatch.End();

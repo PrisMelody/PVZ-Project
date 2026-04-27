@@ -11,6 +11,8 @@ public class Map : IMap
     private static readonly string[] SeedPacketAssetNames =
         { "peashooter_seedpacket", "sunflower_seedpacket", "snowpea_seedpacket", "repeater_seedpacket" };
 
+    private static readonly int[] SlotCosts = { 100, 50, 175, 200 };
+
     private readonly Texture2D _background;
     private readonly Texture2D _pixel;
     private readonly SeedSlot _seedSlot;
@@ -23,6 +25,7 @@ public class Map : IMap
     private Texture2D _snowPeaTexture;
     private Texture2D _sunTexture;
     private Texture2D _lawnMowerTexture;
+    private SpriteFont _font;
 
     public readonly GridManager _grid;
     public IReadOnlyList<Projectile> Projectiles => _projectiles;
@@ -59,6 +62,7 @@ public class Map : IMap
 
         _plantFactory = new PlantFactory(_projectiles, _peaTexture, _snowPeaTexture, _suns, _sunTexture);
         _plantFactory.LoadContent(content);
+        _font = content.Load<SpriteFont>("DefaultFont");
 
         var trayTexture = content.Load<Texture2D>("seedslot");
         var packetTextures = new Texture2D[SlotPlantTypes.Length];
@@ -139,6 +143,23 @@ public class Map : IMap
         return SlotPlantTypes[slotIndex];
     }
 
+    public int GetCostForSlot(int slotIndex)
+    {
+        if (slotIndex < 0 || slotIndex >= SlotCosts.Length)
+            return 0;
+        return SlotCosts[slotIndex];
+    }
+
+    public int GetCostForSelectedPlant()
+    {
+        if (!SelectedPlantType.HasValue)
+            return 0;
+        for (int i = 0; i < SlotPlantTypes.Length; i++)
+            if (SlotPlantTypes[i] == SelectedPlantType.Value)
+                return GetCostForSlot(i);
+        return 0;
+    }
+
     public void Update(GameTime gameTime)
     {
         foreach (var plot in _grid.AllPlots)
@@ -165,7 +186,7 @@ public class Map : IMap
         
     }
 
-    public void Draw(SpriteBatch spriteBatch)
+    public void Draw(SpriteBatch spriteBatch, int currentSun)
     {
         DrawBackground(spriteBatch);
 
@@ -184,7 +205,16 @@ public class Map : IMap
                 }
             }
         }
-        _seedSlot.Draw(spriteBatch, selectedIndex);
+        _seedSlot.Draw(spriteBatch, selectedIndex, currentSun, SlotCosts);
+
+        // Sun counter: small sun icon + number in the left margin of the seed tray
+        var sunIconRect = new Rectangle(TrayX + 4, TrayY + 10, 32, 32);
+        spriteBatch.Draw(_sunTexture, sunIconRect, Color.White);
+        string sunText = currentSun.ToString();
+        var textSize = _font.MeasureString(sunText);
+        var textPos = new Vector2(TrayX + 4 + (32 - textSize.X) / 2, TrayY + 45);
+        spriteBatch.DrawString(_font, sunText, textPos + new Vector2(1, 1), Color.Black);
+        spriteBatch.DrawString(_font, sunText, textPos, Color.Yellow);
 
         spriteBatch.Draw(_shovelTexture, _shovelBounds, Color.White);
         foreach (var projectile in _projectiles)

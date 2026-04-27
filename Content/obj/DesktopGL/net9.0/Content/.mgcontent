@@ -4,31 +4,33 @@
   <Platform>DesktopGL</Platform>
   <Config />
   <SourceFiles>
-    <File>C:/Users/NoahMudrick/Documents/GitHub/PVZ-Project/Content/coin.webp</File>
-    <File>C:/Users/NoahMudrick/Documents/GitHub/PVZ-Project/Content/daylevel.png</File>
-    <File>C:/Users/NoahMudrick/Documents/GitHub/PVZ-Project/Content/icypea.png</File>
-    <File>C:/Users/NoahMudrick/Documents/GitHub/PVZ-Project/Content/images/base_zombiesforproj.webp</File>
-    <File>C:/Users/NoahMudrick/Documents/GitHub/PVZ-Project/Content/Lawn_Mower.png</File>
-    <File>C:/Users/NoahMudrick/Documents/GitHub/PVZ-Project/Content/images/DiscoJetpack.png</File>
-    <File>C:/Users/NoahMudrick/Documents/GitHub/PVZ-Project/Content/PC _ Computer - Plants vs. Zombies - Miscellaneous - Projectiles (1).png</File>
-    <File>C:/Users/NoahMudrick/Documents/GitHub/PVZ-Project/Content/PC _ Computer - Plants vs. Zombies - Miscellaneous - Projectiles.png</File>
-    <File>C:/Users/NoahMudrick/Documents/GitHub/PVZ-Project/Content/peashooter.png</File>
-    <File>C:/Users/NoahMudrick/Documents/GitHub/PVZ-Project/Content/PeashooterSeedPacket.webp</File>
-    <File>C:/Users/NoahMudrick/Documents/GitHub/PVZ-Project/Content/repeater.png</File>
-    <File>C:/Users/NoahMudrick/Documents/GitHub/PVZ-Project/Content/RepeaterSeedPacket.webp</File>
-    <File>C:/Users/NoahMudrick/Documents/GitHub/PVZ-Project/Content/SeedSlot.webp</File>
-    <File>C:/Users/NoahMudrick/Documents/GitHub/PVZ-Project/Content/Shovel.webp</File>
-    <File>C:/Users/NoahMudrick/Documents/GitHub/PVZ-Project/Content/SnowPeaSeedPacket.webp</File>
-    <File>C:/Users/NoahMudrick/Documents/GitHub/PVZ-Project/Content/Sounds/main_theme.wav</File>
-    <File>C:/Users/NoahMudrick/Documents/GitHub/PVZ-Project/Content/Sounds/pea_hit.wav</File>
-    <File>C:/Users/NoahMudrick/Documents/GitHub/PVZ-Project/Content/sun.webp</File>
-    <File>C:/Users/NoahMudrick/Documents/GitHub/PVZ-Project/Content/sunflower.png</File>
-    <File>C:/Users/NoahMudrick/Documents/GitHub/PVZ-Project/Content/SunflowerSeedPacket.webp</File>
+    <File>c:/Users/Feder/OneDrive - The Ohio State University/coding/plant_vs_zombie/PVZ-Project/Content/coin.webp</File>
+    <File>c:/Users/Feder/OneDrive - The Ohio State University/coding/plant_vs_zombie/PVZ-Project/Content/daylevel.png</File>
+    <File>c:/Users/Feder/OneDrive - The Ohio State University/coding/plant_vs_zombie/PVZ-Project/Content/icypea.png</File>
+    <File>c:/Users/Feder/OneDrive - The Ohio State University/coding/plant_vs_zombie/PVZ-Project/Content/images/base_zombiesforproj.webp</File>
+    <File>c:/Users/Feder/OneDrive - The Ohio State University/coding/plant_vs_zombie/PVZ-Project/Content/Lawn_Mower.png</File>
+    <File>c:/Users/Feder/OneDrive - The Ohio State University/coding/plant_vs_zombie/PVZ-Project/Content/images/DiscoJetpack.png</File>
+    <File>c:/Users/Feder/OneDrive - The Ohio State University/coding/plant_vs_zombie/PVZ-Project/Content/PC _ Computer - Plants vs. Zombies - Miscellaneous - Projectiles (1).png</File>
+    <File>c:/Users/Feder/OneDrive - The Ohio State University/coding/plant_vs_zombie/PVZ-Project/Content/PC _ Computer - Plants vs. Zombies - Miscellaneous - Projectiles.png</File>
+    <File>c:/Users/Feder/OneDrive - The Ohio State University/coding/plant_vs_zombie/PVZ-Project/Content/peashooter.png</File>
+    <File>c:/Users/Feder/OneDrive - The Ohio State University/coding/plant_vs_zombie/PVZ-Project/Content/PeashooterSeedPacket.webp</File>
+    <File>c:/Users/Feder/OneDrive - The Ohio State University/coding/plant_vs_zombie/PVZ-Project/Content/repeater.png</File>
+    <File>c:/Users/Feder/OneDrive - The Ohio State University/coding/plant_vs_zombie/PVZ-Project/Content/RepeaterSeedPacket.webp</File>
+    <File>c:/Users/Feder/OneDrive - The Ohio State University/coding/plant_vs_zombie/PVZ-Project/Content/SeedSlot.webp</File>
+    <File>c:/Users/Feder/OneDrive - The Ohio State University/coding/plant_vs_zombie/PVZ-Project/Content/Shovel.webp</File>
+    <File>c:/Users/Feder/OneDrive - The Ohio State University/coding/plant_vs_zombie/PVZ-Project/Content/SnowPeaSeedPacket.webp</File>
+    <File>c:/Users/Feder/OneDrive - The Ohio State University/coding/plant_vs_zombie/PVZ-Project/Content/Sounds/main_theme.wav</File>
+    <File>c:/Users/Feder/OneDrive - The Ohio State University/coding/plant_vs_zombie/PVZ-Project/Content/Sounds/pea_hit.wav</File>
+    <File>c:/Users/Feder/OneDrive - The Ohio State University/coding/plant_vs_zombie/PVZ-Project/Content/DefaultFont.spritefont</File>
+    <File>c:/Users/Feder/OneDrive - The Ohio State University/coding/plant_vs_zombie/PVZ-Project/Content/sun.webp</File>
+    <File>c:/Users/Feder/OneDrive - The Ohio State University/coding/plant_vs_zombie/PVZ-Project/Content/sunflower.png</File>
+    <File>c:/Users/Feder/OneDrive - The Ohio State University/coding/plant_vs_zombie/PVZ-Project/Content/SunflowerSeedPacket.webp</File>
   </SourceFiles>
   <DestFiles>
     <File xsi:nil="true" />
     <File>day_level.png</File>
     <File>snowpea.png</File>
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File>snowpea_projectile.png</File>
@@ -40,6 +42,7 @@
     <File>seedslot.webp</File>
     <File>shovel.webp</File>
     <File>snowpea_seedpacket.webp</File>
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />

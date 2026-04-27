@@ -45,12 +45,17 @@ public class SeedSlot
 
     public Rectangle TrayBounds => _trayBounds;
 
-    public void Draw(SpriteBatch spriteBatch, int selectedIndex)
+    public void Draw(SpriteBatch spriteBatch, int selectedIndex, int currentSun, int[] costs)
     {
         spriteBatch.Draw(_trayTexture, _trayBounds, Color.White);
 
         for (int i = 0; i < _packetTextures.Length; i++)
+        {
+            bool canAfford = i < costs.Length && currentSun >= costs[i];
             spriteBatch.Draw(_packetTextures[i], _packetBounds[i], Color.White);
+            if (!canAfford)
+                spriteBatch.Draw(_pixel, _packetBounds[i], new Color(0, 0, 0, 140));
+        }
 
         if (selectedIndex >= 0 && selectedIndex < _packetBounds.Length)
             spriteBatch.Draw(_pixel, _packetBounds[selectedIndex], new Color(255, 255, 255, 60));

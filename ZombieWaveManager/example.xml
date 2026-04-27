@@ -1,48 +1,124 @@
-<Level Name="Level1" Duration="120">
+<Level Name="Level1" Duration="240">
 
-  <Wave Index="0" StartTime="5" IsHugeWave="false">
+  <!-- Wave 0: Tutorial opener — give the player ~18s to plant before first zombie -->
+  <Wave Index="0" StartTime="18" IsHugeWave="false">
 
-    <SpawnEvent Time="5">
-      <Spawn ZombieType="Basic" Count="4" Lanes="0,1,2,3,4" />
+    <SpawnEvent Time="18">
+      <Spawn ZombieType="Basic" Count="1" Lanes="1" />
     </SpawnEvent>
 
-    <SpawnEvent Time="12">
-      <Spawn ZombieType="Conehead" Count="1" Lanes="1,3" />
-      <Spawn ZombieType="Basic" Count="2" Lanes="0,2,4" />
+    <SpawnEvent Time="26">
+      <Spawn ZombieType="Basic" Count="1" Lanes="3" />
     </SpawnEvent>
 
-  </Wave>
-
-  <Wave Index="1" StartTime="25" IsHugeWave="false">
-
-    <SpawnEvent Time="25">
-      <Spawn ZombieType="Basic" Count="4" Lanes="0,1,2,3,4" />
-    </SpawnEvent>
-
-    <SpawnEvent Time="30">
-      <Spawn ZombieType="Buckethead" Count="1" Lanes="2" />
+    <SpawnEvent Time="34">
+      <Spawn ZombieType="Basic" Count="1" Lanes="2" />
     </SpawnEvent>
 
   </Wave>
 
-  <Wave Index="2" StartTime="50" IsHugeWave="true">
-
-    <SpawnEvent Time="50">
-      <Spawn ZombieType="Flag" Count="1" Lanes="2" />
-      <Spawn ZombieType="Basic" Count="6" Lanes="0,1,2,3,4" />
-    </SpawnEvent>
+  <!-- Wave 1: Ramp-up — spread pressure across all lanes, first Conehead -->
+  <Wave Index="1" StartTime="55" IsHugeWave="false">
 
     <SpawnEvent Time="55">
-      <Spawn ZombieType="Conehead" Count="3" Lanes="1,2,3" />
+      <Spawn ZombieType="Basic" Count="2" Lanes="0,4" />
     </SpawnEvent>
 
-     <SpawnEvent Time="60">
-      <Spawn ZombieType="Jetpack" Count="2" Lanes="1,2,3" />
+    <SpawnEvent Time="62">
+      <Spawn ZombieType="Basic" Count="1" Lanes="2" />
+      <Spawn ZombieType="Conehead" Count="1" Lanes="1" />
     </SpawnEvent>
 
-    <SpawnEvent Time="65">
-      <Spawn ZombieType="Jetpack" Count="3" Lanes="1,2,3" />
-      <Spawn ZombieType="Basic" Count="6" Lanes="0,1,2,3,4" />
+    <SpawnEvent Time="70">
+      <Spawn ZombieType="Basic" Count="2" Lanes="1,3" />
+      <Spawn ZombieType="Conehead" Count="1" Lanes="3" />
+    </SpawnEvent>
+
+  </Wave>
+
+  <!-- Wave 2: Mid-difficulty — Buckethead introduced, wider lane coverage -->
+  <Wave Index="2" StartTime="100" IsHugeWave="false">
+
+    <SpawnEvent Time="100">
+      <Spawn ZombieType="Basic" Count="3" Lanes="0,2,4" />
+    </SpawnEvent>
+
+    <SpawnEvent Time="107">
+      <Spawn ZombieType="Conehead" Count="2" Lanes="1,3" />
+    </SpawnEvent>
+
+    <SpawnEvent Time="114">
+      <Spawn ZombieType="Buckethead" Count="1" Lanes="2" />
+      <Spawn ZombieType="Basic" Count="2" Lanes="0,4" />
+    </SpawnEvent>
+
+    <SpawnEvent Time="122">
+      <Spawn ZombieType="Conehead" Count="1" Lanes="0" />
+      <Spawn ZombieType="Basic" Count="2" Lanes="1,3" />
+    </SpawnEvent>
+
+  </Wave>
+
+  <!-- Wave 3: First flag wave — sustained assault, Jetpack makes first appearance -->
+  <Wave Index="3" StartTime="155" IsHugeWave="true">
+
+    <SpawnEvent Time="155">
+      <Spawn ZombieType="Flag" Count="1" Lanes="2" />
+      <Spawn ZombieType="Basic" Count="4" Lanes="0,1,3,4" />
+    </SpawnEvent>
+
+    <SpawnEvent Time="160">
+      <Spawn ZombieType="Conehead" Count="2" Lanes="1,3" />
+    </SpawnEvent>
+
+    <SpawnEvent Time="166">
+      <Spawn ZombieType="Buckethead" Count="1" Lanes="0" />
+      <Spawn ZombieType="Buckethead" Count="1" Lanes="4" />
+    </SpawnEvent>
+
+    <SpawnEvent Time="172">
+      <Spawn ZombieType="Jetpack" Count="1" Lanes="2" />
+      <Spawn ZombieType="Basic" Count="3" Lanes="0,2,4" />
+    </SpawnEvent>
+
+    <SpawnEvent Time="180">
+      <Spawn ZombieType="Conehead" Count="2" Lanes="0,4" />
+      <Spawn ZombieType="Basic" Count="2" Lanes="1,3" />
+    </SpawnEvent>
+
+  </Wave>
+
+  <!-- Wave 4: Final huge wave — all-out assault across every lane -->
+  <Wave Index="4" StartTime="210" IsHugeWave="true">
+
+    <SpawnEvent Time="210">
+      <Spawn ZombieType="Flag" Count="1" Lanes="2" />
+      <Spawn ZombieType="Basic" Count="5" Lanes="0,1,2,3,4" />
+    </SpawnEvent>
+
+    <SpawnEvent Time="214">
+      <Spawn ZombieType="Conehead" Count="3" Lanes="0,2,4" />
+    </SpawnEvent>
+
+    <SpawnEvent Time="219">
+      <Spawn ZombieType="Buckethead" Count="2" Lanes="1,3" />
+      <Spawn ZombieType="Basic" Count="3" Lanes="0,2,4" />
+    </SpawnEvent>
+
+    <SpawnEvent Time="225">
+      <Spawn ZombieType="Jetpack" Count="2" Lanes="0,4" />
+      <Spawn ZombieType="Conehead" Count="2" Lanes="1,3" />
+    </SpawnEvent>
+
+    <SpawnEvent Time="231">
+      <Spawn ZombieType="Buckethead" Count="1" Lanes="2" />
+      <Spawn ZombieType="Jetpack" Count="1" Lanes="1" />
+      <Spawn ZombieType="Basic" Count="4" Lanes="0,1,3,4" />
+    </SpawnEvent>
+
+    <SpawnEvent Time="238">
+      <Spawn ZombieType="Conehead" Count="2" Lanes="0,4" />
+      <Spawn ZombieType="Buckethead" Count="1" Lanes="2" />
     </SpawnEvent>
 
   </Wave>

@@ -17,6 +17,10 @@ public interface IMap
     int GetSeedPacketIndexAt(Point screenPos);
     bool IsShovelAt(Point screenPos);
 
+    PlantType? GetPlantTypeForSlot(int slotIndex);
+    int GetCostForSlot(int slotIndex);
+    int GetCostForSelectedPlant();
+
     void Update(GameTime gameTime);
-    void Draw(SpriteBatch spriteBatch);
+    void Draw(SpriteBatch spriteBatch, int currentSun);
 }
