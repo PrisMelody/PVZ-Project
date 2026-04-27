@@ -8,7 +8,7 @@
 
     <SpawnEvent Time="12">
       <Spawn ZombieType="Conehead" Count="1" Lanes="1,3" />
-      <Spawn ZombieType="Jetpack" Count="2" Lanes="0,2,4" />
+      <Spawn ZombieType="Basic" Count="2" Lanes="0,2,4" />
     </SpawnEvent>
 
   </Wave>
@@ -34,6 +34,15 @@
 
     <SpawnEvent Time="55">
       <Spawn ZombieType="Conehead" Count="3" Lanes="1,2,3" />
+    </SpawnEvent>
+
+     <SpawnEvent Time="60">
+      <Spawn ZombieType="Jetpack" Count="2" Lanes="1,2,3" />
+    </SpawnEvent>
+
+    <SpawnEvent Time="65">
+      <Spawn ZombieType="Jetpack" Count="3" Lanes="1,2,3" />
+      <Spawn ZombieType="Basic" Count="6" Lanes="0,1,2,3,4" />
     </SpawnEvent>
 
   </Wave>
